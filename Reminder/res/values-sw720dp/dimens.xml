@@ -9,14 +9,24 @@
 	
 	<!-- Login layout dimension -->
 	
-	<dimen name="layout_marginTop_login">350dp</dimen>	
+	<dimen name="layout_marginTop_login">150dp</dimen>	
 	<dimen name="layout_marginTop_login_password">30dp</dimen>	
 	<dimen name="layout_marginRight_login">22dp</dimen>	
 	<dimen name="layout_marginLeft_login">22dp</dimen>
 	<dimen name="layout_marginLeft_loginbutton">380dp</dimen>
+	<dimen name="layout_marginLeft_login_heading">220dp</dimen>
+	
+	
 	<dimen name="android_padding_login">24dp</dimen>
-	<dimen name="android_textSize_login">28sp</dimen>
-	<dimen name="android_textSize_loginButton">36sp</dimen>
+	
+	
+	<dimen name="android_textSize_login">32sp</dimen>
+	<dimen name="android_textSize_loginButton">40sp</dimen>
+	<dimen name="android_textSize_heading">46sp</dimen>
+	
+	
+	<dimen name="button_radius">16dp</dimen>
+	<dimen name="editText_radius">16dp</dimen>
 	
 	
 	

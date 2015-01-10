@@ -12,8 +12,7 @@
 	<dimen name="layout_marginTop_login_password">10dp</dimen>	
 	<dimen name="layout_marginRight_login">12dp</dimen>	
 	<dimen name="layout_marginLeft_login">12dp</dimen>	
-	<dimen name="layout_marginLeft_loginbutton">140dp</dimen>
-	
+	<dimen name="layout_marginLeft_loginbutton">140dp</dimen>	
 	<dimen name="layout_marginLeft_login_heading">90dp</dimen>
 	
 	<dimen name="android_padding_login">10dp</dimen>
