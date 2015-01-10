@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Gridview -->
+    <color name="login_Background_start">#8dd0e4</color>
+    <color name="login_Background_end">#8dd0e4</color>
+     <color name="button_Background_start">#544054</color>
+     <color name="button_Background_end">#5b3e4d</color>
+      <color name="editTextBackground_start">#FFFFFF</color>
+      <color name="editTextBackground_end">#b5ccaf</color>
+      
+       <!-- Textcolor -->
+      <color name="buttonText">#83fe00</color>
+     <color name="editTextColor">#c1c1c1</color>
+     <color name="textviewColor">#aaa123</color>
+    
+       
+       
+
+        
+</resources>

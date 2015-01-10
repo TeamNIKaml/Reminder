@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    
+    <!-- Oppertunities dimensions -->
+    
+    <!-- 
+	<dimen name="layout_marginTop_oppertunities">2dp</dimen>	
+	<dimen name="layout_marginRight_oppertunities">1dp</dimen>	
+	<dimen name="layout_marginLeft_oppertunities">1dp</dimen>
+	<dimen name="android_padding_oppertunities">1dp</dimen>
+	<dimen name="android_textSize_oppertunities">20sp</dimen> -->
+	 
+	
+	
+	
+
+	
+	
+	
+	
+	
+	 
+</resources>
