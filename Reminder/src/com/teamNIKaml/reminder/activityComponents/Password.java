@@ -6,14 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class Password extends Fragment {
+	
+	
 	 @Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
 	 
 	        View ios = inflater.inflate(R.layout.password_frag, container, false);
-	        ((TextView)ios.findViewById(R.id.textView)).setText("iOS");
-	        return ios;
+	         return ios;
 }}
