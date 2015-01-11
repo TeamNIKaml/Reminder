@@ -17,10 +17,10 @@
         android:id="@+id/edittext">
 
         <TextView
+            android:layout_gravity="center_horizontal"
             android:id="@+id/app_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/layout_marginLeft_login_heading"
             android:layout_marginRight="@dimen/layout_marginRight_login"
             android:hint="@string/app_name"
              android:textColor="@color/textviewColor"
@@ -28,32 +28,7 @@
     </TableRow>
     
 
-				 <!--Email id-->
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/layout_marginTop_login"
-        android:gravity="left" 
-         >
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/layout_marginLeft_login"
-            android:layout_marginRight="@dimen/layout_marginRight_login"
-            android:background="@drawable/graident_edit_text"
-            android:hint="@string/username"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/android_padding_login"
-            android:textColor="@color/editTextColor"
-            android:textSize="@dimen/android_textSize_login" >
-
-            <requestFocus />
-        </EditText>
-    </TableRow>
-                       
+	
                            <!--Password-->
                         
                         
@@ -61,7 +36,8 @@
                             android:layout_height="0dp"
                             android:layout_width="fill_parent"
                             android:gravity="center_horizontal"
-                             android:layout_marginTop="@dimen/layout_marginTop_login_password" >
+                             android:layout_marginTop="@dimen/layout_marginTop_login"
+                             >
 
                             <EditText
                                 android:id="@+id/password"
@@ -89,6 +65,7 @@
 					        <Button
 						         android:id="@+id/loginButton"
 						         android:background="@drawable/gradient_button"
+						          android:padding="@dimen/android_padding_login"
 						         android:textColor="@color/buttonText"
 						         android:layout_width="wrap_content"
 						         android:layout_height="match_parent"

@@ -8,7 +8,7 @@
  
 	<!-- Login layout dimension -->
 	
-	<dimen name="layout_marginTop_login">40dp</dimen>	
+	<dimen name="layout_marginTop_login">30dp</dimen>	
 	<dimen name="layout_marginTop_login_password">10dp</dimen>	
 	<dimen name="layout_marginRight_login">12dp</dimen>	
 	<dimen name="layout_marginLeft_login">12dp</dimen>	
