@@ -35,6 +35,7 @@ public class SimpleCalendarViewActivity extends Activity implements OnClickListe
 
 		private ImageView calendarToJournalButton;
 		private Button selectedDayMonthYearButton;
+		private Button finish;
 		private Button currentMonth;
 		private ImageView prevMonth;
 		private ImageView nextMonth;
@@ -58,8 +59,9 @@ public class SimpleCalendarViewActivity extends Activity implements OnClickListe
 				Log.d(tag, "Calendar Instance:= " + "Month: " + month + " " + "Year: " + year);
 
 				selectedDayMonthYearButton = (Button) this.findViewById(R.id.selectedDayMonthYear);
-				selectedDayMonthYearButton.setText("Finish");
-				selectedDayMonthYearButton.setOnClickListener(new OnClickListener() {
+				finish = (Button)findViewById(R.id.finish);
+				selectedDayMonthYearButton.setText("Selected :");
+				finish.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
@@ -401,7 +403,7 @@ public class SimpleCalendarViewActivity extends Activity implements OnClickListe
 				public void onClick(View view)
 					{
 						String date_month_year = (String) view.getTag();
-						//selectedDayMonthYearButton.setText("Selected: " + date_month_year);
+						selectedDayMonthYearButton.setText("Selected: " + date_month_year);
 
 						try
 							{
