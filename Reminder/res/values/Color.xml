@@ -10,6 +10,7 @@
       
        <!-- Textcolor -->
       <color name="buttonText">#83fe00</color>
+        <color name="buttonText1">#000000</color>
      <color name="editTextColor">#c1c1c1</color>
      <color name="textviewColor">#FFFFFF</color>
      

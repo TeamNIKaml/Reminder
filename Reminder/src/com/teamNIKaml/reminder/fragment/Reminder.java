@@ -27,7 +27,7 @@ public class Reminder extends Fragment {
 	
 	private PasswordAdaptorEList listAdapter;
 	private ExpandableListView expListView;
-	private List<String> projectTitle;
+	private List<String> catagory;
 	private HashMap<String, List<String>> status;
 	private HashMap<String, List<String>> date;
 	private Button addOppertunitiesButton;
@@ -41,14 +41,14 @@ public class Reminder extends Fragment {
 		 li = inflater;
 		 
 	        View passwordView = inflater.inflate(R.layout.password_frag, container, false);
-	        init(passwordView);
-	        setListner();
+	       // init(passwordView);
+	       // setListner();
 	        
 	        
 	         return passwordView;
 }
 	 
-	 private void setListner() {
+	/* private void setListner() {
 			// TODO Auto-generated method stub
 			 expListView.setOnGroupClickListener(new OnGroupClickListener() {
 
@@ -68,7 +68,7 @@ public class Reminder extends Fragment {
 					@Override
 					public void onGroupExpand(int groupPosition) {
 						Toast.makeText(getActivity().getApplicationContext(),
-								projectTitle.get(groupPosition) + " Expanded",
+								catagory.get(groupPosition) + " Expanded",
 								Toast.LENGTH_SHORT).show();
 					}
 				});
@@ -79,7 +79,7 @@ public class Reminder extends Fragment {
 					@Override
 					public void onGroupCollapse(int groupPosition) {
 						Toast.makeText(getActivity().getApplicationContext(),
-								projectTitle.get(groupPosition) + " Collapsed",
+								catagory.get(groupPosition) + " Collapsed",
 								Toast.LENGTH_SHORT).show();
 
 					}
@@ -186,7 +186,7 @@ public class Reminder extends Fragment {
 				date.put(projectTitle.get(0), dateList); // Header, Child data
 				date.put(projectTitle.get(1), dateList);
 				date.put(projectTitle.get(2), dateList);
-			}
+			}*/
 
 		
 		

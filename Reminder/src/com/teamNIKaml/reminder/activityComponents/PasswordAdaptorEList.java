@@ -16,33 +16,36 @@ import android.widget.TextView;
 public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 
 	private Context _context;
-	private List<String> projectTitle; // header titles
+	private List<String> catagory; // header titles
 	// child data in format of header title, child title
-	private HashMap<String, List<String>> status;
-	private HashMap<String, List<String>> date;
+	private HashMap<String, List<String>> accountName;
+	private HashMap<String, List<String>> username;
+	private HashMap<String, List<String>> password;
 
-	public PasswordAdaptorEList(Context context, List<String> projectTitle,
-			HashMap<String, List<String>> status,HashMap<String, List<String>> date) {
+	public PasswordAdaptorEList(Context context, List<String> catagory,
+			HashMap<String, List<String>> accountName,HashMap<String, List<String>> username,
+			HashMap<String, List<String>> password) {
 		this._context = context;
-		this.projectTitle = projectTitle;
-		this.status = status;
-		this.date = date;
+		this.catagory = catagory;
+		this.accountName = accountName;
+		this.username = username;
+		this.password = password;
 	}
 
-	@Override
-	public Object getChild(int groupPosition, int childPosititon) {
-		return this.status.get(this.projectTitle.get(groupPosition))
+	
+	public Object getPassword(int groupPosition, int childPosititon) {
+		return this.password.get(this.catagory.get(groupPosition))
 				.get(childPosititon);
 	}
 	
-	public Object getStatus(int groupPosition, int childPosititon) {
-		return this.status.get(this.projectTitle.get(groupPosition))
+	public Object getAccountName(int groupPosition, int childPosititon) {
+		return this.accountName.get(this.catagory.get(groupPosition))
 				.get(childPosititon);
 	} 
 	
 	
-	public Object getDate(int groupPosition, int childPosititon) {
-		return this.date.get(this.projectTitle.get(groupPosition))
+	public Object getUserName(int groupPosition, int childPosititon) {
+		return this.username.get(this.catagory.get(groupPosition))
 				.get(childPosititon);
 	} 
 
@@ -63,28 +66,30 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 			convertView = infalInflater.inflate(R.layout.list_item_password, null);
 		}
 
-	 	TextView statusText = (TextView) convertView.findViewById(R.id.myOppertunity_status);
-		TextView dateText = (TextView) convertView.findViewById(R.id.myOppertunity_date);
+	 	TextView accountNameText = (TextView) convertView.findViewById(R.id.accountName);
+		TextView userNameText = (TextView) convertView.findViewById(R.id.username);
+		TextView passwordText =(TextView)convertView.findViewById(R.id.password);
 		
-		dateText.setText(getStatus(groupPosition, childPosition).toString());
-		statusText.setText(getDate(groupPosition, childPosition).toString());
+		accountNameText.setText(getAccountName(groupPosition, childPosition).toString());
+		userNameText.setText(getUserName(groupPosition, childPosition).toString());
+		passwordText.setText(getPassword(groupPosition, childPosition).toString());
 		return convertView;
 	}
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		return this.status.get(this.projectTitle.get(groupPosition))
+		return this.accountName.get(this.catagory.get(groupPosition))
 				.size();
 	}
 
 	@Override
 	public Object getGroup(int groupPosition) {
-		return this.projectTitle.get(groupPosition);
+		return this.catagory.get(groupPosition);
 	}
 
 	@Override
 	public int getGroupCount() {
-		return this.projectTitle.size();
+		return this.catagory.size();
 	}
 
 	@Override
@@ -117,6 +122,13 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;
+	}
+
+
+	@Override
+	public Object getChild(int groupPosition, int childPosition) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
