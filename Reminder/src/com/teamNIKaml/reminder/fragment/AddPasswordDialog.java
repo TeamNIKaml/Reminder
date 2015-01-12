@@ -5,17 +5,21 @@ import java.util.List;
 
 import com.teamNIKaml.reminder.property.PasswordDataSource;
 import com.teamNIKaml.reminder.activity.R;
+import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
+import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
 
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.ContactsContract.Intents.Insert;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -24,11 +28,10 @@ import android.widget.Spinner;
 public class AddPasswordDialog extends DialogFragment {
 	
 	private PasswordDataSource dataSource = PasswordDataSource.getPasswordDataSource();
-	private EditText projectTitle,description,contact,designation,address1,address2,county,city;
-	private EditText compcode,postcode,dayphone,email,eveningphone,other;	
-    private Spinner property_type,module_type,country;
-	private List<String> propertyTypeList,moduleTypeList,countryList;
-	private ArrayAdapter<String> propertyTypeAdaptor,moduleTypeAdaptor,countryAdaptor;
+	private EditText accountName,username,catagory,password;	
+	private IDBHelper dbHelper = new PasswordHelper();
+	private Button saveButton;
+  
 	
 	private LayoutInflater li;
 	
@@ -46,54 +49,43 @@ public class AddPasswordDialog extends DialogFragment {
    	 
    	 initDialog(v);
    	setDialogData();
+   	
+   	final Dialog dlg = new AlertDialog.Builder(getActivity()).setView(v)
+			
+			.create();
+   	
+   	saveButton.setOnClickListener(new View.OnClickListener() {
 		
-		return new AlertDialog.Builder(getActivity()).setView(v)
-				// Set Dialog Icon
-				//.setIcon(R.drawable.androidhappy)
-				// Set Dialog Title
-				//.setTitle("Alert DialogFragment")
-				// Set Dialog Message
-				//.setMessage("Alert DialogFragment Tutorial")
- 
-				// Positive button
-				.setPositiveButton("Next", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						// Do something else
-					}
-				})
- 
-				// Negative Button
-				.create();
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			dbHelper.insert();
+			dlg.dismiss();
+			
+		}
+	});
+		
+		return dlg;
 	}
 
 	private void initDialog(View v) {
 		// TODO Auto-generated method stub
-		 projectTitle =(EditText) v.findViewById(R.id.projectTitle);
-		  description =(EditText)v.findViewById(R.id.description);
-		  contact =(EditText)v.findViewById(R.id.contact);
-		  designation = (EditText)v.findViewById(R.id.designation); 
-		  address1 = (EditText) v.findViewById(R.id.address1);
-		  address2 = (EditText) v.findViewById(R.id.address2);
-		  county = (EditText) v.findViewById(R.id.county);
-		  city = (EditText) v.findViewById(R.id.city);
-		  compcode = (EditText) v.findViewById(R.id.compcode);
-		  postcode = (EditText) v.findViewById(R.id.postcode);
-		  dayphone = (EditText) v.findViewById(R.id.dayphone);
-		  email = (EditText) v.findViewById(R.id.emailOppertunities);
-		  eveningphone = (EditText) v.findViewById(R.id.eveningphone);
-		  other =	(EditText) v.findViewById(R.id.other);
-		  property_type = (Spinner) v.findViewById(R.id.propertyspinner);
-		  module_type = (Spinner) v.findViewById(R.id.modulespinner);
-		  country = (Spinner) v.findViewById(R.id.countryspinner);		
-		  propertyTypeList = new ArrayList<String>();
-		  moduleTypeList = new ArrayList<String>();
-		  countryList = new ArrayList<String>();
+		accountName =(EditText) v.findViewById(R.id.accountName);
+		username =(EditText)v.findViewById(R.id.username);
+		catagory =(EditText)v.findViewById(R.id.catagory);
+		password = (EditText)v.findViewById(R.id.password); 
+		saveButton =(Button)v.findViewById(R.id.saveButton);
+		
+		  
 	}
 	
 	
 	 private void setDialogData() {
 			// TODO Auto-generated method stub
-	    	
+	    	dataSource.setAccountName(accountName.getText().toString());
+	    	dataSource.setUsername(username.getText().toString());
+	    	dataSource.setCatagory(catagory.getText().toString());
+	    	dataSource.setPassword(password.getText().toString());
 			
 		}
 	
