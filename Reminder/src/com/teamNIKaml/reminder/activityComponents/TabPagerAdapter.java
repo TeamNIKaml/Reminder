@@ -1,5 +1,9 @@
 package com.teamNIKaml.reminder.activityComponents;
 
+import com.teamNIKaml.reminder.fragment.Password;
+import com.teamNIKaml.reminder.fragment.Reminder;
+import com.teamNIKaml.reminder.fragment.Settings;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;

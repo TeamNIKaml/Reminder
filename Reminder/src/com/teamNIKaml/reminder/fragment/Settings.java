@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.activityComponents;
+package com.teamNIKaml.reminder.fragment;
 
 
 import com.teamNIKaml.reminder.activity.R;

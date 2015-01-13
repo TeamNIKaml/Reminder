@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:background="@drawable/gradient_login_background" 
+     >   
+    
+	
+     <!-- Add Button -->
+                       
+                           <TableRow
+                               android:layout_width="wrap_content"
+                               android:layout_height="0dp"
+                               android:layout_marginTop="@dimen/layout_marginTop_login_password"
+                               android:gravity="left" 
+                              >
+                               
+                                <Button
+                                    android:id="@+id/addReminderButton"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/button_radius"
+                                    android:layout_marginRight="@dimen/layout_marginRight_login"
+                                    android:background="@drawable/gradient_button"
+                                     android:padding="@dimen/android_padding_login"
+                                    android:text="@string/add"
+                                    android:textColor="@color/buttonText"
+                                    android:textSize="@dimen/android_textSize_login" />
+                                   
+						    
+					     
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"/>
+                       		</TableRow>
 
-</LinearLayout>
+	
+                           <!--Password-->
+                        
+                        
+                         <TableRow
+                            android:layout_height="0dp"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal"
+                              android:layout_marginTop="@dimen/layout_marginTop_login_password"
+                             >
+
+                             <ExpandableListView
+                                 android:id="@+id/ReminderList"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="fill_parent" 
+                                 >
+                             </ExpandableListView>
+
+                       </TableRow> 
+                       
+                         
+    
+
+</TableLayout>

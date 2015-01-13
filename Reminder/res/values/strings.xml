@@ -10,5 +10,8 @@
     <string name="action_settings">Settings</string>
     <string name="add">ADD</string>
     <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="accountName">Account Name</string>
+    <string name="catagory">Catagory</string>
 
 </resources>
