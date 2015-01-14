@@ -10,6 +10,7 @@ import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
 import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
 import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
 
 import android.support.v4.app.Fragment;
@@ -137,9 +138,14 @@ public class Password extends Fragment {
 		//catagory.add("Email");
 		//catagory.add("E-commerse");
 		
+
 		
-		  catagory.add("Top 250"); catagory.add("Now Showing");
-		  catagory.add("Coming Soon..");
+		
+		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[0]); 
+		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[1]);
+		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[2]);
+		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[3]);
+		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[4]);
 
 
 		expListView = (ExpandableListView) v.findViewById(R.id.passwordList);
@@ -173,46 +179,70 @@ public class Password extends Fragment {
 	private void prepareListData() {
 
 		Log.e("prepareListData", "prepareListData");
+		
+		
+		
 
 		List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
 		List<String> accountListCommerse = new ArrayList<String>();
+		List<String> accountListBank = new ArrayList<String>();
+		List<String> accountListother = new ArrayList<String>();
 
 		List<String> userListSocial = new ArrayList<String>();
 		List<String> userListEmail = new ArrayList<String>();
 		List<String> userListCommerse = new ArrayList<String>();
+		List<String> userListBank = new ArrayList<String>();
+		List<String> userListOther = new ArrayList<String>();
 
 		List<String> passListSocial = new ArrayList<String>();
 		List<String> passListEmail = new ArrayList<String>();
 		List<String> passListCommerse = new ArrayList<String>();
+		List<String> passListBank = new ArrayList<String>();
+		List<String> passListOther = new ArrayList<String>();
 
+		
 		
 		passwordList = dataSource.getOppertunitieslist();
 		Log.e("PasswordList prepare data size", String.valueOf(passwordList.size()));
 
 		for (PasswordDataSource pass : passwordList) {
-			if (pass.getCatagory().equalsIgnoreCase("social")) {
+			if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[0])) {
 
-				Log.e("Social", "Social");
+				Log.e("Social constaNT 0", Constants.CATAGORY_SPINNER_ARRAY[0]);
 				accountListSocial.add(pass.getAccountName());
 				userListSocial.add(pass.getUsername());
 				passListSocial.add(pass.getPassword());
 
-			} else if (pass.getCatagory().equalsIgnoreCase("email")) {
-				Log.e("email", "email");
+			} else if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[1])) {
+				
+				Log.e("email constant 1", Constants.CATAGORY_SPINNER_ARRAY[1]);
 				accountListEmail.add(pass.getAccountName());
 				userListEmail.add(pass.getUsername());
 				passListEmail.add(pass.getPassword());
 
-			} else {
-				Log.e("Commerse", "Commerse");
-				Log.e("Account Name ", pass.getAccountName());
-				Log.e("UserName ", pass.getAccountName());
-				Log.e("Password ", pass.getPassword());
+			} else if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[2])) {
 				
+				Log.e("Commerse constant 2", Constants.CATAGORY_SPINNER_ARRAY[2]);
 				accountListCommerse.add(pass.getAccountName());
 				userListCommerse.add(pass.getUsername());
 				passListCommerse.add(pass.getPassword());
+			}
+			else if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[3])) {
+				
+				Log.e("Bank constant 2", Constants.CATAGORY_SPINNER_ARRAY[3]);
+				accountListBank.add(pass.getAccountName());
+				userListBank.add(pass.getUsername());
+				passListBank.add(pass.getPassword());
+			}
+			
+			else {
+				
+				Log.e("Others constant 2", Constants.CATAGORY_SPINNER_ARRAY[4]);
+				accountListother.add(pass.getAccountName());
+				userListOther.add(pass.getUsername());
+				passListOther.add(pass.getPassword());	
+				
 			}
 
 		}

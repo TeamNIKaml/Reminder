@@ -3,6 +3,7 @@ package com.teamNIKaml.reminder.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
@@ -28,9 +29,12 @@ import android.widget.Spinner;
 public class AddPasswordDialog extends DialogFragment {
 	
 	private PasswordDataSource dataSource = PasswordDataSource.getPasswordDataSource();
-	private EditText accountName,username,catagory,password;	
+	private EditText accountName,username,password;	
+	private Spinner catagory;
 	private IDBHelper dbHelper = new PasswordHelper();
 	private Button saveButton;
+	
+
   
 	
 	private LayoutInflater li;
@@ -71,13 +75,20 @@ public class AddPasswordDialog extends DialogFragment {
 		return dlg;
 	}
 
+	
 	private void initDialog(View v) {
 		// TODO Auto-generated method stub
 		accountName =(EditText) v.findViewById(R.id.accountName);
 		username =(EditText)v.findViewById(R.id.username);
-		catagory =(EditText)v.findViewById(R.id.catagory);
+		catagory =(Spinner)v.findViewById(R.id.catagorySpinner);
 		password = (EditText)v.findViewById(R.id.password); 
 		saveButton =(Button)v.findViewById(R.id.saveButton);
+		
+		  @SuppressWarnings({ "rawtypes", "unchecked" })
+		ArrayAdapter adapter = new ArrayAdapter(getActivity().getApplicationContext(),
+		            R.layout.spinner_item, Constants.CATAGORY_SPINNER_ARRAY);
+		  adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+			catagory.setAdapter(adapter);
 		
 		  
 	}
@@ -87,7 +98,7 @@ public class AddPasswordDialog extends DialogFragment {
 			// TODO Auto-generated method stub
 	    	dataSource.setAccountName(accountName.getText().toString());
 	    	dataSource.setUsername(username.getText().toString());
-	    	dataSource.setCatagory(catagory.getText().toString());
+	    	dataSource.setCatagory(catagory.getSelectedItem().toString());
 	    	dataSource.setPassword(password.getText().toString());
 			
 		}
