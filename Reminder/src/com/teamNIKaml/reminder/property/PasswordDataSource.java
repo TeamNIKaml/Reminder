@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 public class PasswordDataSource {
 
@@ -112,6 +113,9 @@ public class PasswordDataSource {
 	}
 
 	public PasswordDataSource cursorToPasswordsDataSource(Cursor cursor) {
+		
+		Log.e("data :", cursor.getString(1)+" "+cursor.getString(2)+ 
+				" "+cursor.getString(3)+" "+cursor.getString(4) );
 
 		setCatagory(cursor.getString(1));
 		setAccountName(cursor.getString(2));

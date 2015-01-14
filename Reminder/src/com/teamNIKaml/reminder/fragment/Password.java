@@ -13,6 +13,7 @@ import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,10 @@ public class Password extends Fragment {
 	private LayoutInflater li;
 	private PasswordDataSource dataSource = PasswordDataSource
 			.getPasswordDataSource();
-	private IDBHelper dbHelper = new PasswordHelper();
+	private PasswordHelper dbHelper = new PasswordHelper();
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
+	
+		
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +75,8 @@ public class Password extends Fragment {
 
 			@Override
 			public void onGroupExpand(int groupPosition) {
+
+				//updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Expanded",
 						Toast.LENGTH_SHORT).show();
@@ -83,6 +88,7 @@ public class Password extends Fragment {
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
+				//updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Collapsed",
 						Toast.LENGTH_SHORT).show();
@@ -121,21 +127,52 @@ public class Password extends Fragment {
 	}
 
 	private void init(View v) {
+		Log.e("init", "init");
+		catagory = new ArrayList<String>();
+		accountName = new HashMap<String, List<String>>();
+		username = new HashMap<String, List<String>>();
+		password = new HashMap<String, List<String>>();
+		
+		//catagory.add("Social");
+		//catagory.add("Email");
+		//catagory.add("E-commerse");
+		
+		
+		  catagory.add("Top 250"); catagory.add("Now Showing");
+		  catagory.add("Coming Soon..");
+
+
 		expListView = (ExpandableListView) v.findViewById(R.id.passwordList);
 		addOppertunitiesButton = (Button) v.findViewById(R.id.addButton);
+		dataSource = PasswordDataSource.getPasswordDataSource();
+		dataSource.setContext(getActivity().getApplicationContext());
+		dbHelper.select(null, null, null, null);
+		//updateList();
+		
+		prepareListData();
+		
+		listAdapter = new PasswordAdaptorEList(getActivity()
+				.getApplicationContext(), catagory, accountName, username,
+				password);
+		expListView.setAdapter(listAdapter);
+		
+		dbHelper.setPassword(this);
+		
+		
+	}
+
+	public void updateList() {
 		prepareListData();
 		listAdapter = new PasswordAdaptorEList(getActivity()
 				.getApplicationContext(), catagory, accountName, username,
 				password);
 		expListView.setAdapter(listAdapter);
-
+		
 	}
 
 	private void prepareListData() {
-		catagory = new ArrayList<String>();
-		accountName = new HashMap<String, List<String>>();
-		username = new HashMap<String, List<String>>();
-		password = new HashMap<String, List<String>>();
+
+		Log.e("prepareListData", "prepareListData");
 
 		List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
@@ -149,34 +186,40 @@ public class Password extends Fragment {
 		List<String> passListEmail = new ArrayList<String>();
 		List<String> passListCommerse = new ArrayList<String>();
 
-		catagory.add("Social");
-		catagory.add("Email");
-		catagory.add("E-commerse");
-
-		dataSource = PasswordDataSource.getPasswordDataSource();
-		dataSource.setContext(getActivity().getApplicationContext());
-
-		dbHelper.select(null, null, null, null);
+		
 		passwordList = dataSource.getOppertunitieslist();
+		Log.e("PasswordList prepare data size", String.valueOf(passwordList.size()));
 
 		for (PasswordDataSource pass : passwordList) {
 			if (pass.getCatagory().equalsIgnoreCase("social")) {
+
+				Log.e("Social", "Social");
 				accountListSocial.add(pass.getAccountName());
 				userListSocial.add(pass.getUsername());
 				passListSocial.add(pass.getPassword());
 
 			} else if (pass.getCatagory().equalsIgnoreCase("email")) {
+				Log.e("email", "email");
 				accountListEmail.add(pass.getAccountName());
 				userListEmail.add(pass.getUsername());
 				passListEmail.add(pass.getPassword());
 
 			} else {
+				Log.e("Commerse", "Commerse");
+				Log.e("Account Name ", pass.getAccountName());
+				Log.e("UserName ", pass.getAccountName());
+				Log.e("Password ", pass.getPassword());
+				
 				accountListCommerse.add(pass.getAccountName());
 				userListCommerse.add(pass.getUsername());
 				passListCommerse.add(pass.getPassword());
 			}
 
 		}
+
+		System.out.println("accountList" + accountListSocial.toString());
+		System.out.println("userList" + userListSocial.toString());
+		System.out.println("PassList" + passListSocial.toString());
 
 		accountName.put(catagory.get(0), accountListSocial); // Header, Child
 																// data
@@ -192,45 +235,46 @@ public class Password extends Fragment {
 		password.put(catagory.get(2), passListCommerse);
 
 		// Adding child data
+		
 		/*
-		 * catagory.add("Top 250"); catagory.add("Now Showing");
-		 * catagory.add("Coming Soon..");
-		 * 
-		 * List<String> dateList = new ArrayList<String>();
-		 * dateList.add("date1"); dateList.add("date2"); dateList.add("date3");
-		 * dateList.add("date4"); dateList.add("date5"); dateList.add("date6");
-		 * dateList.add("date7");
-		 * 
-		 * // Adding child data List<String> top250 = new ArrayList<String>();
-		 * top250.add("The Shawshank Redemption"); top250.add("The Godfather");
-		 * top250.add("The Godfather: Part II"); top250.add("Pulp Fiction");
-		 * top250.add("The Good, the Bad and the Ugly");
-		 * top250.add("The Dark Knight"); top250.add("12 Angry Men");
-		 * 
-		 * List<String> nowShowing = new ArrayList<String>();
-		 * nowShowing.add("The Conjuring"); nowShowing.add("Despicable Me 2");
-		 * nowShowing.add("Turbo"); nowShowing.add("Grown Ups 2");
-		 * nowShowing.add("Red 2"); nowShowing.add("The Wolverine");
-		 * nowShowing.add("X men");
-		 * 
-		 * List<String> comingSoon = new ArrayList<String>();
-		 * comingSoon.add("2 Guns"); comingSoon.add("The Smurfs 2");
-		 * comingSoon.add("The Spectacular Now"); comingSoon.add("The Canyons");
-		 * comingSoon.add("Europa Report"); comingSoon.add("Avengers");
-		 * comingSoon.add("Game of thrones 6");
-		 * 
-		 * accountName.put(catagory.get(0), top250); // Header, Child data
-		 * accountName.put(catagory.get(1), nowShowing);
-		 * accountName.put(catagory.get(2), comingSoon);
-		 * 
-		 * username.put(catagory.get(0), dateList); // Header, Child data
-		 * username.put(catagory.get(1), dateList);
-		 * username.put(catagory.get(2), dateList);
-		 * 
-		 * password.put(catagory.get(0), top250); // Header, Child data
-		 * password.put(catagory.get(1), nowShowing);
-		 * password.put(catagory.get(2), comingSoon);
-		 */
+		  
+		  List<String> dateList = new ArrayList<String>();
+		  dateList.add("date1"); dateList.add("date2"); dateList.add("date3");
+		  dateList.add("date4"); dateList.add("date5"); dateList.add("date6");
+		  dateList.add("date7");
+		  
+		  
+		  List<String> top250 = new ArrayList<String>();
+		  // Adding child data List<String> top250 = new ArrayList<String>();
+		  top250.add("The Shawshank Redemption"); top250.add("The Godfather");
+		  top250.add("The Godfather: Part II"); top250.add("Pulp Fiction");
+		  top250.add("The Good, the Bad and the Ugly");
+		  top250.add("The Dark Knight"); top250.add("12 Angry Men");
+		  
+		  List<String> nowShowing = new ArrayList<String>();
+		  nowShowing.add("The Conjuring"); nowShowing.add("Despicable Me 2");
+		  nowShowing.add("Turbo"); nowShowing.add("Grown Ups 2");
+		  nowShowing.add("Red 2"); nowShowing.add("The Wolverine");
+		  nowShowing.add("X men");
+		  
+		  List<String> comingSoon = new ArrayList<String>();
+		  comingSoon.add("2 Guns"); comingSoon.add("The Smurfs 2");
+		  comingSoon.add("The Spectacular Now"); comingSoon.add("The Canyons");
+		  comingSoon.add("Europa Report"); comingSoon.add("Avengers");
+		  comingSoon.add("Game of thrones 6");
+		  
+		  accountName.put(catagory.get(0), top250); // Header, Child data
+		  accountName.put(catagory.get(1), nowShowing);
+		  accountName.put(catagory.get(2), comingSoon);
+		  
+		  username.put(catagory.get(0), dateList); // Header, Child data
+		  username.put(catagory.get(1), dateList);
+		  username.put(catagory.get(2), dateList);
+		  
+		  password.put(catagory.get(0), top250); // Header, Child data
+		  password.put(catagory.get(1), nowShowing);
+		  password.put(catagory.get(2), comingSoon);*/
+		 
 
 	}
 

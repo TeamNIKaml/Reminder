@@ -59,6 +59,7 @@ public class AddPasswordDialog extends DialogFragment {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			setDialogData();
 			Log.e("onclick", "doInBackground");
 			dataSource.setContext(getActivity().getApplicationContext());
 			dbHelper.insert();

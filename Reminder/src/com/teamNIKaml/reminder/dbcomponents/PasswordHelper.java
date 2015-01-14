@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.teamNIKaml.reminder.fragment.Password;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
 
@@ -17,6 +18,15 @@ public class PasswordHelper implements IDBHelper {
 			.getPasswordDataSource();
 	private DBHelper dbHelper;
 	private List<PasswordDataSource> oppertunitieslist = new ArrayList<PasswordDataSource>();
+	private Password password;
+
+	public Password getPassword() {
+		return password;
+	}
+
+	public void setPassword(Password password) {
+		this.password = password;
+	}
 
 	@Override
 	public boolean onCreate() {
@@ -58,11 +68,40 @@ public class PasswordHelper implements IDBHelper {
 		// TODO Auto-generated method stub
 		dataSource.setWhereArgs(selectionArgs);
 		dataSource.setWhereClause(selection);
-		new DBTask().execute("select");
+		//new DBTask().execute("select");
+		
+		
+
+			onCreate();
+			Log.e("DBTask select", "doInBackground");
+			SQLiteDatabase database = dbHelper.getReadableDatabase();
+			Cursor cursor = database.query(Constants.PASSWORD_TABLE_NAME,
+					dataSource.getProjection(),
+					dataSource.getWhereClause(), dataSource.getWhereArgs(),
+					null, null, dataSource.getSortOrder());
+			int count = cursor.getColumnCount();
+			Log.e("count", String.valueOf(count));
+			if (cursor.moveToFirst()) {
+
+				do {
+					oppertunitieslist.add(dataSource
+							.cursorToPasswordsDataSource(cursor));
+				} while (cursor.moveToNext());
+
+			
+			
+			Log.e("passwordList size", String.valueOf(oppertunitieslist.size()));
+			dataSource.setOppertunitieslist(oppertunitieslist);
+
+		}
+		
+		
 
 	}
 
 	private class DBTask extends AsyncTask<String, Integer, String> {
+
+	
 
 		@Override
 		protected String doInBackground(String... operation) {
@@ -93,29 +132,7 @@ public class PasswordHelper implements IDBHelper {
 						dataSource.getWhereClause(), dataSource.getWhereArgs());
 				dataBase.close();
 
-			} else if (operation[0].equalsIgnoreCase("select")) {
-
-				onCreate();
-				Log.e("DBTask select", "doInBackground");
-				SQLiteDatabase database = dbHelper.getReadableDatabase();
-				Cursor cursor = database.query(Constants.PASSWORD_TABLE_NAME,
-						dataSource.getProjection(),
-						dataSource.getWhereClause(), dataSource.getWhereArgs(),
-						null, null, dataSource.getSortOrder());
-				int count = cursor.getColumnCount();
-				Log.e("count", String.valueOf(count));
-				if (cursor.moveToFirst()) {
-
-					do {
-						oppertunitieslist.add(dataSource
-								.cursorToPasswordsDataSource(cursor));
-					} while (cursor.moveToNext());
-
-				}
-
-				dataSource.setOppertunitieslist(oppertunitieslist);
-
-			}
+			} 
 
 			else {
 				Log.e("Invalid db task", "invalid dsfsdfasdas");
