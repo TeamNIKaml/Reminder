@@ -13,5 +13,6 @@
     <string name="save">Save</string>
     <string name="accountName">Account Name</string>
     <string name="catagory">Catagory</string>
+    <string name="delete">Delete</string>
 
 </resources>

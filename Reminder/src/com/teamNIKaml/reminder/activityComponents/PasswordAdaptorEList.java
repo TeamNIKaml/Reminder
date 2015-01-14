@@ -7,6 +7,7 @@ import java.util.List;
 import com.teamNIKaml.reminder.activity.R;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,8 +79,11 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
+		
+		
 		return this.accountName.get(this.catagory.get(groupPosition))
 				.size();
+		
 	}
 
 	@Override

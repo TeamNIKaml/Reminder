@@ -77,7 +77,7 @@ public class Password extends Fragment {
 			@Override
 			public void onGroupExpand(int groupPosition) {
 
-				//updateList();
+				updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Expanded",
 						Toast.LENGTH_SHORT).show();
@@ -89,7 +89,7 @@ public class Password extends Fragment {
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
-				//updateList();
+				updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Collapsed",
 						Toast.LENGTH_SHORT).show();
@@ -111,6 +111,20 @@ public class Password extends Fragment {
 								+ accountName.get(catagory.get(groupPosition))
 										.get(childPosition), Toast.LENGTH_SHORT)
 						.show();
+				
+				dataSource.setAccountName(accountName.get(catagory.get(groupPosition))
+						.get(childPosition));
+		    	dataSource.setUsername(username.get(catagory.get(groupPosition))
+						.get(childPosition));
+		    	dataSource.setCatagory(catagory.get(groupPosition));
+		    	dataSource.setPassword(password.get(catagory.get(groupPosition))
+						.get(childPosition));
+				
+				
+				EditPasswordDialog dialog = new EditPasswordDialog(li);
+				dialog.show(getChildFragmentManager(), "AddOppertunity");
+				
+				
 				return false;
 			}
 		});
@@ -255,14 +269,20 @@ public class Password extends Fragment {
 																// data
 		accountName.put(catagory.get(1), accountListEmail);
 		accountName.put(catagory.get(2), accountListCommerse);
+		accountName.put(catagory.get(3), accountListCommerse);
+		accountName.put(catagory.get(4), accountListCommerse);
 
 		username.put(catagory.get(0), userListSocial); // Header, Child data
 		username.put(catagory.get(1), userListEmail);
 		username.put(catagory.get(2), userListCommerse);
+		username.put(catagory.get(3), userListCommerse);
+		username.put(catagory.get(4), userListCommerse);
 
 		password.put(catagory.get(0), passListSocial); // Header, Child data
 		password.put(catagory.get(1), passListEmail);
 		password.put(catagory.get(2), passListCommerse);
+		password.put(catagory.get(3), passListCommerse);
+		password.put(catagory.get(4), passListCommerse);
 
 		// Adding child data
 		
