@@ -8,6 +8,9 @@ import android.os.Bundle;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
+import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
+import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.property.PasswordDataSource;
 
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,6 +34,10 @@ public class Password extends Fragment {
 	private HashMap<String, List<String>> password;
 	private Button addOppertunitiesButton;
 	private LayoutInflater li;
+	private PasswordDataSource dataSource = PasswordDataSource
+			.getPasswordDataSource();
+	private IDBHelper dbHelper = new PasswordHelper();
+	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,59 +137,100 @@ public class Password extends Fragment {
 		username = new HashMap<String, List<String>>();
 		password = new HashMap<String, List<String>>();
 
+		List<String> accountListSocial = new ArrayList<String>();
+		List<String> accountListEmail = new ArrayList<String>();
+		List<String> accountListCommerse = new ArrayList<String>();
+
+		List<String> userListSocial = new ArrayList<String>();
+		List<String> userListEmail = new ArrayList<String>();
+		List<String> userListCommerse = new ArrayList<String>();
+
+		List<String> passListSocial = new ArrayList<String>();
+		List<String> passListEmail = new ArrayList<String>();
+		List<String> passListCommerse = new ArrayList<String>();
+
+		catagory.add("Social");
+		catagory.add("Email");
+		catagory.add("E-commerse");
+
+		dataSource = PasswordDataSource.getPasswordDataSource();
+		dataSource.setContext(getActivity().getApplicationContext());
+
+		dbHelper.select(null, null, null, null);
+		passwordList = dataSource.getOppertunitieslist();
+
+		for (PasswordDataSource pass : passwordList) {
+			if (pass.getCatagory().equalsIgnoreCase("social")) {
+				accountListSocial.add(pass.getAccountName());
+				userListSocial.add(pass.getUsername());
+				passListSocial.add(pass.getPassword());
+
+			} else if (pass.getCatagory().equalsIgnoreCase("email")) {
+				accountListEmail.add(pass.getAccountName());
+				userListEmail.add(pass.getUsername());
+				passListEmail.add(pass.getPassword());
+
+			} else {
+				accountListCommerse.add(pass.getAccountName());
+				userListCommerse.add(pass.getUsername());
+				passListCommerse.add(pass.getPassword());
+			}
+
+		}
+
+		accountName.put(catagory.get(0), accountListSocial); // Header, Child
+																// data
+		accountName.put(catagory.get(1), accountListEmail);
+		accountName.put(catagory.get(2), accountListCommerse);
+
+		username.put(catagory.get(0), userListSocial); // Header, Child data
+		username.put(catagory.get(1), userListEmail);
+		username.put(catagory.get(2), userListCommerse);
+
+		password.put(catagory.get(0), passListSocial); // Header, Child data
+		password.put(catagory.get(1), passListEmail);
+		password.put(catagory.get(2), passListCommerse);
+
 		// Adding child data
-		catagory.add("Top 250");
-		catagory.add("Now Showing");
-		catagory.add("Coming Soon..");
-
-		List<String> dateList = new ArrayList<String>();
-		dateList.add("date1");
-		dateList.add("date2");
-		dateList.add("date3");
-		dateList.add("date4");
-		dateList.add("date5");
-		dateList.add("date6");
-		dateList.add("date7");
-
-		// Adding child data
-		List<String> top250 = new ArrayList<String>();
-		top250.add("The Shawshank Redemption");
-		top250.add("The Godfather");
-		top250.add("The Godfather: Part II");
-		top250.add("Pulp Fiction");
-		top250.add("The Good, the Bad and the Ugly");
-		top250.add("The Dark Knight");
-		top250.add("12 Angry Men");
-
-		List<String> nowShowing = new ArrayList<String>();
-		nowShowing.add("The Conjuring");
-		nowShowing.add("Despicable Me 2");
-		nowShowing.add("Turbo");
-		nowShowing.add("Grown Ups 2");
-		nowShowing.add("Red 2");
-		nowShowing.add("The Wolverine");
-		nowShowing.add("X men");
-
-		List<String> comingSoon = new ArrayList<String>();
-		comingSoon.add("2 Guns");
-		comingSoon.add("The Smurfs 2");
-		comingSoon.add("The Spectacular Now");
-		comingSoon.add("The Canyons");
-		comingSoon.add("Europa Report");
-		comingSoon.add("Avengers");
-		comingSoon.add("Game of thrones 6");
-
-		accountName.put(catagory.get(0), top250); // Header, Child data
-		accountName.put(catagory.get(1), nowShowing);
-		accountName.put(catagory.get(2), comingSoon);
-
-		username.put(catagory.get(0), dateList); // Header, Child data
-		username.put(catagory.get(1), dateList);
-		username.put(catagory.get(2), dateList);
-
-		password.put(catagory.get(0), top250); // Header, Child data
-		password.put(catagory.get(1), nowShowing);
-		password.put(catagory.get(2), comingSoon);
+		/*
+		 * catagory.add("Top 250"); catagory.add("Now Showing");
+		 * catagory.add("Coming Soon..");
+		 * 
+		 * List<String> dateList = new ArrayList<String>();
+		 * dateList.add("date1"); dateList.add("date2"); dateList.add("date3");
+		 * dateList.add("date4"); dateList.add("date5"); dateList.add("date6");
+		 * dateList.add("date7");
+		 * 
+		 * // Adding child data List<String> top250 = new ArrayList<String>();
+		 * top250.add("The Shawshank Redemption"); top250.add("The Godfather");
+		 * top250.add("The Godfather: Part II"); top250.add("Pulp Fiction");
+		 * top250.add("The Good, the Bad and the Ugly");
+		 * top250.add("The Dark Knight"); top250.add("12 Angry Men");
+		 * 
+		 * List<String> nowShowing = new ArrayList<String>();
+		 * nowShowing.add("The Conjuring"); nowShowing.add("Despicable Me 2");
+		 * nowShowing.add("Turbo"); nowShowing.add("Grown Ups 2");
+		 * nowShowing.add("Red 2"); nowShowing.add("The Wolverine");
+		 * nowShowing.add("X men");
+		 * 
+		 * List<String> comingSoon = new ArrayList<String>();
+		 * comingSoon.add("2 Guns"); comingSoon.add("The Smurfs 2");
+		 * comingSoon.add("The Spectacular Now"); comingSoon.add("The Canyons");
+		 * comingSoon.add("Europa Report"); comingSoon.add("Avengers");
+		 * comingSoon.add("Game of thrones 6");
+		 * 
+		 * accountName.put(catagory.get(0), top250); // Header, Child data
+		 * accountName.put(catagory.get(1), nowShowing);
+		 * accountName.put(catagory.get(2), comingSoon);
+		 * 
+		 * username.put(catagory.get(0), dateList); // Header, Child data
+		 * username.put(catagory.get(1), dateList);
+		 * username.put(catagory.get(2), dateList);
+		 * 
+		 * password.put(catagory.get(0), top250); // Header, Child data
+		 * password.put(catagory.get(1), nowShowing);
+		 * password.put(catagory.get(2), comingSoon);
+		 */
 
 	}
 
