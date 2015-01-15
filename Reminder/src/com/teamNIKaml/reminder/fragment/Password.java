@@ -38,8 +38,6 @@ public class Password extends Fragment {
 			.getPasswordDataSource();
 	private PasswordHelper dbHelper = new PasswordHelper();
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
-	
-		
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +73,7 @@ public class Password extends Fragment {
 			@Override
 			public void onGroupExpand(int groupPosition) {
 
-				//updateList();
+				updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Expanded",
 						Toast.LENGTH_SHORT).show();
@@ -87,7 +85,7 @@ public class Password extends Fragment {
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
-				//updateList();
+				// updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Collapsed",
 						Toast.LENGTH_SHORT).show();
@@ -109,20 +107,18 @@ public class Password extends Fragment {
 								+ accountName.get(catagory.get(groupPosition))
 										.get(childPosition), Toast.LENGTH_SHORT)
 						.show();
-				
-				dataSource.setAccountName(accountName.get(catagory.get(groupPosition))
-						.get(childPosition));
-		    	dataSource.setUsername(username.get(catagory.get(groupPosition))
-						.get(childPosition));
-		    	dataSource.setCatagory(catagory.get(groupPosition));
-		    	dataSource.setPassword(password.get(catagory.get(groupPosition))
-						.get(childPosition));
-				
-				
+
+				dataSource.setAccountName(accountName.get(
+						catagory.get(groupPosition)).get(childPosition));
+				dataSource.setUsername(username
+						.get(catagory.get(groupPosition)).get(childPosition));
+				dataSource.setCatagory(catagory.get(groupPosition));
+				dataSource.setPassword(password
+						.get(catagory.get(groupPosition)).get(childPosition));
+
 				EditPasswordDialog dialog = new EditPasswordDialog(li);
 				dialog.show(getChildFragmentManager(), "AddOppertunity");
-				
-				
+
 				return false;
 			}
 		});
@@ -145,55 +141,39 @@ public class Password extends Fragment {
 		accountName = new HashMap<String, List<String>>();
 		username = new HashMap<String, List<String>>();
 		password = new HashMap<String, List<String>>();
-		
-		//catagory.add("Social");
-		//catagory.add("Email");
-		//catagory.add("E-commerse");
-		
 
-		
-		
-		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[0]); 
-		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[1]);
-		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[2]);
-		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[3]);
-		  catagory.add(Constants.CATAGORY_SPINNER_ARRAY[4]);
-
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[0]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[1]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[2]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[3]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[4]);
 
 		expListView = (ExpandableListView) v.findViewById(R.id.passwordList);
 		addOppertunitiesButton = (Button) v.findViewById(R.id.addButton);
 		dataSource = PasswordDataSource.getPasswordDataSource();
 		dataSource.setContext(getActivity().getApplicationContext());
 		dbHelper.select(null, null, null, null);
-		//updateList();
-		
+
 		prepareListData();
-		
+
 		listAdapter = new PasswordAdaptorEList(getActivity()
 				.getApplicationContext(), catagory, accountName, username,
 				password);
 		expListView.setAdapter(listAdapter);
-		
+
 		dbHelper.setPassword(this);
-		
-		
+
 	}
 
 	public void updateList() {
 		prepareListData();
-		listAdapter = new PasswordAdaptorEList(getActivity()
-				.getApplicationContext(), catagory, accountName, username,
-				password);
-		expListView.setAdapter(listAdapter);
-		
+		listAdapter.notifyDataSetChanged();
+
 	}
 
 	private void prepareListData() {
 
 		Log.e("prepareListData", "prepareListData");
-		
-		
-		
 
 		List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
@@ -213,139 +193,65 @@ public class Password extends Fragment {
 		List<String> passListBank = new ArrayList<String>();
 		List<String> passListOther = new ArrayList<String>();
 
-		
-		
-		passwordList = dataSource.getOppertunitieslist();
-		Log.e("PasswordList prepare data size", String.valueOf(passwordList.size()));
+		passwordList = dataSource.getPasswordList();
 
 		for (PasswordDataSource pass : passwordList) {
-			System.out.println("Password.getCatogory()"+pass.getCatagory());
-			
-			if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[0])) {
 
-				Log.e("Social constaNT 0", Constants.CATAGORY_SPINNER_ARRAY[0]);
+			if (pass.getCatagory().equalsIgnoreCase(
+					Constants.CATAGORY_SPINNER_ARRAY[0])) {
+
 				accountListSocial.add(pass.getAccountName());
 				userListSocial.add(pass.getUsername());
 				passListSocial.add(pass.getPassword());
 
-			} else if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[1])) {
-				
-				Log.e("email constant 1", Constants.CATAGORY_SPINNER_ARRAY[1]);
+			} else if (pass.getCatagory().equalsIgnoreCase(
+					Constants.CATAGORY_SPINNER_ARRAY[1])) {
+
 				accountListEmail.add(pass.getAccountName());
 				userListEmail.add(pass.getUsername());
 				passListEmail.add(pass.getPassword());
 
-			} else if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[2])) {
-				
-				Log.e("Commerse constant 2", Constants.CATAGORY_SPINNER_ARRAY[2]);
+			} else if (pass.getCatagory().equalsIgnoreCase(
+					Constants.CATAGORY_SPINNER_ARRAY[2])) {
+
 				accountListCommerse.add(pass.getAccountName());
 				userListCommerse.add(pass.getUsername());
 				passListCommerse.add(pass.getPassword());
-			}
-			else if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[3])) {
-				
-				Log.e("Bank constant 2", Constants.CATAGORY_SPINNER_ARRAY[3]);
+			} else if (pass.getCatagory().equalsIgnoreCase(
+					Constants.CATAGORY_SPINNER_ARRAY[3])) {
+
 				accountListBank.add(pass.getAccountName());
 				userListBank.add(pass.getUsername());
 				passListBank.add(pass.getPassword());
 			}
-			
+
 			else {
-				
-				Log.e("Others constant 2", Constants.CATAGORY_SPINNER_ARRAY[4]);
+
 				accountListother.add(pass.getAccountName());
 				userListOther.add(pass.getUsername());
-				passListOther.add(pass.getPassword());	
-				
+				passListOther.add(pass.getPassword());
+
 			}
 
 		}
 
-		System.out.println("accountListSocial" + accountListSocial.toString());
-		System.out.println("userListSocial" + userListSocial.toString());
-		System.out.println("passListSocial" + passListSocial.toString());
-		
-		
-		System.out.println("accountListCommerse" + accountListCommerse.toString());
-		System.out.println("accountListCommerse" + userListCommerse.toString());
-		System.out.println("accountListCommerse" + passListCommerse.toString());
-		
-		
-		System.out.println("accountListEmail" + accountListEmail.toString());
-		System.out.println("userListEmail" + userListEmail.toString());
-		System.out.println("userListEmail" + passListEmail.toString());
-		
-		
-		
-		System.out.println("accountListBank" + accountListBank.toString());
-		System.out.println("userListBank" + userListBank.toString());
-		System.out.println("passListBank" + passListBank.toString());
-		
-		System.out.println("accountListother" + accountListother.toString());
-		System.out.println("userListOther" + userListOther.toString());
-		System.out.println("userListOther" + passListOther.toString());
-		
-
-		accountName.put(catagory.get(0), accountListSocial); // Header, Child
-																// data
+		accountName.put(catagory.get(0), accountListSocial); 
 		accountName.put(catagory.get(1), accountListEmail);
 		accountName.put(catagory.get(2), accountListCommerse);
 		accountName.put(catagory.get(3), accountListCommerse);
 		accountName.put(catagory.get(4), accountListCommerse);
 
-		username.put(catagory.get(0), userListSocial); // Header, Child data
+		username.put(catagory.get(0), userListSocial);
 		username.put(catagory.get(1), userListEmail);
 		username.put(catagory.get(2), userListCommerse);
 		username.put(catagory.get(3), userListCommerse);
 		username.put(catagory.get(4), userListCommerse);
 
-		password.put(catagory.get(0), passListSocial); // Header, Child data
+		password.put(catagory.get(0), passListSocial);
 		password.put(catagory.get(1), passListEmail);
 		password.put(catagory.get(2), passListCommerse);
 		password.put(catagory.get(3), passListCommerse);
 		password.put(catagory.get(4), passListCommerse);
-
-		// Adding child data
-		
-		/*
-		  
-		  List<String> dateList = new ArrayList<String>();
-		  dateList.add("date1"); dateList.add("date2"); dateList.add("date3");
-		  dateList.add("date4"); dateList.add("date5"); dateList.add("date6");
-		  dateList.add("date7");
-		  
-		  
-		  List<String> top250 = new ArrayList<String>();
-		  // Adding child data List<String> top250 = new ArrayList<String>();
-		  top250.add("The Shawshank Redemption"); top250.add("The Godfather");
-		  top250.add("The Godfather: Part II"); top250.add("Pulp Fiction");
-		  top250.add("The Good, the Bad and the Ugly");
-		  top250.add("The Dark Knight"); top250.add("12 Angry Men");
-		  
-		  List<String> nowShowing = new ArrayList<String>();
-		  nowShowing.add("The Conjuring"); nowShowing.add("Despicable Me 2");
-		  nowShowing.add("Turbo"); nowShowing.add("Grown Ups 2");
-		  nowShowing.add("Red 2"); nowShowing.add("The Wolverine");
-		  nowShowing.add("X men");
-		  
-		  List<String> comingSoon = new ArrayList<String>();
-		  comingSoon.add("2 Guns"); comingSoon.add("The Smurfs 2");
-		  comingSoon.add("The Spectacular Now"); comingSoon.add("The Canyons");
-		  comingSoon.add("Europa Report"); comingSoon.add("Avengers");
-		  comingSoon.add("Game of thrones 6");
-		  
-		  accountName.put(catagory.get(0), top250); // Header, Child data
-		  accountName.put(catagory.get(1), nowShowing);
-		  accountName.put(catagory.get(2), comingSoon);
-		  
-		  username.put(catagory.get(0), dateList); // Header, Child data
-		  username.put(catagory.get(1), dateList);
-		  username.put(catagory.get(2), dateList);
-		  
-		  password.put(catagory.get(0), top250); // Header, Child data
-		  password.put(catagory.get(1), nowShowing);
-		  password.put(catagory.get(2), comingSoon);*/
-		 
 
 	}
 

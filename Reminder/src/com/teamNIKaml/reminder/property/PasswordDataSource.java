@@ -14,6 +14,25 @@ public class PasswordDataSource {
 	private String accountName;
 	private String username;
 	private String password;
+	private Context context;
+	private String whereClause;
+	private String[] whereArgs;
+	private String sortOrder;
+	private String[] projection;
+	private PasswordDataSource dataSource;
+	private static PasswordDataSource passwordDataSource;	
+	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
+	
+	private PasswordDataSource getDataSource()
+	{
+		return dataSource;
+	}
+	
+	private void setDataSource(PasswordDataSource dataSource)
+	{
+		this.dataSource = dataSource;
+	}
+	
 
 	public String getCatagory() {
 		return catagory;
@@ -47,13 +66,7 @@ public class PasswordDataSource {
 		this.password = password;
 	}
 
-	private Context context;
-	private String whereClause;
-	private String[] whereArgs;
-	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
-	private String[] projection;
-	private static PasswordDataSource passwordDataSource;
-	private String sortOrder;
+	
 
 	public String getWhereClause() {
 		return whereClause;
@@ -75,7 +88,7 @@ public class PasswordDataSource {
 	public String toString() {
 		// TODO Auto-generated method stub
 
-		return "";
+		return "Catagory : "+getCatagory() +"  Account Name:" +getAccountName() +"  Username:"+getUsername()+"  Password:"+getPassword();
 
 	}
 
@@ -116,20 +129,23 @@ public class PasswordDataSource {
 		
 		Log.e("data :", cursor.getString(1)+" "+cursor.getString(2)+ 
 				" "+cursor.getString(3)+" "+cursor.getString(4) );
+		dataSource = new PasswordDataSource();
 
-		setCatagory(cursor.getString(1));
-		setAccountName(cursor.getString(2));
-		setUsername(cursor.getString(3));
-		setPassword(cursor.getString(4));
-		return this;
+		dataSource.setCatagory(cursor.getString(1));
+		dataSource.setAccountName(cursor.getString(2));
+		dataSource.setUsername(cursor.getString(3));
+		dataSource.setPassword(cursor.getString(4));
+		//setDataSource(this);
+		return dataSource;
+		//return ;
 
 	}
 
-	public List<PasswordDataSource> getOppertunitieslist() {
+	public List<PasswordDataSource> getPasswordList() {
 		return passwordList;
 	}
 
-	public void setOppertunitieslist(List<PasswordDataSource> passwordList) {
+	public void SetPasswordList(List<PasswordDataSource> passwordList) {
 		this.passwordList = passwordList;
 	}
 

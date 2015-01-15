@@ -14,5 +14,8 @@
     <string name="accountName">Account Name</string>
     <string name="catagory">Catagory</string>
     <string name="delete">Delete</string>
+    <string name="account">Account Name:</string>
+    <string name="user">UserName :</string>
+    <string name="passStatic">Password :</string>
 
 </resources>

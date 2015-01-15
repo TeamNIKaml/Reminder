@@ -17,7 +17,7 @@ public class PasswordHelper implements IDBHelper {
 	private PasswordDataSource dataSource = PasswordDataSource
 			.getPasswordDataSource();
 	private DBHelper dbHelper;
-	private List<PasswordDataSource> oppertunitieslist = new ArrayList<PasswordDataSource>();
+	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
 	private Password password;
 
 	public Password getPassword() {
@@ -108,6 +108,7 @@ public class PasswordHelper implements IDBHelper {
 			} 
 			else if  (operation[0].equalsIgnoreCase("select"))
 			{
+				PasswordDataSource dataSource1;
 				onCreate();
 				Log.e("DBTask select", "doInBackground");
 				SQLiteDatabase database = dbHelper.getReadableDatabase();
@@ -120,14 +121,13 @@ public class PasswordHelper implements IDBHelper {
 				if (cursor.moveToFirst()) {
 
 					do {
-						oppertunitieslist.add(dataSource
-								.cursorToPasswordsDataSource(cursor));
+						dataSource1=dataSource.cursorToPasswordsDataSource(cursor);
+						passwordList.add(dataSource1);
 					} while (cursor.moveToNext());
 
-				
-				
-				Log.e("passwordList size", String.valueOf(oppertunitieslist.size()));
-				dataSource.setOppertunitieslist(oppertunitieslist);
+			
+			
+				dataSource.SetPasswordList(passwordList);
 
 			}
 			}

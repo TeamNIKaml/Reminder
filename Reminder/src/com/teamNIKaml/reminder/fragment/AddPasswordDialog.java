@@ -67,6 +67,7 @@ public class AddPasswordDialog extends DialogFragment {
 			Log.e("onclick", "doInBackground");
 			dataSource.setContext(getActivity().getApplicationContext());
 			dbHelper.insert();
+			//dbHelper.select(null,null,null,null);
 			dlg.dismiss();
 			
 		}

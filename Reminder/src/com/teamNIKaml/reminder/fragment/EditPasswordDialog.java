@@ -137,6 +137,7 @@ public class EditPasswordDialog extends DialogFragment {
 
 	private void setDialogData() {
 		// TODO Auto-generated method stub
+		dataSource.setContext(getActivity().getApplicationContext());
 		dataSource.setAccountName(accountName.getText().toString());
 		dataSource.setUsername(username.getText().toString());
 		dataSource.setCatagory(catagory.getSelectedItem().toString());
