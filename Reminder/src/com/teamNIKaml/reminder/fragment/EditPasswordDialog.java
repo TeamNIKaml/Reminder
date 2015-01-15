@@ -78,7 +78,7 @@ public class EditPasswordDialog extends DialogFragment {
 				setDialogData();
 				dataSource.setContext(getActivity().getApplicationContext());
 				dbHelper.update(whereClause, whereArgs);
-				//dbHelper.select(null, null, null, null);
+				dbHelper.select(null, null, null, null);
 				dlg.dismiss();
 
 			}
@@ -92,7 +92,7 @@ public class EditPasswordDialog extends DialogFragment {
 				setDialogData();
 				Log.e("onclick", "doInBackground");
 				dbHelper.delete(whereClause, whereArgs);
-				//dbHelper.select(null, null, null, null);
+				dbHelper.select(null, null, null, null);
 				dlg.dismiss();
 
 			}
