@@ -1,5 +1,6 @@
 package com.teamNIKaml.reminder.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
 
+@SuppressLint("InflateParams")
 public class EditPasswordDialog extends DialogFragment {
 
 	private PasswordDataSource dataSource = PasswordDataSource

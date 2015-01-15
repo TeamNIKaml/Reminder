@@ -4,15 +4,17 @@ package com.teamNIKaml.reminder.activityComponents;
 
 import java.util.HashMap;
 import java.util.List;
-import com.teamNIKaml.reminder.activity.R;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import com.teamNIKaml.reminder.activity.R;
 
 public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 
@@ -55,6 +57,7 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		return childPosition;
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
@@ -101,6 +104,7 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		return groupPosition;
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {

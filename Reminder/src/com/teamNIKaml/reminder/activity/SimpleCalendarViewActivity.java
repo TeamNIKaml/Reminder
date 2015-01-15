@@ -33,7 +33,6 @@ public class SimpleCalendarViewActivity extends Activity implements OnClickListe
 		private static final String tag = "SimpleCalendarViewActivity";
 		private Date parsedDate;
 
-		private ImageView calendarToJournalButton;
 		private Button selectedDayMonthYearButton;
 		private Button finish;
 		private Button currentMonth;
@@ -93,6 +92,7 @@ public class SimpleCalendarViewActivity extends Activity implements OnClickListe
 		 * @param month
 		 * @param year
 		 */
+		@SuppressWarnings("static-access")
 		private void setGridCellAdapterToDate(int month, int year)
 			{
 				adapter = new GridCellAdapter(getApplicationContext(), R.id.calendar_day_gridcell, month, year);

@@ -5,14 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.os.Bundle;
-
-import com.teamNIKaml.reminder.activity.R;
-import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
-import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
-import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
-import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
-
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,11 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.Toast;
+
+import com.teamNIKaml.reminder.activity.R;
+import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
+import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.property.Constants;
+import com.teamNIKaml.reminder.property.PasswordDataSource;
 
 public class Password extends Fragment {
 
@@ -77,7 +75,7 @@ public class Password extends Fragment {
 			@Override
 			public void onGroupExpand(int groupPosition) {
 
-				updateList();
+				//updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Expanded",
 						Toast.LENGTH_SHORT).show();
@@ -89,7 +87,7 @@ public class Password extends Fragment {
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
-				updateList();
+				//updateList();
 				Toast.makeText(getActivity().getApplicationContext(),
 						catagory.get(groupPosition) + " Collapsed",
 						Toast.LENGTH_SHORT).show();
@@ -221,6 +219,8 @@ public class Password extends Fragment {
 		Log.e("PasswordList prepare data size", String.valueOf(passwordList.size()));
 
 		for (PasswordDataSource pass : passwordList) {
+			System.out.println("Password.getCatogory()"+pass.getCatagory());
+			
 			if (pass.getCatagory().equalsIgnoreCase(Constants.CATAGORY_SPINNER_ARRAY[0])) {
 
 				Log.e("Social constaNT 0", Constants.CATAGORY_SPINNER_ARRAY[0]);
@@ -261,9 +261,30 @@ public class Password extends Fragment {
 
 		}
 
-		System.out.println("accountList" + accountListSocial.toString());
-		System.out.println("userList" + userListSocial.toString());
-		System.out.println("PassList" + passListSocial.toString());
+		System.out.println("accountListSocial" + accountListSocial.toString());
+		System.out.println("userListSocial" + userListSocial.toString());
+		System.out.println("passListSocial" + passListSocial.toString());
+		
+		
+		System.out.println("accountListCommerse" + accountListCommerse.toString());
+		System.out.println("accountListCommerse" + userListCommerse.toString());
+		System.out.println("accountListCommerse" + passListCommerse.toString());
+		
+		
+		System.out.println("accountListEmail" + accountListEmail.toString());
+		System.out.println("userListEmail" + userListEmail.toString());
+		System.out.println("userListEmail" + passListEmail.toString());
+		
+		
+		
+		System.out.println("accountListBank" + accountListBank.toString());
+		System.out.println("userListBank" + userListBank.toString());
+		System.out.println("passListBank" + passListBank.toString());
+		
+		System.out.println("accountListother" + accountListother.toString());
+		System.out.println("userListOther" + userListOther.toString());
+		System.out.println("userListOther" + passListOther.toString());
+		
 
 		accountName.put(catagory.get(0), accountListSocial); // Header, Child
 																// data
