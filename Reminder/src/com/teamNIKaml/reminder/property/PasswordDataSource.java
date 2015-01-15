@@ -23,15 +23,7 @@ public class PasswordDataSource {
 	private static PasswordDataSource passwordDataSource;	
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
 	
-	private PasswordDataSource getDataSource()
-	{
-		return dataSource;
-	}
 	
-	private void setDataSource(PasswordDataSource dataSource)
-	{
-		this.dataSource = dataSource;
-	}
 	
 
 	public String getCatagory() {
@@ -127,8 +119,7 @@ public class PasswordDataSource {
 
 	public PasswordDataSource cursorToPasswordsDataSource(Cursor cursor) {
 		
-		Log.e("data :", cursor.getString(1)+" "+cursor.getString(2)+ 
-				" "+cursor.getString(3)+" "+cursor.getString(4) );
+		
 		dataSource = new PasswordDataSource();
 
 		dataSource.setCatagory(cursor.getString(1));

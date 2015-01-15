@@ -56,8 +56,10 @@ public class EditPasswordDialog extends DialogFragment {
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		
+		System.out.println("onCreateDialog EditPassword");
 
-		View v = li.inflate(R.layout.activity_add_password, null);
+		View v = li.inflate(R.layout.activity_editpasswoed, null);
 		;
 
 		initDialog(v);
@@ -71,11 +73,12 @@ public class EditPasswordDialog extends DialogFragment {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
+			System.out.println("onClick on create editPassword editbuttonclick");
 				setDialogData();
-				Log.e("onclick", "doInBackground");
-
+				dataSource.setContext(getActivity().getApplicationContext());
 				dbHelper.update(whereClause, whereArgs);
+				//dbHelper.select(null, null, null, null);
 				dlg.dismiss();
 
 			}
@@ -85,9 +88,11 @@ public class EditPasswordDialog extends DialogFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				System.out.println("onClick on create editPassword editbuttonclick");
 				setDialogData();
 				Log.e("onclick", "doInBackground");
 				dbHelper.delete(whereClause, whereArgs);
+				//dbHelper.select(null, null, null, null);
 				dlg.dismiss();
 
 			}

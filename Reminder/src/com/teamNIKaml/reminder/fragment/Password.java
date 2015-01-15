@@ -173,7 +173,7 @@ public class Password extends Fragment {
 
 	private void prepareListData() {
 
-		Log.e("prepareListData", "prepareListData");
+		
 
 		List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
