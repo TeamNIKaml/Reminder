@@ -2,78 +2,70 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_login_background" 
-      android:stretchColumns="*">
-     
-    
-    
-				 <!--AppName id-->
+    android:background="@drawable/gradient_login_background"
+    android:stretchColumns="*" >
+
+    <!-- AppName id -->
+
+    <TableRow
+        android:id="@+id/edittext"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_marginTop_login"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="@dimen/layout_marginRight_login"
+            android:hint="@string/app_name"
+            android:textColor="@color/textviewColor"
+            android:textSize="@dimen/android_textSize_heading" />
+    </TableRow>
+
+    <!-- Password -->
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/layout_marginTop_login"
-        android:gravity="center_horizontal" 
-        android:id="@+id/edittext">
+        android:gravity="center_horizontal" >
 
-        <TextView
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/app_name"
-            android:layout_width="fill_parent"
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_marginLeft_login"
             android:layout_marginRight="@dimen/layout_marginRight_login"
-            android:hint="@string/app_name"
-             android:textColor="@color/textviewColor"
-             android:textSize="@dimen/android_textSize_heading" />           
+            android:background="@drawable/graident_edit_text"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="@dimen/android_padding_login"
+            android:textColor="@color/editTextColor"
+            android:textSize="@dimen/android_textSize_login" />
     </TableRow>
-    
 
-	
-                           <!--Password-->
-                        
-                        
-                         <TableRow
-                            android:layout_height="0dp"
-                            android:layout_width="fill_parent"
-                            android:gravity="center_horizontal"
-                             android:layout_marginTop="@dimen/layout_marginTop_login"
-                             >
+    <!-- Next Button -->
 
-                            <EditText
-                                android:id="@+id/password"
-                                android:inputType="textPassword"   
-                                 android:hint="@string/password"                            
-                                android:layout_marginRight="@dimen/layout_marginRight_login"
-                                android:layout_marginLeft="@dimen/layout_marginLeft_login"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/graident_edit_text"
-                                android:padding="@dimen/android_padding_login"
-                                android:textColor="@color/editTextColor"
-                                android:textSize="@dimen/android_textSize_login" />
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_marginTop_login_password"
+        android:gravity="right" >
 
-                       </TableRow> 
-                       
-                          <!-- Next Button -->
-                       
-                           <TableRow
-                               android:layout_width="fill_parent"
-                               android:layout_height="0dp"
-                               android:layout_marginTop="@dimen/layout_marginTop_login_password"
-                               android:gravity="right" >
-						    
-					        <Button
-						         android:id="@+id/loginButton"
-						         android:background="@drawable/gradient_button"
-						          android:padding="@dimen/android_padding_login"
-						         android:textColor="@color/buttonText"
-						         android:layout_width="wrap_content"
-						         android:layout_height="match_parent"
-						         android:layout_marginLeft="@dimen/layout_marginLeft_loginbutton"
-						         android:layout_marginRight="@dimen/layout_marginRight_login"
-						         android:textSize="@dimen/android_textSize_login"
-						         android:text="@string/login" />
-                       		</TableRow>
-    
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/layout_marginLeft_loginbutton"
+            android:layout_marginRight="@dimen/layout_marginRight_login"
+            android:background="@drawable/gradient_button"
+            android:padding="@dimen/android_padding_login"
+            android:text="@string/login"
+            android:textColor="@color/buttonText"
+            android:textSize="@dimen/android_textSize_login" />
+    </TableRow>
 
 </TableLayout>

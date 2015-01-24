@@ -2,17 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/graident_edit_text">
-
+    android:background="@drawable/graident_edit_text"
+    android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/lblListHeader"
-          android:layout_marginTop="@dimen/layout_marginTop_login_password"
+        android:id="@+id/reminder_header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_marginTop_login_password"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textSize="@dimen/android_textSize_login"
-        android:textColor="@color/editTextColor" />
+        android:textColor="@color/editTextColor"
+        android:textSize="@dimen/android_textSize_login" />
 
 </LinearLayout>

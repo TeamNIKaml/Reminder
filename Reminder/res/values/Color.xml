@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Gridview -->
     <color name="login_Background_start">#0062f7</color>
     <color name="login_Background_end">#b7d0f4</color>
-     <color name="button_Background_start">#5e3636</color>
-     <color name="button_Background_end">#eae1e1</color>
-      <color name="editTextBackground_start">#FFFFFF</color>
-      <color name="editTextBackground_end">#b5ccaf</color>
-      
-       <!-- Textcolor -->
-      <color name="buttonText">#83fe00</color>
-        <color name="buttonText1">#000000</color>
-     <color name="editTextColor">#c1c1c1</color>
-     <color name="textviewColor">#FFFFFF</color>
-     
-     
-     <!-- Calander -->
+    <color name="button_Background_start">#5e3636</color>
+    <color name="button_Background_end">#eae1e1</color>
+    <color name="editTextBackground_start">#FFFFFF</color>
+    <color name="editTextBackground_end">#b5ccaf</color>
 
-<color name="white">#FFFFFF</color>
-	<color name="black">#000000</color>		
-	<color name="symptom_color_selected">#003366</color>		
-	<color name="reaction_color_selected">#003366</color>
-	<color name="static_text_color">#003366</color>
-	<color name="journal_entry_listitem_text_color">#003366</color>
-	<color name="note_text_disabled">#333333</color>    
-       
-       
+    <!-- Textcolor -->
+    <color name="buttonText">#83fe00</color>
+    <color name="buttonText1">#000000</color>
+    <color name="editTextColor">#c1c1c1</color>
+    <color name="textviewColor">#FFFFFF</color>
 
-        
+    <!-- Calander -->
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="symptom_color_selected">#003366</color>
+    <color name="reaction_color_selected">#003366</color>
+    <color name="static_text_color">#003366</color>
+    <color name="journal_entry_listitem_text_color">#003366</color>
+    <color name="note_text_disabled">#333333</color>
+
 </resources>

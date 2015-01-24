@@ -4,51 +4,43 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import android.content.Intent;
 import android.os.Bundle;
-import com.teamNIKaml.reminder.activity.R;
-import com.teamNIKaml.reminder.activity.SimpleCalendarViewActivity;
-import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
-
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.Toast;
+
+import com.teamNIKaml.reminder.activity.R;
+import com.teamNIKaml.reminder.activityComponents.ReminderAdaptor;
 
 public class Reminder extends Fragment {
 	
-	private PasswordAdaptorEList listAdapter;
+	private ReminderAdaptor listAdapter;
 	private ExpandableListView expListView;
-	private List<String> catagory;
-	private HashMap<String, List<String>> status;
+	private List<String> title;
+	private HashMap<String, List<String>> note;
 	private HashMap<String, List<String>> date;
-	private Button addOppertunitiesButton;
-	private LayoutInflater li;
-	
-	
-	 @Override
+	private Button addReminderButton;
+	@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
 	 
-		 li = inflater;
-		 
-	        View passwordView = inflater.inflate(R.layout.password_frag, container, false);
-	       // init(passwordView);
-	       // setListner();
+		 View reminderView = inflater.inflate(R.layout.reminder_frag, container, false);
+	       init(reminderView);
+	        setListner();
 	        
 	        
-	         return passwordView;
+	         return reminderView;
 }
 	 
-	/* private void setListner() {
+	 private void setListner() {
 			// TODO Auto-generated method stub
 			 expListView.setOnGroupClickListener(new OnGroupClickListener() {
 
@@ -68,7 +60,7 @@ public class Reminder extends Fragment {
 					@Override
 					public void onGroupExpand(int groupPosition) {
 						Toast.makeText(getActivity().getApplicationContext(),
-								catagory.get(groupPosition) + " Expanded",
+								title.get(groupPosition) + " Expanded",
 								Toast.LENGTH_SHORT).show();
 					}
 				});
@@ -79,7 +71,7 @@ public class Reminder extends Fragment {
 					@Override
 					public void onGroupCollapse(int groupPosition) {
 						Toast.makeText(getActivity().getApplicationContext(),
-								catagory.get(groupPosition) + " Collapsed",
+								title.get(groupPosition) + " Collapsed",
 								Toast.LENGTH_SHORT).show();
 
 					}
@@ -94,23 +86,22 @@ public class Reminder extends Fragment {
 						// TODO Auto-generated method stub
 						Toast.makeText(
 								getActivity().getApplicationContext(),
-								projectTitle.get(groupPosition)
+								title.get(groupPosition)
 										+ " : "
-										+ status.get(
-												projectTitle.get(groupPosition)).get(
+										+ note.get(
+												title.get(groupPosition)).get(
 												childPosition), Toast.LENGTH_SHORT)
 								.show();
 						return false;
 					}
 				});
 				
-				addOppertunitiesButton.setOnClickListener(new View.OnClickListener() {
+				addReminderButton.setOnClickListener(new View.OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-					startActivity(new Intent(getActivity().getApplicationContext(),
-										SimpleCalendarViewActivity.class));
+					
 						
 						
 					}
@@ -120,10 +111,10 @@ public class Reminder extends Fragment {
 
 		private void init(View v) {
 			 expListView = (ExpandableListView) v.findViewById(R.id.passwordList);			
-			addOppertunitiesButton =(Button)v.findViewById(R.id.addButton);
+			addReminderButton =(Button)v.findViewById(R.id.addButton);
 			prepareListData();
-				listAdapter = new PasswordAdaptorEList(getActivity().getApplicationContext(), 
-						projectTitle, status,date);
+				listAdapter = new ReminderAdaptor(getActivity().getApplicationContext(), 
+						title, note,date);
 				expListView.setAdapter(listAdapter);
 				
 			
@@ -131,14 +122,14 @@ public class Reminder extends Fragment {
 
 
 		private void prepareListData() {
-			projectTitle = new ArrayList<String>();
-			status = new HashMap<String, List<String>>();
+			title = new ArrayList<String>();
+			note = new HashMap<String, List<String>>();
 			date = new HashMap<String, List<String>>();
 
 				// Adding child data
-				projectTitle.add("Top 250");
-				projectTitle.add("Now Showing");
-				projectTitle.add("Coming Soon..");
+				title.add("Top 250");
+				title.add("Now Showing");
+				title.add("Coming Soon..");
 				
 				
 				List<String> dateList = new ArrayList<String>();
@@ -178,15 +169,15 @@ public class Reminder extends Fragment {
 				comingSoon.add("Avengers");
 				comingSoon.add("Game of thrones 6");
 
-				status.put(projectTitle.get(0), top250); // Header, Child data
-				status.put(projectTitle.get(1), nowShowing);
-				status.put(projectTitle.get(2), comingSoon);
+				note.put(title.get(0), top250); // Header, Child data
+				note.put(title.get(1), nowShowing);
+				note.put(title.get(2), comingSoon);
 				
 				
-				date.put(projectTitle.get(0), dateList); // Header, Child data
-				date.put(projectTitle.get(1), dateList);
-				date.put(projectTitle.get(2), dateList);
-			}*/
+				date.put(title.get(0), dateList); // Header, Child data
+				date.put(title.get(1), dateList);
+				date.put(title.get(2), dateList);
+			}
 
 		
 		

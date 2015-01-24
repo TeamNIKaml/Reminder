@@ -173,8 +173,6 @@ public class Password extends Fragment {
 
 	private void prepareListData() {
 
-		
-
 		List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
 		List<String> accountListCommerse = new ArrayList<String>();
@@ -235,7 +233,7 @@ public class Password extends Fragment {
 
 		}
 
-		accountName.put(catagory.get(0), accountListSocial); 
+		accountName.put(catagory.get(0), accountListSocial);
 		accountName.put(catagory.get(1), accountListEmail);
 		accountName.put(catagory.get(2), accountListCommerse);
 		accountName.put(catagory.get(3), accountListCommerse);

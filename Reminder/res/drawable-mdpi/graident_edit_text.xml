@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <gradient
-       android:startColor="@color/editTextBackground_start"
-        android:endColor="@color/editTextBackground_end"         
-        android:angle="90"/>    
-   <corners android:bottomRightRadius="@dimen/editText_radius" 
-       android:bottomLeftRadius="@dimen/editText_radius" 
-     android:topLeftRadius="@dimen/editText_radius" 
-     android:topRightRadius="@dimen/editText_radius"/>      
-   
+        android:angle="90"
+        android:endColor="@color/editTextBackground_end"
+        android:startColor="@color/editTextBackground_start" />
+
+    <corners
+        android:bottomLeftRadius="@dimen/editText_radius"
+        android:bottomRightRadius="@dimen/editText_radius"
+        android:topLeftRadius="@dimen/editText_radius"
+        android:topRightRadius="@dimen/editText_radius" />
+
 </shape>
