@@ -1,20 +1,9 @@
 package com.teamNIKaml.reminder.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
-import com.teamNIKaml.reminder.activity.R;
-import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
-import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
-
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.ContactsContract.Intents.Insert;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,8 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.teamNIKaml.reminder.activity.R;
+import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
+import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.property.Constants;
+import com.teamNIKaml.reminder.property.PasswordDataSource;
 
 
+
+@SuppressLint("InflateParams")
 public class AddPasswordDialog extends DialogFragment {
 	
 	private PasswordDataSource dataSource = PasswordDataSource.getPasswordDataSource();
