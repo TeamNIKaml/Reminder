@@ -17,5 +17,8 @@
     <string name="account">Account Name:</string>
     <string name="user">UserName :</string>
     <string name="passStatic">Password :</string>
+    <string name="reminderName">Reminder Name</string>
+    <string name="date">Reminder Date</string>
+    <string name="reminderNote">Reminder Note</string>
 
 </resources>

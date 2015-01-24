@@ -1,8 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@drawable/gradient_login_background"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_marginTop_login_password"
+        android:gravity="left" >
+
+        <EditText
+            android:id="@+id/reminderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_marginLeft_login"
+            android:layout_marginRight="@dimen/layout_marginRight_login"
+            android:background="@drawable/graident_edit_text"
+            android:hint="@string/reminderName"
+            android:inputType="text"
+            android:padding="@dimen/android_padding_login"
+            android:textColor="@color/buttonText1"
+            android:textSize="@dimen/android_textSize_login" />
+    </TableRow>
+
     
 
-</LinearLayout>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_marginTop_login_password"
+        android:gravity="left" >
+
+        <EditText
+            android:id="@+id/reminderNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_marginLeft_login"
+            android:layout_marginRight="@dimen/layout_marginRight_login"
+            android:background="@drawable/graident_edit_text"
+            android:hint="@string/reminderNote"
+            android:inputType="text"
+            android:padding="@dimen/android_padding_login"
+            android:textColor="@color/buttonText1"
+            android:textSize="@dimen/android_textSize_login" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_marginTop_login_password"
+        android:gravity="left" >
+
+        <EditText
+            android:id="@+id/reminderDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_marginLeft_login"
+            android:layout_marginRight="@dimen/layout_marginRight_login"
+            android:background="@drawable/graident_edit_text"
+            android:hint="@string/date"
+            android:inputType="datetime"
+            android:padding="@dimen/android_padding_login"
+            android:textSize="@dimen/android_textSize_login" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_marginTop_login_password"
+        android:gravity="right" >
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/layout_marginLeft_loginbutton"
+            android:layout_marginRight="@dimen/layout_marginRight_login"
+            android:background="@drawable/gradient_button"
+            android:padding="@dimen/android_padding_login"
+            android:text="@string/save"
+            android:textColor="@color/buttonText"
+            android:textSize="@dimen/android_textSize_login" />
+    </TableRow>
+
+</TableLayout>
