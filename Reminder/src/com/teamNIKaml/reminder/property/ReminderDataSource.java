@@ -21,7 +21,7 @@ public class ReminderDataSource {
 	private static ReminderDataSource reminderDataSource;
 	private List<ReminderDataSource> reminderList = new ArrayList<ReminderDataSource>();
 
-	public static ReminderDataSource getPasswordDataSource() {
+	public static ReminderDataSource getReminderDataSource() {
 
 		if (reminderDataSource == null)
 			reminderDataSource = new ReminderDataSource();
