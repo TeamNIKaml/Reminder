@@ -20,7 +20,7 @@ public class Constants {
 			+ Constants.REMINDER_TABLE_NAME
 			+ "("
 			+ "_id INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL,"
-			+ "reminderName TEXT,"
+			+ "name TEXT,"
 			+ "date TEXT,"
 			+ "note TEXT)";
 	

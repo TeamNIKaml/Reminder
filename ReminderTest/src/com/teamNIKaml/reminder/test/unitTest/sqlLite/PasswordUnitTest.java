@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.test.unitTest.databaseTest;
+package com.teamNIKaml.reminder.test.unitTest.sqlLite;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
