@@ -3,7 +3,6 @@ package com.teamNIKaml.reminder.test.unitTest.uiComponents;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import com.teamNIKaml.reminder.activity.LoginActivity;
 import com.teamNIKaml.reminder.activity.R;
 
-public class LoginActivityTest extends
+public class LoginActivityUnitTest extends
 	ActivityInstrumentationTestCase2<LoginActivity> {
 
     private LoginActivity loginActivity;
@@ -22,7 +21,7 @@ public class LoginActivityTest extends
     private EditText passWord;
     private Button loginButton;
 
-    public LoginActivityTest() {
+    public LoginActivityUnitTest() {
 	super(LoginActivity.class);
     }
 
@@ -35,6 +34,7 @@ public class LoginActivityTest extends
 	passWord = (EditText) loginActivity.findViewById(R.id.password);
 	loginButton = (Button) loginActivity.findViewById(R.id.loginButton);
     }
+
     @MediumTest
     public void testPreconditions() {
 
@@ -42,6 +42,7 @@ public class LoginActivityTest extends
 	assertNotNull("appName is null", appName);
 	assertNotNull("passWord is null", passWord);
     }
+
     @MediumTest
     public void test_AppName_TextView_Label() {
 
@@ -49,24 +50,24 @@ public class LoginActivityTest extends
 	final String actual = appName.getText().toString();
 	assertEquals("appName contains wrong text", expected, actual);
     }
-    
-    
+
     @MediumTest
     public void test_AppName_TextView_Layout() {
-        //Retrieve the top-level window decor view
-        final View decorView = loginActivity.getWindow().getDecorView();
+	// Retrieve the top-level window decor view
+	final View decorView = loginActivity.getWindow().getDecorView();
 
-        //Verify that the mClickMeButton is on screen
-        ViewAsserts.assertOnScreen(decorView, appName);
+	// Verify that the mClickMeButton is on screen
+	ViewAsserts.assertOnScreen(decorView, appName);
 
-        //Verify width and heights
-        final ViewGroup.LayoutParams layoutParams = appName.getLayoutParams();
-        assertNotNull(layoutParams);
-        assertEquals(layoutParams.width, WindowManager.LayoutParams.MATCH_PARENT);
-        assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	// Verify width and heights
+	final ViewGroup.LayoutParams layoutParams = appName.getLayoutParams();
+	assertNotNull(layoutParams);
+	assertEquals(layoutParams.width,
+		WindowManager.LayoutParams.MATCH_PARENT);
+	assertEquals(layoutParams.height,
+		WindowManager.LayoutParams.WRAP_CONTENT);
     }
-    
-    
+
     @MediumTest
     public void test_Password_EditText_Hint() {
 
@@ -74,6 +75,7 @@ public class LoginActivityTest extends
 	final String actual = passWord.getHint().toString();
 	assertEquals("Password Hint contains wrong text", expected, actual);
     }
+
     @MediumTest
     public void test_LoginButton_Text() {
 
@@ -81,38 +83,23 @@ public class LoginActivityTest extends
 	final String actual = loginButton.getText().toString();
 	assertEquals("Password Hint contains wrong text", expected, actual);
     }
-    
-    
+
     @MediumTest
     public void test_LoginButton_Layout() {
-        //Retrieve the top-level window decor view
-        final View decorView = loginActivity.getWindow().getDecorView();
+	// Retrieve the top-level window decor view
+	final View decorView = loginActivity.getWindow().getDecorView();
 
-        //Verify that the mClickMeButton is on screen
-        ViewAsserts.assertOnScreen(decorView, loginButton);
+	// Verify that the mClickMeButton is on screen
+	ViewAsserts.assertOnScreen(decorView, loginButton);
 
-        //Verify width and heights
-        final ViewGroup.LayoutParams layoutParams = loginButton.getLayoutParams();
-        assertNotNull(layoutParams);
-        assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
-        assertEquals(layoutParams.height, WindowManager.LayoutParams.MATCH_PARENT);
+	// Verify width and heights
+	final ViewGroup.LayoutParams layoutParams = loginButton
+		.getLayoutParams();
+	assertNotNull(layoutParams);
+	assertEquals(layoutParams.width,
+		WindowManager.LayoutParams.WRAP_CONTENT);
+	assertEquals(layoutParams.height,
+		WindowManager.LayoutParams.MATCH_PARENT);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }
