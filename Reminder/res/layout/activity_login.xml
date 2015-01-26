@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/app_name"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="@dimen/layout_marginRight_login"
