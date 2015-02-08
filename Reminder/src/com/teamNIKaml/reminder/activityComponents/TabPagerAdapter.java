@@ -2,7 +2,7 @@ package com.teamNIKaml.reminder.activityComponents;
 
 import com.teamNIKaml.reminder.fragment.Password;
 import com.teamNIKaml.reminder.fragment.Reminder;
-import com.teamNIKaml.reminder.fragment.Settings;
+
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,9 +22,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
             
         case 1:
               	return new Reminder();
-        case 2:
-               return new Settings();
-        }
+      }
 		return null;
 		
 	}

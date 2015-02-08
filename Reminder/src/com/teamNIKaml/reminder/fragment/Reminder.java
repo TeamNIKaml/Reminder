@@ -34,7 +34,7 @@ public class Reminder extends Fragment {
 	 
 		 View reminderView = inflater.inflate(R.layout.reminder_frag, container, false);
 	       init(reminderView);
-	        setListner();
+	     //   setListner();
 	        
 	        
 	         return reminderView;
@@ -110,7 +110,7 @@ public class Reminder extends Fragment {
 
 
 		private void init(View v) {
-			 expListView = (ExpandableListView) v.findViewById(R.id.passwordList);			
+			 expListView = (ExpandableListView) v.findViewById(R.id.ReminderList);			
 			addReminderButton =(Button)v.findViewById(R.id.addButton);
 			prepareListData();
 				listAdapter = new ReminderAdaptor(getActivity().getApplicationContext(), 
@@ -128,55 +128,30 @@ public class Reminder extends Fragment {
 
 				// Adding child data
 				title.add("Top 250");
-				title.add("Now Showing");
-				title.add("Coming Soon..");
+				
 				
 				
 				List<String> dateList = new ArrayList<String>();
 				dateList.add("date1");
 				dateList.add("date2");
 				dateList.add("date3");
-				dateList.add("date4");
-				dateList.add("date5");
-				dateList.add("date6");
-				dateList.add("date7");
+				
 
 				// Adding child data
 				List<String> top250 = new ArrayList<String>();
 				top250.add("The Shawshank Redemption");
 				top250.add("The Godfather");
 				top250.add("The Godfather: Part II");
-				top250.add("Pulp Fiction");
-				top250.add("The Good, the Bad and the Ugly");
-				top250.add("The Dark Knight");
-				top250.add("12 Angry Men");
+			
 
-				List<String> nowShowing = new ArrayList<String>();
-				nowShowing.add("The Conjuring");
-				nowShowing.add("Despicable Me 2");
-				nowShowing.add("Turbo");
-				nowShowing.add("Grown Ups 2");
-				nowShowing.add("Red 2");
-				nowShowing.add("The Wolverine");
-				nowShowing.add("X men");
-
-				List<String> comingSoon = new ArrayList<String>();
-				comingSoon.add("2 Guns");
-				comingSoon.add("The Smurfs 2");
-				comingSoon.add("The Spectacular Now");
-				comingSoon.add("The Canyons");
-				comingSoon.add("Europa Report");
-				comingSoon.add("Avengers");
-				comingSoon.add("Game of thrones 6");
+				
 
 				note.put(title.get(0), top250); // Header, Child data
-				note.put(title.get(1), nowShowing);
-				note.put(title.get(2), comingSoon);
+				
 				
 				
 				date.put(title.get(0), dateList); // Header, Child data
-				date.put(title.get(1), dateList);
-				date.put(title.get(2), dateList);
+				
 			}
 
 		
