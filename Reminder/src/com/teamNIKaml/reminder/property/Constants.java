@@ -15,7 +15,7 @@ public class Constants {
 			+ "password TEXT)";
 	//reminder table
 	
-	public static final String REMINDER_TABLE_NAME = "REMINDER";
+	public static final String REMINDER_TABLE_NAME = "reminder";
 	public static final String REMINDER_DB_QUERY = "CREATE TABLE IF NOT EXISTS "
 			+ Constants.REMINDER_TABLE_NAME
 			+ "("

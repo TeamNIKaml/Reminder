@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.activityComponents.ReminderAdaptor;
+import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
+import com.teamNIKaml.reminder.property.PasswordDataSource;
+import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class Reminder extends Fragment {
 
@@ -29,6 +33,11 @@ public class Reminder extends Fragment {
 	private HashMap<String, List<String>> date;
 	private Button addReminderButton;
 	private LayoutInflater li;
+	
+	private ReminderDataSource dataSource = ReminderDataSource.getReminderDataSource();
+	private ReminderHelper dbHelper = new ReminderHelper();
+	private List<ReminderDataSource> reminderList = new ArrayList<ReminderDataSource>();
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,6 +125,9 @@ public class Reminder extends Fragment {
 		listAdapter = new ReminderAdaptor(
 				getActivity().getApplicationContext(), title, note, date);
 		expListView.setAdapter(listAdapter);
+		dataSource.setContext(getActivity().getApplicationContext());
+		dbHelper.setReminder(this);
+		
 
 	}
 

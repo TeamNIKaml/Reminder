@@ -34,8 +34,7 @@ public class Password extends Fragment {
 	private HashMap<String, List<String>> password;
 	private Button addOppertunitiesButton;
 	private LayoutInflater li;
-	private PasswordDataSource dataSource = PasswordDataSource
-			.getPasswordDataSource();
+	private PasswordDataSource dataSource = PasswordDataSource.getPasswordDataSource();
 	private PasswordHelper dbHelper = new PasswordHelper();
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
 
