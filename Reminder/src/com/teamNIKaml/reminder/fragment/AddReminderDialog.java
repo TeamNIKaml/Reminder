@@ -8,17 +8,12 @@ import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
-import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
 import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
-import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
 import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 @SuppressLint("InflateParams")
@@ -26,7 +21,8 @@ public class AddReminderDialog extends DialogFragment {
 
 	private ReminderDataSource dataSource = ReminderDataSource
 			.getReminderDataSource();
-	private EditText reminderName, reminderNote, reminderDate;
+	private EditText reminderName, reminderDate;
+	private EditText reminderNote;
 	private IDBHelper dbHelper = new ReminderHelper();
 	private Button saveButton;
 
@@ -70,9 +66,10 @@ public class AddReminderDialog extends DialogFragment {
 
 	private void initDialog(View v) {
 		// TODO Auto-generated method stub
-		reminderName = (EditText) v.findViewById(R.id.reminderTitle);
-		reminderNote = (EditText) v.findViewById(R.id.reminder_note);
+		dataSource.setContext(getActivity().getApplicationContext());
+		reminderNote = (EditText) v.findViewById(R.id.reminderNote);
 		reminderDate = (EditText) v.findViewById(R.id.reminderDate);
+		reminderName = (EditText) v.findViewById(R.id.reminderTitle);
 		saveButton = (Button) v.findViewById(R.id.saveButton);
 
 	}
@@ -80,8 +77,8 @@ public class AddReminderDialog extends DialogFragment {
 	private void setDialogData() {
 		// TODO Auto-generated method stub
 		dataSource.setName(reminderName.getText().toString());
-		dataSource.setNote(reminderNote.getText().toString());
 		dataSource.setDate(reminderDate.getText().toString());
+		dataSource.setNote(reminderNote.getText().toString());
 
 	}
 

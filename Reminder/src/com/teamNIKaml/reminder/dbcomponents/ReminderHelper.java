@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.teamNIKaml.reminder.fragment.Password;
+import com.teamNIKaml.reminder.fragment.Reminder;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.ReminderDataSource;
 
@@ -18,14 +19,14 @@ public class ReminderHelper implements IDBHelper {
 	    .getReminderDataSource();
     private DBHelper dbHelper;
     private List<ReminderDataSource> reminderList = new ArrayList<ReminderDataSource>();
-    private Password password;
+    private Reminder reminder;
 
-    public Password getPassword() {
-	return password;
+    public Reminder getPassword() {
+	return reminder;
     }
 
-    public void setPassword(Password password) {
-	this.password = password;
+    public void setReminder(Reminder reminder) {
+	this.reminder = reminder;
     }
 
     @Override

@@ -60,9 +60,6 @@ public class Password extends Fragment {
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
-				// Toast.makeText(getApplicationContext(),
-				// "Group Clicked " + listDataHeader.get(groupPosition),
-				// Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		});
