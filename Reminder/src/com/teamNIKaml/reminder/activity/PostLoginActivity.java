@@ -61,8 +61,7 @@ public class PostLoginActivity extends FragmentActivity {
 				.setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Reminder")
 				.setTabListener(tabListener));
-		actionBar.addTab(actionBar.newTab().setText("Settings")
-				.setTabListener(tabListener));
+	
 
 	}
 

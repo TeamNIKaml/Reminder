@@ -111,7 +111,7 @@ public class Reminder extends Fragment {
 
 		private void init(View v) {
 			 expListView = (ExpandableListView) v.findViewById(R.id.ReminderList);			
-			addReminderButton =(Button)v.findViewById(R.id.addButton);
+			addReminderButton =(Button)v.findViewById(R.id.addReminderButton);
 			prepareListData();
 				listAdapter = new ReminderAdaptor(getActivity().getApplicationContext(), 
 						title, note,date);
