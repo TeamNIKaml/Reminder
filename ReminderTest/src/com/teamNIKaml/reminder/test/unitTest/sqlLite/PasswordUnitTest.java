@@ -27,7 +27,7 @@ public class PasswordUnitTest extends AndroidTestCase {
 	RenamingDelegatingContext context = new RenamingDelegatingContext(
 		getContext(), TEST_FILE_PREFIX);
 
-	helper = new DBHelper(context, 1, Constants.DB_NAME,
+	helper = new DBHelper(context, 1, Constants.DB_NAME_PASSWORD,
 		Constants.PASSWORD_DB_QUERY);
 
 	assertNotNull(helper);

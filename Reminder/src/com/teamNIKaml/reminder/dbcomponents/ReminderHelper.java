@@ -34,7 +34,7 @@ public class ReminderHelper  implements IDBHelper {
 	@Override
 	public boolean onCreate() {
 		Log.e("DBTask onCreate", "doInBackground");
-		dbHelper = new DBHelper(dataSource.getContext(), 1, Constants.DB_NAME,
+		dbHelper = new DBHelper(dataSource.getContext(), 1, Constants.DB_NAME_REMINDER,
 				Constants.REMINDER_DB_QUERY);
 		return true;
 

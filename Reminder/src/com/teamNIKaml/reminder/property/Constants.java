@@ -2,7 +2,8 @@ package com.teamNIKaml.reminder.property;
 
 public class Constants {
 
-	public static final String DB_NAME = "reminder.db";
+	public static final String DB_NAME_REMINDER = "reminder.db";
+	public static final String DB_NAME_PASSWORD = "password.db";
 	//Password db 
 	public static final String PASSWORD_TABLE_NAME = "password";
 	public static final String PASSWORD_DB_QUERY = "CREATE TABLE IF NOT EXISTS "
