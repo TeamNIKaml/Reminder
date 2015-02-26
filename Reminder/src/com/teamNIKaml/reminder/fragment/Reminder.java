@@ -19,30 +19,29 @@ import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.activityComponents.ReminderAdaptor;
-import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
 import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
 import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class Reminder extends Fragment {
 
 	private ReminderAdaptor listAdapter;
 	private ExpandableListView expListView;
-	private List<String> title;
-	private HashMap<String, List<String>> note;
-	private HashMap<String, List<String>> date;
+	private List<String> name = new ArrayList<>();
+	private HashMap<String, List<String>> note = new HashMap<>();
+	private HashMap<String, List<String>> date = new HashMap<>();
 	private Button addReminderButton;
 	private LayoutInflater li;
 	
-	private ReminderDataSource dataSource = ReminderDataSource.getReminderDataSource();
+
+	private ReminderDataSource dataSource = ReminderDataSource
+			.getReminderDataSource();
 	private ReminderHelper dbHelper = new ReminderHelper();
 	private List<ReminderDataSource> reminderList = new ArrayList<ReminderDataSource>();
-
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+	
 		li = inflater;
 
 		View reminderView = inflater.inflate(R.layout.reminder_frag, container,
@@ -71,7 +70,7 @@ public class Reminder extends Fragment {
 			@Override
 			public void onGroupExpand(int groupPosition) {
 				Toast.makeText(getActivity().getApplicationContext(),
-						title.get(groupPosition) + " Expanded",
+						name.get(groupPosition) + " Expanded",
 						Toast.LENGTH_SHORT).show();
 			}
 		});
@@ -82,7 +81,7 @@ public class Reminder extends Fragment {
 			@Override
 			public void onGroupCollapse(int groupPosition) {
 				Toast.makeText(getActivity().getApplicationContext(),
-						title.get(groupPosition) + " Collapsed",
+						name.get(groupPosition) + " Collapsed",
 						Toast.LENGTH_SHORT).show();
 
 			}
@@ -97,9 +96,9 @@ public class Reminder extends Fragment {
 				// TODO Auto-generated method stub
 				Toast.makeText(
 						getActivity().getApplicationContext(),
-						title.get(groupPosition)
+						name.get(groupPosition)
 								+ " : "
-								+ note.get(title.get(groupPosition)).get(
+								+ note.get(name.get(groupPosition)).get(
 										childPosition), Toast.LENGTH_SHORT)
 						.show();
 				return false;
@@ -113,47 +112,47 @@ public class Reminder extends Fragment {
 				// TODO Auto-generated method stub
 				AddReminderDialog dialog = new AddReminderDialog(li);
 				dialog.show(getChildFragmentManager(), "Add Reminder");
+										
+			
 
 			}
 		});
 	}
 
 	private void init(View v) {
+		
+		setDialogData();
+		
 		expListView = (ExpandableListView) v.findViewById(R.id.ReminderList);
 		addReminderButton = (Button) v.findViewById(R.id.addReminderButton);
-		prepareListData();
 		listAdapter = new ReminderAdaptor(
-				getActivity().getApplicationContext(), title, note, date);
+				getActivity().getApplicationContext(), name, note, date);
 		expListView.setAdapter(listAdapter);
 		dataSource.setContext(getActivity().getApplicationContext());
 		dbHelper.setReminder(this);
-		
 
 	}
 
-	private void prepareListData() {
-		title = new ArrayList<String>();
-		note = new HashMap<String, List<String>>();
-		date = new HashMap<String, List<String>>();
-
-		// Adding child data
-		title.add("Top 250");
-
-		List<String> dateList = new ArrayList<String>();
-		dateList.add("date1");
-		dateList.add("date2");
-		dateList.add("date3");
-
-		// Adding child data
-		List<String> top250 = new ArrayList<String>();
-		top250.add("The Shawshank Redemption");
-		top250.add("The Godfather");
-		top250.add("The Godfather: Part II");
-
-		note.put(title.get(0), top250); // Header, Child data
-
-		date.put(title.get(0), dateList); // Header, Child data
-
+	private void setDialogData() {
+		// TODO Auto-generated method stub
+		
+		reminderList = dataSource.getReminderList();
+		List<String> noteList;
+		List<String> dateList ;
+	
+		for(ReminderDataSource reminder : reminderList)
+		{
+			 noteList = new ArrayList<String>();
+				dateList = new ArrayList<String>();
+			
+			name.add(reminder.getName());
+			noteList.add(reminder.getNote());
+			dateList.add(reminder.getDate());
+			
+			note.put(reminder.getName(), noteList);
+			date.put(reminder.getName(), dateList);
+		}
+		
 	}
 
 }

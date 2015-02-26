@@ -16,31 +16,31 @@ import com.teamNIKaml.reminder.activity.R;
 public class ReminderAdaptor extends BaseExpandableListAdapter {
 
 	private Context _context;
-	private List<String> title; // header titles
-	// child data in format of header title, child title
+	private List<String> name; // header names
+	// child data in format of header name, child name
 	private HashMap<String, List<String>> note;
 	private HashMap<String, List<String>> date;
 
-	public ReminderAdaptor(Context context, List<String> projectTitle,
+	public ReminderAdaptor(Context context, List<String> projectname,
 			HashMap<String, List<String>> status,
 			HashMap<String, List<String>> date) {
 		this._context = context;
-		this.title = projectTitle;
+		this.name = projectname;
 		this.note = status;
 		this.date = date;
 	}
 
 	@Override
 	public Object getChild(int groupPosition, int childPosititon) {
-		return this.note.get(this.title.get(groupPosition)).get(childPosititon);
+		return this.note.get(this.name.get(groupPosition)).get(childPosititon);
 	}
 
 	public Object getStatus(int groupPosition, int childPosititon) {
-		return this.note.get(this.title.get(groupPosition)).get(childPosititon);
+		return this.note.get(this.name.get(groupPosition)).get(childPosititon);
 	}
 
 	public Object getDate(int groupPosition, int childPosititon) {
-		return this.date.get(this.title.get(groupPosition)).get(childPosititon);
+		return this.date.get(this.name.get(groupPosition)).get(childPosititon);
 	}
 
 	@Override
@@ -71,17 +71,17 @@ public class ReminderAdaptor extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		return this.note.get(this.title.get(groupPosition)).size();
+		return this.note.get(this.name.get(groupPosition)).size();
 	}
 
 	@Override
 	public Object getGroup(int groupPosition) {
-		return this.title.get(groupPosition);
+		return this.name.get(groupPosition);
 	}
 
 	@Override
 	public int getGroupCount() {
-		return this.title.size();
+		return this.name.size();
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class ReminderAdaptor extends BaseExpandableListAdapter {
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
-		String headerTitle = (String) getGroup(groupPosition);
+		String headername = (String) getGroup(groupPosition);
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) this._context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -100,10 +100,10 @@ public class ReminderAdaptor extends BaseExpandableListAdapter {
 					parent,false);
 		}
 
-		TextView titleTextView = (TextView) convertView
+		TextView nameTextView = (TextView) convertView
 				.findViewById(R.id.reminder_header);
-		titleTextView.setTypeface(null, Typeface.BOLD);
-		titleTextView.setText(headerTitle);
+		nameTextView.setTypeface(null, Typeface.BOLD);
+		nameTextView.setText(headername);
 
 		return convertView;
 	}

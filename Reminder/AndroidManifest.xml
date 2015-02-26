@@ -30,6 +30,12 @@
             android:name=".PostLoginActivity"
             android:label="@string/title_activity_post_login" >
         </activity>
+        
+           
+          
+           
+           
+           
     </application>
 
 </manifest>

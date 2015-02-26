@@ -113,7 +113,7 @@ public class Password extends Fragment {
 						.get(catagory.get(groupPosition)).get(childPosition));
 
 				EditPasswordDialog dialog = new EditPasswordDialog(li);
-				dialog.show(getChildFragmentManager(), "AddOppertunity");
+				dialog.show(getChildFragmentManager(), "AddPassword");
 
 				return false;
 			}
@@ -125,7 +125,7 @@ public class Password extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				AddPasswordDialog dialog = new AddPasswordDialog(li);
-				dialog.show(getChildFragmentManager(), "AddOppertunity");
+				dialog.show(getChildFragmentManager(), "AddPassword");
 
 			}
 		});
