@@ -21,5 +21,6 @@
     <string name="date">Reminder Date</string>
     <string name="reminderNote">Reminder Note</string>
     <string name="reminderHeading">Reminder Heading</string>
+    <string name="refresh">Refresh</string>
 
 </resources>

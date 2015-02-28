@@ -21,8 +21,10 @@ import android.widget.Toast;
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
 import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
+import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class Password extends Fragment {
 
@@ -37,10 +39,19 @@ public class Password extends Fragment {
 	private PasswordDataSource dataSource = PasswordDataSource.getPasswordDataSource();
 	private PasswordHelper dbHelper = new PasswordHelper();
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
+	
+	
+
+	
+	
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		
+	
 
 		li = inflater;
 

@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
@@ -66,7 +67,10 @@ public class AddReminderDialog extends DialogFragment {
 				dataSource.setContext(getActivity().getApplicationContext());
 				dbHelper.insert();
 				dbHelper.select(null, null, null, null);
+				
 				dlg.dismiss();
+				
+				Toast.makeText(getActivity().getApplicationContext(), "Reminder saved", Toast.LENGTH_LONG).show();
 
 			}
 		});

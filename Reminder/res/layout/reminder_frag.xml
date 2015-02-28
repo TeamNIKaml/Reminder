@@ -12,18 +12,50 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/layout_marginTop_login_password"
         android:gravity="left" >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/addReminderButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/button_radius"
-            android:layout_marginRight="@dimen/layout_marginRight_login"
-            android:background="@drawable/gradient_button"
-            android:padding="@dimen/android_padding_login"
-            android:text="@string/add"
-            android:textColor="@color/buttonText"
-            android:textSize="@dimen/android_textSize_login" />
+             <Button
+                 android:id="@+id/addReminderButton"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="@dimen/button_radius"
+                 android:layout_marginRight="@dimen/layout_marginRight_login"
+                 android:layout_weight="1"
+                 android:background="@drawable/gradient_button"
+                 android:padding="@dimen/android_padding_login"
+                 android:text="@string/add"
+                 android:textColor="@color/buttonText"
+                 android:textSize="@dimen/android_textSize_login" />
+
+              <Button
+                  android:id="@+id/refreshButton"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/button_radius"
+                  android:layout_marginRight="@dimen/layout_marginRight_login"
+                  android:layout_weight="1"
+                  android:background="@drawable/gradient_button"
+                  android:padding="@dimen/android_padding_login"
+                  android:text="@string/refresh"
+                  android:textColor="@color/buttonText"
+                  android:textSize="@dimen/android_textSize_login" />
+            
+        </LinearLayout>
+
+       
+        
+        
+        
+        
+        
+        
+        
+        
     </TableRow>
 
     <!-- Password -->
@@ -34,11 +66,11 @@
         android:layout_marginTop="@dimen/layout_marginTop_login_password"
         android:gravity="center_horizontal" >
 
-        <ExpandableListView
+        <ListView
             android:id="@+id/ReminderList"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent" >
-        </ExpandableListView>
+        </ListView>
     </TableRow>
 
 </TableLayout>

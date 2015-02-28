@@ -79,6 +79,10 @@ public class ReminderHelper  implements IDBHelper {
 
 	
 
+	
+			
+			
+
 		@Override
 		protected String doInBackground(String... operation) {
 			// TODO Auto-generated method stub
@@ -140,7 +144,7 @@ public class ReminderHelper  implements IDBHelper {
 				Log.e("Invalid db task", "invalid dsfsdfasdas");
 			}
 
-			return null;
+			return operation[0];
 		}
 
 	}

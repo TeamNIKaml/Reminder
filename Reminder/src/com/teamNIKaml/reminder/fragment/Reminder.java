@@ -8,35 +8,50 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.activityComponents.ReminderAdaptor;
+import com.teamNIKaml.reminder.activityComponents.ReminderListAdaptor;
 import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class Reminder extends Fragment {
 
-	private ReminderAdaptor listAdapter;
-	private ExpandableListView expListView;
-	private List<String> name = new ArrayList<>();
-	private HashMap<String, List<String>> note = new HashMap<>();
-	private HashMap<String, List<String>> date = new HashMap<>();
-	private Button addReminderButton;
-	private LayoutInflater li;
+	private ReminderListAdaptor listAdapter;
+	private ListView listView;
+	private String[] nameList ;
+	private String[] noteList ;
+	private String[] dateList;
+	private static Reminder reminder;
 	
+	private Button addReminderButton,refreshButton;
+	private LayoutInflater li;
+	private View reminderView;
 
-	private ReminderDataSource dataSource = ReminderDataSource
+	private ReminderDataSource reminderDataSource = ReminderDataSource
 			.getReminderDataSource();
-	private ReminderHelper dbHelper = new ReminderHelper();
+	private ReminderHelper reminderHelper = new ReminderHelper();
 	private List<ReminderDataSource> reminderList = new ArrayList<ReminderDataSource>();
+	
+	
+	public static Reminder getReminder()
+	{
+		if(reminder == null)
+			reminder = new Reminder();
+		return reminder;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +59,8 @@ public class Reminder extends Fragment {
 	
 		li = inflater;
 
-		View reminderView = inflater.inflate(R.layout.reminder_frag, container,
+
+     reminderView = inflater.inflate(R.layout.reminder_frag, container,
 				false);
 		init(reminderView);
 		setListner();
@@ -54,56 +70,7 @@ public class Reminder extends Fragment {
 
 	private void setListner() {
 		// TODO Auto-generated method stub
-		expListView.setOnGroupClickListener(new OnGroupClickListener() {
-
-			@Override
-			public boolean onGroupClick(ExpandableListView parent, View v,
-					int groupPosition, long id) {
-				
-				return false;
-			}
-		});
-
-		// Listview Group expanded listener
-		expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-			@Override
-			public void onGroupExpand(int groupPosition) {
-				Toast.makeText(getActivity().getApplicationContext(),
-						name.get(groupPosition) + " Expanded",
-						Toast.LENGTH_SHORT).show();
-			}
-		});
-
-		// Listview Group collasped listener
-		expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-			@Override
-			public void onGroupCollapse(int groupPosition) {
-				Toast.makeText(getActivity().getApplicationContext(),
-						name.get(groupPosition) + " Collapsed",
-						Toast.LENGTH_SHORT).show();
-
-			}
-		});
-
-		// Listview on child click listener
-		expListView.setOnChildClickListener(new OnChildClickListener() {
-
-			@Override
-			public boolean onChildClick(ExpandableListView parent, View v,
-					int groupPosition, int childPosition, long id) {
-				// TODO Auto-generated method stub
-				Toast.makeText(
-						getActivity().getApplicationContext(),
-						name.get(groupPosition)
-								+ " : "
-								+ note.get(name.get(groupPosition)).get(
-										childPosition), Toast.LENGTH_SHORT)
-						.show();
-				return false;
-			}
-		});
+		
 
 		addReminderButton.setOnClickListener(new View.OnClickListener() {
 
@@ -112,45 +79,108 @@ public class Reminder extends Fragment {
 				// TODO Auto-generated method stub
 				AddReminderDialog dialog = new AddReminderDialog(li);
 				dialog.show(getChildFragmentManager(), "Add Reminder");
-										
-			
+				
+				
+				resetListAdaptor();
 
+			}
+
+			
+		});
+		
+		refreshButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				reminderHelper.select(null, null, null, null);
+				resetListAdaptor();
+				
+			}
+		});
+		
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> listview,  View v, int pos, long id) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getActivity(), nameList[pos], Toast.LENGTH_LONG).show();
+				
 			}
 		});
 	}
+	
+	
+	
+	public void resetListAdaptor()
+	{
+
+		
+setDialogData();
+
+		if(listAdapter == null)
+			listAdapter = new ReminderListAdaptor(getActivity().getApplicationContext());
+			
+
+		listAdapter.setDate(dateList);
+		listAdapter.setNote(noteList);
+		listAdapter.setReminderName(nameList);
+		
+			
+		
+	}
+	
 
 	private void init(View v) {
-		
-		setDialogData();
-		
-		expListView = (ExpandableListView) v.findViewById(R.id.ReminderList);
-		addReminderButton = (Button) v.findViewById(R.id.addReminderButton);
-		listAdapter = new ReminderAdaptor(
-				getActivity().getApplicationContext(), name, note, date);
-		expListView.setAdapter(listAdapter);
-		dataSource.setContext(getActivity().getApplicationContext());
-		dbHelper.setReminder(this);
+		reminderDataSource.setContext(getActivity().getApplicationContext());
+		reminderHelper.setReminder(this);
 
+		reminderHelper.select(null, null, null, null);
+		
+		
+	
+		
+		listView = (ListView) v.findViewById(R.id.ReminderList);
+		addReminderButton = (Button) v.findViewById(R.id.addReminderButton);
+		refreshButton = (Button)v.findViewById(R.id.refreshButton);
+		
+		
+		
+		
+		
+		resetListAdaptor();
+		
+		listView.setAdapter(listAdapter);
+		
+		
 	}
+
+	
 
 	private void setDialogData() {
 		// TODO Auto-generated method stub
 		
-		reminderList = dataSource.getReminderList();
-		List<String> noteList;
-		List<String> dateList ;
-	
-		for(ReminderDataSource reminder : reminderList)
+		
+		
+		reminderList = reminderDataSource.getReminderList();
+		
+		int size = reminderList.size();
+		
+		nameList = new String[size];
+		dateList = new String[size];
+		noteList = new String[size];
+		
+	int i =0;
+		for(ReminderDataSource  reminder : reminderList)
 		{
-			 noteList = new ArrayList<String>();
-				dateList = new ArrayList<String>();
 			
-			name.add(reminder.getName());
-			noteList.add(reminder.getNote());
-			dateList.add(reminder.getDate());
 			
-			note.put(reminder.getName(), noteList);
-			date.put(reminder.getName(), dateList);
+			nameList[i]=reminder.getName();
+			noteList[i]=reminder.getNote();
+			dateList[i]=reminder.getDate();
+			i++;
+			
+		
 		}
 		
 	}

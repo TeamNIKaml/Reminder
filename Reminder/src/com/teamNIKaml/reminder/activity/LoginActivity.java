@@ -1,6 +1,8 @@
 package com.teamNIKaml.reminder.activity;
 
+import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.Login;
+import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +23,10 @@ public class LoginActivity extends Activity {
 	private SharedPreferences pref;
 	private Editor editor;
 	private Login logindetails = new Login();
+	
+	
+	
+	
 
 	@Override
 	protected void onRestart() {
@@ -39,6 +45,10 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		
+		
+		
 		init();
 		login.setOnClickListener(new OnClickListener() {
 
