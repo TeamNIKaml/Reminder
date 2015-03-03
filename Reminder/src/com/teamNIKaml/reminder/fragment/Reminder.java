@@ -1,7 +1,6 @@
 package com.teamNIKaml.reminder.fragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.os.Bundle;
@@ -13,19 +12,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
-import com.teamNIKaml.reminder.activityComponents.ReminderAdaptor;
 import com.teamNIKaml.reminder.activityComponents.ReminderListAdaptor;
 import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.ReminderDataSource;
+import com.teamNIKaml.reminder.service.AlarmService;
 
 public class Reminder extends Fragment {
 
@@ -56,6 +50,10 @@ public class Reminder extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		
+		AlarmService alarmService = AlarmService.getAlarmService(getActivity().getApplicationContext());
+		alarmService.srartAlarm();
 	
 		li = inflater;
 
@@ -105,6 +103,13 @@ public class Reminder extends Fragment {
 			public void onItemClick(AdapterView<?> listview,  View v, int pos, long id) {
 				// TODO Auto-generated method stub
 				Toast.makeText(getActivity(), nameList[pos], Toast.LENGTH_LONG).show();
+				
+				reminderDataSource.setName(nameList[pos]);
+				reminderDataSource.setDate(dateList[pos]);
+				reminderDataSource.setNote(noteList[pos]);
+				
+				EditReminderDialog dialog = new EditReminderDialog(li);
+				dialog.show(getFragmentManager(), "Edit");
 				
 			}
 		});

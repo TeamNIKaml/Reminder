@@ -7,24 +7,23 @@ import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
-import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
-import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
+import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
+import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class EditReminderDialog extends DialogFragment {
 
-	private PasswordDataSource dataSource = PasswordDataSource
-			.getPasswordDataSource();
-	private EditText accountName, username, password;
-	private Spinner catagory;
-	private IDBHelper dbHelper = new PasswordHelper();
+	private ReminderDataSource dataSource = ReminderDataSource
+			.getReminderDataSource();
+
+	private EditText reminderName, reminderNote;
+	private DatePicker reminderDatePicker;
+	private IDBHelper dbHelper = new ReminderHelper();
 	private Button editButton, deleteButton;
 	private String whereClause;
 	private String[] whereArgs;
@@ -54,14 +53,15 @@ public class EditReminderDialog extends DialogFragment {
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		
+
 		System.out.println("onCreateDialog EditPassword");
 
-		View v = li.inflate(R.layout.activity_editpasswoed, null);
+		View v = li.inflate(R.layout.activity_edit_reminder, null);
 		;
 
 		initDialog(v);
-		setDialogData();
+
+	
 
 		final Dialog dlg = new AlertDialog.Builder(getActivity()).setView(v)
 
@@ -71,10 +71,9 @@ public class EditReminderDialog extends DialogFragment {
 
 			@Override
 			public void onClick(View v) {
-				
-			System.out.println("onClick on create editPassword editbuttonclick");
-				setDialogData();
+
 				dataSource.setContext(getActivity().getApplicationContext());
+				setDialogData();
 				dbHelper.update(whereClause, whereArgs);
 				dbHelper.select(null, null, null, null);
 				dlg.dismiss();
@@ -86,9 +85,10 @@ public class EditReminderDialog extends DialogFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				System.out.println("onClick on create editPassword editbuttonclick");
-				setDialogData();
+				System.out
+						.println("onClick on create editPassword editbuttonclick");
 				Log.e("onclick", "doInBackground");
+				setDialogData();
 				dbHelper.delete(whereClause, whereArgs);
 				dbHelper.select(null, null, null, null);
 				dlg.dismiss();
@@ -99,52 +99,44 @@ public class EditReminderDialog extends DialogFragment {
 		return dlg;
 	}
 
-	private void initDialog(View v) {
-		// TODO Auto-generated method stub
-		accountName = (EditText) v.findViewById(R.id.accountName);
-		username = (EditText) v.findViewById(R.id.username);
-		catagory = (Spinner) v.findViewById(R.id.catagorySpinner);
-		password = (EditText) v.findViewById(R.id.password);
-		editButton = (Button) v.findViewById(R.id.editButton);
-		deleteButton = (Button) v.findViewById(R.id.deleteButton);
-		dataSource.setContext(getActivity().getApplicationContext());
-		String args[] = new String[4];
-		args[0] = dataSource.getCatagory();
-		args[1] = dataSource.getAccountName();
-		args[2] = dataSource.getUsername();
-		args[3] = dataSource.getPassword();
-
-		setWhereClause("catagory = ? and accountName = ? "
-				+ "and username = ? and password = ? ");
-		setWhereArgs(args);
-
-		accountName.setText(dataSource.getAccountName());
-		username.setText(dataSource.getUsername());
-		password.setText(dataSource.getPassword());
-		int i = 0;
-		for (i = 0; i < Constants.CATAGORY_SPINNER_ARRAY.length; i++) {
-			if (dataSource.getCatagory().equalsIgnoreCase(
-					Constants.CATAGORY_SPINNER_ARRAY[i]))
-				break;
-		}
-		catagory.setSelection(i);
-
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		ArrayAdapter adapter = new ArrayAdapter(getActivity()
-				.getApplicationContext(), R.layout.spinner_item,
-				Constants.CATAGORY_SPINNER_ARRAY);
-		adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-		catagory.setAdapter(adapter);
-
-	}
-
 	private void setDialogData() {
 		// TODO Auto-generated method stub
+
+		dataSource.setName(reminderName.getText().toString());
+		dataSource.setNote(reminderNote.getText().toString());
+
+		String dd = String.valueOf(reminderDatePicker.getDayOfMonth());
+		String mm = String.valueOf(reminderDatePicker.getMonth() + 1);
+		String yyyy = String.valueOf(reminderDatePicker.getYear());
+
+		String date = dd + "-" + mm + "-" + yyyy;
+
+		dataSource.setDate(date);
+		dataSource.setWhereArgs(whereArgs);
+		dataSource.setWhereClause(whereClause);
+	}
+
+	private void initDialog(View v) {
+		// TODO Auto-generated method stub
+		reminderName = (EditText) v.findViewById(R.id.reminderName);
+		reminderNote = (EditText) v.findViewById(R.id.reminderNote);
+
+		reminderDatePicker = (DatePicker) v
+				.findViewById(R.id.reminderDatePicker);
+
+		editButton = (Button) v.findViewById(R.id.editReminderButton);
+		deleteButton = (Button) v.findViewById(R.id.deleteReminderButton);
 		dataSource.setContext(getActivity().getApplicationContext());
-		dataSource.setAccountName(accountName.getText().toString());
-		dataSource.setUsername(username.getText().toString());
-		dataSource.setCatagory(catagory.getSelectedItem().toString());
-		dataSource.setPassword(password.getText().toString());
+
+		reminderName.setText(dataSource.getName());
+		reminderNote.setText(dataSource.getNote());
+
+		whereClause = "where name = ? and note = ?";
+
+		whereArgs = new String[2];
+
+		whereArgs[0] = dataSource.getName();
+		whereArgs[1] = dataSource.getNote();
 
 	}
 

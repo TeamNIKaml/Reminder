@@ -22,5 +22,6 @@
     <string name="reminderNote">Reminder Note</string>
     <string name="reminderHeading">Reminder Heading</string>
     <string name="refresh">Refresh</string>
+    <string name="myService">My Service</string>
 
 </resources>

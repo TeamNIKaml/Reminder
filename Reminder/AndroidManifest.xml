@@ -30,6 +30,9 @@
             android:name=".PostLoginActivity"
             android:label="@string/title_activity_post_login" >
         </activity>
+           <service android:name="com.teamNIKaml.reminder.service.MyService" 
+               android:enabled="true" 
+               android:icon="@drawable/ic_launcher"></service>
         
            
           

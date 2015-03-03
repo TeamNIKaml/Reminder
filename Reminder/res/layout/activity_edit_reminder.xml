@@ -13,7 +13,7 @@
         android:gravity="left" >
 
         <EditText
-            android:id="@+id/reminderTitle"
+            android:id="@+id/reminderName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/layout_marginLeft_login"
@@ -71,7 +71,7 @@
             android:orientation="horizontal" >
 
              <Button
-                 android:id="@+id/addReminderButton"
+                 android:id="@+id/editReminderButton"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:layout_marginLeft="@dimen/button_radius"
@@ -84,7 +84,7 @@
                  android:textSize="@dimen/android_textSize_login" />
 
               <Button
-                  android:id="@+id/refreshButton"
+                  android:id="@+id/deleteReminderButton"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="@dimen/button_radius"
