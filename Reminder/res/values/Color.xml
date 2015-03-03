@@ -2,17 +2,19 @@
 <resources>
 
     <!-- Gridview -->
-    <color name="login_Background_start">#0062f7</color>
-    <color name="login_Background_end">#b7d0f4</color>
-    <color name="button_Background_start">#5e3636</color>
-    <color name="button_Background_end">#eae1e1</color>
+    <color name="login_Background_start">#00aff0</color>
+    <color name="login_Background_end">#00aff0</color>
+    <color name="button_Background_start">#0095cd</color>
+    <color name="button_Background_end">#0095cd</color>
     <color name="editTextBackground_start">#FFFFFF</color>
-    <color name="editTextBackground_end">#b5ccaf</color>
+    <color name="editTextBackground_end">#b5ccaf</color>  
+      <color name="tab_selected">#a5d9ed</color> 
+        <color name="tab_unselected">#0099cc</color> 
 
     <!-- Textcolor -->
-    <color name="buttonText">#83fe00</color>
+    <color name="buttonText">#FFFFFF</color>
     <color name="buttonText1">#000000</color>
-    <color name="editTextColor">#c1c1c1</color>
+    <color name="editTextColor">#000000</color>
     <color name="textviewColor">#FFFFFF</color>
 
     <!-- Calander -->
