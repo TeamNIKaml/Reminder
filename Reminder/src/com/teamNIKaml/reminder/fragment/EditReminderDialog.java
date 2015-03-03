@@ -131,7 +131,7 @@ public class EditReminderDialog extends DialogFragment {
 		reminderName.setText(dataSource.getName());
 		reminderNote.setText(dataSource.getNote());
 
-		whereClause = "where name = ? and note = ?";
+		whereClause = "name = ? and note = ?";
 
 		whereArgs = new String[2];
 
