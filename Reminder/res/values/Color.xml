@@ -13,9 +13,10 @@
 
     <!-- Textcolor -->
     <color name="buttonText">#FFFFFF</color>
-    <color name="buttonText1">#000000</color>
     <color name="editTextColor">#000000</color>
-    <color name="textviewColor">#FFFFFF</color>
+    <color name="textviewColor">#FFFFFF</color> 
+    <color name="spinnerTextColor">#ff0000</color>
+    <color name="spinnerTextColor_selected">#aa66cc</color>
 
     <!-- Calander -->
 

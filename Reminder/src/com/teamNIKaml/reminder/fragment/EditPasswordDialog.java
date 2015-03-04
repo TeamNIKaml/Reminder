@@ -59,7 +59,7 @@ public class EditPasswordDialog extends DialogFragment {
 		
 		System.out.println("onCreateDialog EditPassword");
 
-		View v = li.inflate(R.layout.activity_editpasswoed, null);
+		View v = li.inflate(R.layout.activity_editpassword, null);
 		;
 
 		initDialog(v);

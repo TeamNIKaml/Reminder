@@ -3,20 +3,83 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    
+     <dimen name="button_radius">7dp</dimen>
+    <dimen name="editText_radius">7dp</dimen>
+    
+    
+    
+     <dimen name="textSize_edit_text">18sp</dimen>
+    <dimen name="textSize_button">22sp</dimen>
+    <dimen name="textSize_heading">26sp</dimen>
+    
+    
+     <dimen name="padding">18sp</dimen>
+    
+    
+    
 
     <!-- Login layout dimension -->
 
-    <dimen name="layout_marginTop_login">30dp</dimen>
-    <dimen name="layout_marginTop_login_password">10dp</dimen>
-    <dimen name="layout_marginRight_login">12dp</dimen>
-    <dimen name="layout_marginLeft_login">12dp</dimen>
-    <dimen name="layout_marginLeft_loginbutton">140dp</dimen>
-    <dimen name="layout_marginLeft_login_heading">90dp</dimen>
-    <dimen name="android_padding_login">10dp</dimen>
-    <dimen name="android_textSize_login">14sp</dimen>
-    <dimen name="android_textSize_loginButton">18sp</dimen>
-    <dimen name="android_textSize_heading">22sp</dimen>
-    <dimen name="button_radius">7dp</dimen>
-    <dimen name="editText_radius">7dp</dimen>
+    <dimen name="login_margin_top">30dp</dimen>
+    <dimen name="login_margin_top_small">18dp</dimen>
+    <dimen name="login_margin_right">12dp</dimen>
+    <dimen name="login_margin_left">12dp</dimen>
+    <dimen name="login_margin_left_button">140dp</dimen>
+    <dimen name="login_margin_left_heading">90dp</dimen>
+    <dimen name="login_padding">10dp</dimen>
+   
+    
+    
+    <!--Add Password Layout dimension -->    
+    
+    <dimen name="add_password_margin_top">10dp</dimen>
+    <dimen name="add_password_margin_right">12dp</dimen>
+    <dimen name="add_password_margin_left">12dp</dimen>
+    <dimen name="add_password_margin_left_button">140dp</dimen>
+    
+    
+    
+    <!--Add Reminder Layout dimension -->    
+    
+    <dimen name="add_reminder_margin_top">10dp</dimen>
+    <dimen name="add_reminder_margin_right">12dp</dimen>
+    <dimen name="add_reminder_margin_left">12dp</dimen>
+    <dimen name="add_reminder_margin_left_button">140dp</dimen>
+  
+  
+   <!--Edit Reminder Layout dimension -->    
+    
+    <dimen name="edit_reminder_margin_top">10dp</dimen>
+    <dimen name="edit_reminder_margin_right">12dp</dimen>
+    <dimen name="edit_reminder_margin_left">12dp</dimen>
+  
+    
+
+ <!--Edit Password Layout dimension -->    
+    
+    <dimen name="edit_password_margin_top">10dp</dimen>
+    <dimen name="edit_password_margin_right">12dp</dimen>
+    <dimen name="edit_password_margin_left">12dp</dimen>
+   
+    
+    <!-- List Group  -->
+    
+    <dimen name="list_group_margin_top">10dp</dimen>
+    
+     <!--Password Fragment Layout dimension -->    
+    
+    <dimen name="password_margin_top">10dp</dimen>
+    <dimen name="password_margin_right">12dp</dimen>
+    <dimen name="password_margin_left">12dp</dimen>
+    
+    
+      <!--Reminder Fragment Layout dimension -->    
+    
+    <dimen name="reminder_margin_top">10dp</dimen>
+    <dimen name="reminder_margin_right">12dp</dimen>
+    <dimen name="reminder_margin_left">12dp</dimen>
+  
 
 </resources>
