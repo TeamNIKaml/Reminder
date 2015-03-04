@@ -13,10 +13,7 @@ public class ReminderDataSource {
 	private String note;
 	private String date;
 	private Context context;
-	private String whereClause;
-	private String[] whereArgs;
-	private String sortOrder;
-	private String[] projection;
+	
 	private ReminderDataSource dataSource;
 	private static ReminderDataSource reminderDataSource;
 	private List<ReminderDataSource> reminderList = new ArrayList<ReminderDataSource>();
@@ -64,37 +61,7 @@ public class ReminderDataSource {
 		this.date = date;
 	}
 
-	public String getWhereClause() {
-		return whereClause;
-	}
 
-	public void setWhereClause(String whereClause) {
-		this.whereClause = whereClause;
-	}
-
-	public String[] getWhereArgs() {
-		return whereArgs;
-	}
-
-	public void setWhereArgs(String[] whereArgs) {
-		this.whereArgs = whereArgs;
-	}
-
-	public String getSortOrder() {
-		return sortOrder;
-	}
-
-	public void setSortOrder(String sortOrder) {
-		this.sortOrder = sortOrder;
-	}
-
-	public String[] getProjection() {
-		return projection;
-	}
-
-	public void setProjection(String[] projection) {
-		this.projection = projection;
-	}
 
 	public ReminderDataSource getDataSource() {
 		return dataSource;
@@ -117,6 +84,8 @@ public class ReminderDataSource {
 		values.put("name", this.name);
 		values.put("note", this.note);
 		values.put("date", this.date);
+		
+		System.out.println("Content value size:"+values.size());
 		return values;
 	}
 
@@ -125,8 +94,8 @@ public class ReminderDataSource {
 		dataSource = new ReminderDataSource();
 
 		dataSource.setName(cursor.getString(1));
-		dataSource.setNote(cursor.getString(2));
-		dataSource.setDate(cursor.getString(1));
+		dataSource.setNote(cursor.getString(3));
+		dataSource.setDate(cursor.getString(2));
 		return dataSource;
 
 	}

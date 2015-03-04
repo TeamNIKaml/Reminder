@@ -173,7 +173,18 @@ public class Password extends Fragment {
 	}
 
 	public void updateList() {
+		
+		
+		
+		
+		
 		prepareListData();
+		
+		listAdapter.setAccountName(accountName);
+		listAdapter.setPassword(password);
+		listAdapter.setCatagory(catagory);
+		listAdapter.setUsername(username);
+		
 		listAdapter.notifyDataSetChanged();
 
 	}

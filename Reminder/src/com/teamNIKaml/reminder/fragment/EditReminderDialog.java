@@ -1,5 +1,7 @@
 package com.teamNIKaml.reminder.fragment;
 
+import java.util.Arrays;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -74,8 +76,13 @@ public class EditReminderDialog extends DialogFragment {
 
 				dataSource.setContext(getActivity().getApplicationContext());
 				setDialogData();
+				
+				
+				
 				dbHelper.update(whereClause, whereArgs);
 				dbHelper.select(null, null, null, null);
+				
+				
 				dlg.dismiss();
 
 			}
@@ -90,7 +97,11 @@ public class EditReminderDialog extends DialogFragment {
 				Log.e("onclick", "doInBackground");
 				setDialogData();
 				dbHelper.delete(whereClause, whereArgs);
+				
 				dbHelper.select(null, null, null, null);
+				
+				System.out.println("whereClause:"+whereClause);
+				System.out.println("whereArgs:"+Arrays.toString(whereArgs));
 				dlg.dismiss();
 
 			}
@@ -112,8 +123,7 @@ public class EditReminderDialog extends DialogFragment {
 		String date = dd + "-" + mm + "-" + yyyy;
 
 		dataSource.setDate(date);
-		dataSource.setWhereArgs(whereArgs);
-		dataSource.setWhereClause(whereClause);
+		
 	}
 
 	private void initDialog(View v) {
@@ -131,12 +141,17 @@ public class EditReminderDialog extends DialogFragment {
 		reminderName.setText(dataSource.getName());
 		reminderNote.setText(dataSource.getNote());
 
-		whereClause = "name = ? and note = ?";
+		whereClause = "name=? AND note=? AND date=?";
 
-		whereArgs = new String[2];
+		whereArgs = new String[3];
 
 		whereArgs[0] = dataSource.getName();
 		whereArgs[1] = dataSource.getNote();
+		whereArgs[2] = dataSource.getDate();
+		
+	
+		
+		System.out.println("name:"+dataSource.getName()+" note:"+dataSource.getNote()+" date"+dataSource.getDate());
 
 	}
 

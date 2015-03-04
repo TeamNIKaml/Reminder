@@ -1,8 +1,11 @@
 package com.teamNIKaml.reminder.fragment;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import android.R.array;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -52,8 +55,8 @@ public class Reminder extends Fragment {
 			Bundle savedInstanceState) {
 		
 		
-		AlarmService alarmService = AlarmService.getAlarmService(getActivity().getApplicationContext());
-		alarmService.srartAlarm();
+		/*AlarmService alarmService = AlarmService.getAlarmService(getActivity().getApplicationContext());
+		alarmService.srartAlarm();*/
 	
 		li = inflater;
 
@@ -121,15 +124,17 @@ public class Reminder extends Fragment {
 	{
 
 		
-setDialogData();
+
 
 		if(listAdapter == null)
 			listAdapter = new ReminderListAdaptor(getActivity().getApplicationContext());
 			
-
+		setDialogData();
 		listAdapter.setDate(dateList);
 		listAdapter.setNote(noteList);
 		listAdapter.setReminderName(nameList);
+		
+		listAdapter.notifyDataSetChanged();
 		
 			
 		
@@ -187,6 +192,10 @@ setDialogData();
 			
 		
 		}
+		
+		System.out.println("NameList: "+Arrays.toString(nameList));
+		System.out.println("noteList: "+Arrays.toString(noteList));
+		System.out.println("dateList: "+Arrays.toString(dateList));
 		
 	}
 

@@ -79,6 +79,7 @@ public class EditPasswordDialog extends DialogFragment {
 				dataSource.setContext(getActivity().getApplicationContext());
 				dbHelper.update(whereClause, whereArgs);
 				dbHelper.select(null, null, null, null);
+				
 				dlg.dismiss();
 
 			}
@@ -93,6 +94,7 @@ public class EditPasswordDialog extends DialogFragment {
 				Log.e("onclick", "doInBackground");
 				dbHelper.delete(whereClause, whereArgs);
 				dbHelper.select(null, null, null, null);
+				
 				dlg.dismiss();
 
 			}
@@ -116,8 +118,8 @@ public class EditPasswordDialog extends DialogFragment {
 		args[2] = dataSource.getUsername();
 		args[3] = dataSource.getPassword();
 
-		setWhereClause("catagory = ? and accountName = ? "
-				+ "and username = ? and password = ? ");
+		setWhereClause("catagory=? AND  accountName=? "
+				+ "AND  username=? AND  password=? ");
 		setWhereArgs(args);
 
 		accountName.setText(dataSource.getAccountName());

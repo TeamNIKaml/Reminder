@@ -57,6 +57,7 @@
 
         <Button
             android:id="@+id/loginButton"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/login_margin_left_button"
@@ -65,8 +66,7 @@
             android:padding="@dimen/padding"
             android:text="@string/login"
             android:textColor="@color/buttonText"
-            android:textSize="@dimen/textSize_button" 
-             style="?android:attr/borderlessButtonStyle"/>
+            android:textSize="@dimen/textSize_button" />
     </TableRow>
 
 </TableLayout>

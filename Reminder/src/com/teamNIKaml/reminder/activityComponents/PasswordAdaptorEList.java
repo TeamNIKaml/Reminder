@@ -25,6 +25,54 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 	private HashMap<String, List<String>> username;
 	private HashMap<String, List<String>> password;
 
+	public List<String> getCatagory() {
+		return catagory;
+	}
+
+
+	public void setCatagory(List<String> catagory) {
+		notifyDataSetInvalidated();
+		this.catagory = catagory;
+		notifyDataSetChanged();
+	}
+
+
+	public HashMap<String, List<String>> getAccountName() {
+		return accountName;
+	}
+
+
+	public void setAccountName(HashMap<String, List<String>> accountName) {
+		notifyDataSetInvalidated();
+		this.accountName = accountName;
+		notifyDataSetChanged();
+	}
+
+
+	public HashMap<String, List<String>> getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(HashMap<String, List<String>> username) {
+		notifyDataSetInvalidated();
+		this.username = username;
+		notifyDataSetChanged();
+	}
+
+
+	public HashMap<String, List<String>> getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(HashMap<String, List<String>> password) {
+		notifyDataSetInvalidated();
+		this.password = password;
+		notifyDataSetChanged();
+	}
+
+
 	public PasswordAdaptorEList(Context context, List<String> catagory,
 			HashMap<String, List<String>> accountName,HashMap<String, List<String>> username,
 			HashMap<String, List<String>> password) {
