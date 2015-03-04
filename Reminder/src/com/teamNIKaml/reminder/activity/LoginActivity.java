@@ -1,9 +1,6 @@
 package com.teamNIKaml.reminder.activity;
 
-import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.Login;
-import com.teamNIKaml.reminder.property.ReminderDataSource;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -103,7 +100,7 @@ public class LoginActivity extends Activity {
 		getLogininfo();
 		if (logindetails.getLoginStatus() != 100) {
 			login.setText("Register");
-			password.setHint("Enter your new password");
+			password.setHint("Set Application Password");
 		}
 
 	}

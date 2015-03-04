@@ -55,8 +55,8 @@ public class Reminder extends Fragment {
 			Bundle savedInstanceState) {
 		
 		
-		/*AlarmService alarmService = AlarmService.getAlarmService(getActivity().getApplicationContext());
-		alarmService.srartAlarm();*/
+		AlarmService alarmService = AlarmService.getAlarmService(getActivity().getApplicationContext());
+		alarmService.srartAlarm();
 	
 		li = inflater;
 
