@@ -5,81 +5,81 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     
     
-     <dimen name="button_radius">7dp</dimen>
-    <dimen name="editText_radius">7dp</dimen>
+     <dimen name="button_radius">17dp</dimen>
+    <dimen name="editText_radius">17dp</dimen>
     
     
     
-     <dimen name="textSize_edit_text">18sp</dimen>
-    <dimen name="textSize_button">22sp</dimen>
-    <dimen name="textSize_heading">26sp</dimen>
+     <dimen name="textSize_edit_text">26sp</dimen>
+    <dimen name="textSize_button">30sp</dimen>
+    <dimen name="textSize_heading">34sp</dimen>
     
     
-     <dimen name="padding">18sp</dimen>
+     <dimen name="padding">16dp</dimen>
     
     
     
 
     <!-- Login layout dimension -->
 
-    <dimen name="login_margin_top">30dp</dimen>
-    <dimen name="login_margin_top_small">18dp</dimen>
-    <dimen name="login_margin_right">12dp</dimen>
-    <dimen name="login_margin_left">12dp</dimen>
-    <dimen name="login_margin_left_button">140dp</dimen>
-    <dimen name="login_margin_left_heading">90dp</dimen>
-    <dimen name="login_padding">10dp</dimen>
+    <dimen name="login_margin_top">70dp</dimen>
+    <dimen name="login_margin_top_small">26dp</dimen>
+    <dimen name="login_margin_right">16dp</dimen>
+    <dimen name="login_margin_left">16dp</dimen>
+    <dimen name="login_margin_left_button">250dp</dimen>
+    <dimen name="login_margin_left_heading">150dp</dimen>
+   
    
     
     
     <!--Add Password Layout dimension -->    
     
-    <dimen name="add_password_margin_top">10dp</dimen>
-    <dimen name="add_password_margin_right">12dp</dimen>
-    <dimen name="add_password_margin_left">12dp</dimen>
-    <dimen name="add_password_margin_left_button">140dp</dimen>
+    <dimen name="add_password_margin_top">20dp</dimen>
+    <dimen name="add_password_margin_right">16dp</dimen>
+    <dimen name="add_password_margin_left">16dp</dimen>
+    <dimen name="add_password_margin_left_button">210dp</dimen>
     
     
     
     <!--Add Reminder Layout dimension -->    
     
-    <dimen name="add_reminder_margin_top">10dp</dimen>
-    <dimen name="add_reminder_margin_right">12dp</dimen>
-    <dimen name="add_reminder_margin_left">12dp</dimen>
-    <dimen name="add_reminder_margin_left_button">140dp</dimen>
+    <dimen name="add_reminder_margin_top">22dp</dimen>
+    <dimen name="add_reminder_margin_right">16dp</dimen>
+    <dimen name="add_reminder_margin_left">16dp</dimen>
+    <dimen name="add_reminder_margin_left_button">220dp</dimen>
   
   
    <!--Edit Reminder Layout dimension -->    
     
-    <dimen name="edit_reminder_margin_top">10dp</dimen>
-    <dimen name="edit_reminder_margin_right">12dp</dimen>
-    <dimen name="edit_reminder_margin_left">12dp</dimen>
+    <dimen name="edit_reminder_margin_top">22dp</dimen>
+    <dimen name="edit_reminder_margin_right">16dp</dimen>
+    <dimen name="edit_reminder_margin_left">16dp</dimen>
   
     
 
  <!--Edit Password Layout dimension -->    
     
-    <dimen name="edit_password_margin_top">10dp</dimen>
-    <dimen name="edit_password_margin_right">12dp</dimen>
-    <dimen name="edit_password_margin_left">12dp</dimen>
+    <dimen name="edit_password_margin_top">24dp</dimen>
+    <dimen name="edit_password_margin_right">16dp</dimen>
+    <dimen name="edit_password_margin_left">16dp</dimen>
    
     
     <!-- List Group  -->
     
-    <dimen name="list_group_margin_top">10dp</dimen>
+    <dimen name="list_group_margin_top">16dp</dimen>
     
      <!--Password Fragment Layout dimension -->    
     
-    <dimen name="password_margin_top">10dp</dimen>
-    <dimen name="password_margin_right">12dp</dimen>
-    <dimen name="password_margin_left">12dp</dimen>
+    <dimen name="password_margin_top">22dp</dimen>
+    <dimen name="password_margin_right">16dp</dimen>
+    <dimen name="password_margin_left">16dp</dimen>
     
     
       <!--Reminder Fragment Layout dimension -->    
     
-    <dimen name="reminder_margin_top">10dp</dimen>
-    <dimen name="reminder_margin_right">12dp</dimen>
-    <dimen name="reminder_margin_left">12dp</dimen>
+    <dimen name="reminder_margin_top">22dp</dimen>
+    <dimen name="reminder_margin_right">16dp</dimen>
+    <dimen name="reminder_margin_left">16dp</dimen>
   
 
 </resources>

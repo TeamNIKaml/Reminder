@@ -15,7 +15,7 @@
     <dimen name="textSize_heading">26sp</dimen>
     
     
-     <dimen name="padding">18sp</dimen>
+     <dimen name="padding">10dp</dimen>
     
     
     
