@@ -1,12 +1,10 @@
 package com.teamNIKaml.reminder.fragment;
 
-import java.util.Arrays;
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -53,17 +51,13 @@ public class EditReminderDialog extends DialogFragment {
 		this.li = li;
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-		System.out.println("onCreateDialog EditPassword");
-
 		View v = li.inflate(R.layout.activity_edit_reminder, null);
-		;
 
 		initDialog(v);
-
-	
 
 		final Dialog dlg = new AlertDialog.Builder(getActivity()).setView(v)
 
@@ -76,13 +70,10 @@ public class EditReminderDialog extends DialogFragment {
 
 				dataSource.setContext(getActivity().getApplicationContext());
 				setDialogData();
-				
-				
-				
+
 				dbHelper.update(whereClause, whereArgs);
 				dbHelper.select(null, null, null, null);
-				
-				
+
 				dlg.dismiss();
 
 			}
@@ -92,16 +83,12 @@ public class EditReminderDialog extends DialogFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				System.out
-						.println("onClick on create editPassword editbuttonclick");
-				Log.e("onclick", "doInBackground");
+
 				setDialogData();
 				dbHelper.delete(whereClause, whereArgs);
-				
+
 				dbHelper.select(null, null, null, null);
-				
-				System.out.println("whereClause:"+whereClause);
-				System.out.println("whereArgs:"+Arrays.toString(whereArgs));
+
 				dlg.dismiss();
 
 			}
@@ -123,7 +110,7 @@ public class EditReminderDialog extends DialogFragment {
 		String date = dd + "-" + mm + "-" + yyyy;
 
 		dataSource.setDate(date);
-		
+
 	}
 
 	private void initDialog(View v) {
@@ -148,10 +135,6 @@ public class EditReminderDialog extends DialogFragment {
 		whereArgs[0] = dataSource.getName();
 		whereArgs[1] = dataSource.getNote();
 		whereArgs[2] = dataSource.getDate();
-		
-	
-		
-		System.out.println("name:"+dataSource.getName()+" note:"+dataSource.getNote()+" date"+dataSource.getDate());
 
 	}
 

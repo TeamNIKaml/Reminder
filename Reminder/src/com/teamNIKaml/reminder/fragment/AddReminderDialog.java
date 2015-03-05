@@ -1,14 +1,10 @@
 package com.teamNIKaml.reminder.fragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +26,7 @@ public class AddReminderDialog extends DialogFragment {
 	private EditText reminderNote;
 	private IDBHelper dbHelper = new ReminderHelper();
 	private Button saveButton;
-	 private DatePicker reminderDatePicker;
-	 private SimpleDateFormat dateFormatter;
+	private DatePicker reminderDatePicker;
 
 	private LayoutInflater li;
 
@@ -44,7 +39,6 @@ public class AddReminderDialog extends DialogFragment {
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
 		View v = li.inflate(R.layout.activity_add_reminder, null);
-		;
 
 		initDialog(v);
 		setDialogData();
@@ -59,14 +53,15 @@ public class AddReminderDialog extends DialogFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				setDialogData();
-				Log.e("onclick", "doInBackground");
+
 				dataSource.setContext(getActivity().getApplicationContext());
 				dbHelper.insert();
 				dbHelper.select(null, null, null, null);
-				
+
 				dlg.dismiss();
-				
-				Toast.makeText(getActivity().getApplicationContext(), "Reminder saved", Toast.LENGTH_LONG).show();
+
+				Toast.makeText(getActivity().getApplicationContext(),
+						"Reminder saved", Toast.LENGTH_LONG).show();
 
 			}
 		});
@@ -79,14 +74,11 @@ public class AddReminderDialog extends DialogFragment {
 		dataSource.setContext(getActivity().getApplicationContext());
 		reminderNote = (EditText) v.findViewById(R.id.reminderNote);
 		reminderName = (EditText) v.findViewById(R.id.reminderTitle);
-	
+
 		saveButton = (Button) v.findViewById(R.id.saveButton);
-		dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-		
-		reminderDatePicker =(DatePicker)v.findViewById(R.id.reminderDatePicker);
-		
-		
-			
+
+		reminderDatePicker = (DatePicker) v
+				.findViewById(R.id.reminderDatePicker);
 
 	}
 
@@ -94,23 +86,15 @@ public class AddReminderDialog extends DialogFragment {
 		// TODO Auto-generated method stub
 		dataSource.setName(reminderName.getText().toString());
 		dataSource.setNote(reminderNote.getText().toString());
-		
-		 String dd = String.valueOf(reminderDatePicker.getDayOfMonth());
-		 String mm = String.valueOf(reminderDatePicker.getMonth() + 1);
-		 String yyyy = String.valueOf(reminderDatePicker.getYear());
-		 
-		
-		 
-		 String date = dd+"-"+mm+"-"+yyyy;
-		 
-		 
-		 dataSource.setDate(date);
-		 
-		 System.out.println(date);
-		
-		
+
+		String dd = String.valueOf(reminderDatePicker.getDayOfMonth());
+		String mm = String.valueOf(reminderDatePicker.getMonth() + 1);
+		String yyyy = String.valueOf(reminderDatePicker.getYear());
+
+		String date = dd + "-" + mm + "-" + yyyy;
+
+		dataSource.setDate(date);
 
 	}
-
 
 }

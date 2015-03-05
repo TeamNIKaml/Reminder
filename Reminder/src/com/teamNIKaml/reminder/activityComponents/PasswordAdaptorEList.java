@@ -1,7 +1,5 @@
 package com.teamNIKaml.reminder.activityComponents;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,18 +27,15 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		return catagory;
 	}
 
-
 	public void setCatagory(List<String> catagory) {
 		notifyDataSetInvalidated();
 		this.catagory = catagory;
 		notifyDataSetChanged();
 	}
 
-
 	public HashMap<String, List<String>> getAccountName() {
 		return accountName;
 	}
-
 
 	public void setAccountName(HashMap<String, List<String>> accountName) {
 		notifyDataSetInvalidated();
@@ -48,11 +43,9 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		notifyDataSetChanged();
 	}
 
-
 	public HashMap<String, List<String>> getUsername() {
 		return username;
 	}
-
 
 	public void setUsername(HashMap<String, List<String>> username) {
 		notifyDataSetInvalidated();
@@ -60,11 +53,9 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		notifyDataSetChanged();
 	}
 
-
 	public HashMap<String, List<String>> getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(HashMap<String, List<String>> password) {
 		notifyDataSetInvalidated();
@@ -72,9 +63,9 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		notifyDataSetChanged();
 	}
 
-
 	public PasswordAdaptorEList(Context context, List<String> catagory,
-			HashMap<String, List<String>> accountName,HashMap<String, List<String>> username,
+			HashMap<String, List<String>> accountName,
+			HashMap<String, List<String>> username,
 			HashMap<String, List<String>> password) {
 		this._context = context;
 		this.catagory = catagory;
@@ -83,22 +74,20 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		this.password = password;
 	}
 
-	
 	public Object getPassword(int groupPosition, int childPosititon) {
-		return this.password.get(this.catagory.get(groupPosition))
-				.get(childPosititon);
+		return this.password.get(this.catagory.get(groupPosition)).get(
+				childPosititon);
 	}
-	
+
 	public Object getAccountName(int groupPosition, int childPosititon) {
-		return this.accountName.get(this.catagory.get(groupPosition))
-				.get(childPosititon);
-	} 
-	
-	
+		return this.accountName.get(this.catagory.get(groupPosition)).get(
+				childPosititon);
+	}
+
 	public Object getUserName(int groupPosition, int childPosititon) {
-		return this.username.get(this.catagory.get(groupPosition))
-				.get(childPosititon);
-	} 
+		return this.username.get(this.catagory.get(groupPosition)).get(
+				childPosititon);
+	}
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
@@ -110,31 +99,34 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 
-		
-
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) this._context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = infalInflater.inflate(R.layout.list_item_password, null);
+			convertView = infalInflater.inflate(R.layout.list_item_password,
+					null);
 		}
 
-	 	TextView accountNameText = (TextView) convertView.findViewById(R.id.accountName);
-		TextView userNameText = (TextView) convertView.findViewById(R.id.username);
-		TextView passwordText =(TextView)convertView.findViewById(R.id.password);
-		
-		accountNameText.setText(getAccountName(groupPosition, childPosition).toString());
-		userNameText.setText(getUserName(groupPosition, childPosition).toString());
-		passwordText.setText(getPassword(groupPosition, childPosition).toString());
+		TextView accountNameText = (TextView) convertView
+				.findViewById(R.id.accountName);
+		TextView userNameText = (TextView) convertView
+				.findViewById(R.id.username);
+		TextView passwordText = (TextView) convertView
+				.findViewById(R.id.password);
+
+		accountNameText.setText(getAccountName(groupPosition, childPosition)
+				.toString());
+		userNameText.setText(getUserName(groupPosition, childPosition)
+				.toString());
+		passwordText.setText(getPassword(groupPosition, childPosition)
+				.toString());
 		return convertView;
 	}
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		
-		
-		return this.accountName.get(this.catagory.get(groupPosition))
-				.size();
-		
+
+		return this.accountName.get(this.catagory.get(groupPosition)).size();
+
 	}
 
 	@Override
@@ -160,10 +152,12 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) this._context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = infalInflater.inflate(R.layout.list_group_password, null);
+			convertView = infalInflater.inflate(R.layout.list_group_password,
+					null);
 		}
 
-		TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);
+		TextView lblListHeader = (TextView) convertView
+				.findViewById(R.id.lblListHeader);
 		lblListHeader.setTypeface(null, Typeface.BOLD);
 		lblListHeader.setText(headerTitle);
 
@@ -179,7 +173,6 @@ public class PasswordAdaptorEList extends BaseExpandableListAdapter {
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;
 	}
-
 
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {

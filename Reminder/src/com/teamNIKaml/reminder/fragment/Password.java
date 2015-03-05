@@ -6,7 +6,6 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +20,8 @@ import android.widget.Toast;
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
 import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
-import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
-import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class Password extends Fragment {
 
@@ -36,22 +33,14 @@ public class Password extends Fragment {
 	private HashMap<String, List<String>> password;
 	private Button addOppertunitiesButton;
 	private LayoutInflater li;
-	private PasswordDataSource dataSource = PasswordDataSource.getPasswordDataSource();
+	private PasswordDataSource dataSource = PasswordDataSource
+			.getPasswordDataSource();
 	private PasswordHelper dbHelper = new PasswordHelper();
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
-	
-	
-
-	
-	
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-		
-	
 
 		li = inflater;
 
@@ -143,7 +132,7 @@ public class Password extends Fragment {
 	}
 
 	private void init(View v) {
-		Log.e("init", "init");
+		
 		catagory = new ArrayList<String>();
 		accountName = new HashMap<String, List<String>>();
 		username = new HashMap<String, List<String>>();
@@ -173,18 +162,14 @@ public class Password extends Fragment {
 	}
 
 	public void updateList() {
-		
-		
-		
-		
-		
+
 		prepareListData();
-		
+
 		listAdapter.setAccountName(accountName);
 		listAdapter.setPassword(password);
 		listAdapter.setCatagory(catagory);
 		listAdapter.setUsername(username);
-		
+
 		listAdapter.notifyDataSetChanged();
 
 	}

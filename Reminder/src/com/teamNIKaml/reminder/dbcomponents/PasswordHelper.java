@@ -6,7 +6,6 @@ import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.teamNIKaml.reminder.fragment.Password;
 import com.teamNIKaml.reminder.property.Constants;
@@ -30,9 +29,9 @@ public class PasswordHelper implements IDBHelper {
 
 	@Override
 	public boolean onCreate() {
-		Log.e("DBTask onCreate", "doInBackground");
-		dbHelper = new DBHelper(dataSource.getContext(), 1, Constants.DB_NAME_PASSWORD,
-				Constants.PASSWORD_DB_QUERY);
+
+		dbHelper = new DBHelper(dataSource.getContext(), 1,
+				Constants.DB_NAME_PASSWORD, Constants.PASSWORD_DB_QUERY);
 		return true;
 
 	}
@@ -40,7 +39,7 @@ public class PasswordHelper implements IDBHelper {
 	@Override
 	public void insert() {
 		// TODO Auto-generated method stub
-		Log.e("insert Passwordhelper", "doInBackground");
+
 		new DBTask().execute("insert");
 
 	}
@@ -68,19 +67,17 @@ public class PasswordHelper implements IDBHelper {
 		// TODO Auto-generated method stub
 		dataSource.setWhereArgs(selectionArgs);
 		dataSource.setWhereClause(selection);
-		new DBTask().execute("select");	
+		new DBTask().execute("select");
 
 	}
 
 	private class DBTask extends AsyncTask<String, Integer, String> {
 
-	
-
 		@Override
 		protected String doInBackground(String... operation) {
 			// TODO Auto-generated method stub
 			if (operation[0].equalsIgnoreCase("insert")) {
-				Log.e("DBTask inset", "doInBackground");
+
 				onCreate();
 				SQLiteDatabase database = dbHelper.getWritableDatabase();
 				database.insert(Constants.PASSWORD_TABLE_NAME, null,
@@ -90,7 +87,7 @@ public class PasswordHelper implements IDBHelper {
 			} else if (operation[0].equalsIgnoreCase("update")) {
 
 				onCreate();
-				Log.e("DBTask update", "doInBackground");
+
 				SQLiteDatabase database = dbHelper.getWritableDatabase();
 				database.update(Constants.PASSWORD_TABLE_NAME,
 						dataSource.passwordToContentValues(),
@@ -99,42 +96,33 @@ public class PasswordHelper implements IDBHelper {
 
 			} else if (operation[0].equalsIgnoreCase("delete")) {
 				onCreate();
-				Log.e("DBTask delete", "doInBackground");
+
 				SQLiteDatabase dataBase = dbHelper.getWritableDatabase();
 				dataBase.delete(Constants.PASSWORD_TABLE_NAME,
 						dataSource.getWhereClause(), dataSource.getWhereArgs());
 				dataBase.close();
 
-			} 
-			else if  (operation[0].equalsIgnoreCase("select"))
-			{
+			} else if (operation[0].equalsIgnoreCase("select")) {
 				PasswordDataSource dataSource1;
 				onCreate();
-				Log.e("DBTask select", "doInBackground");
+
 				SQLiteDatabase database = dbHelper.getReadableDatabase();
 				Cursor cursor = database.query(Constants.PASSWORD_TABLE_NAME,
 						dataSource.getProjection(),
 						dataSource.getWhereClause(), dataSource.getWhereArgs(),
 						null, null, dataSource.getSortOrder());
-				
-				Log.e("count do in bacgrount cursor", String.valueOf(cursor.getColumnCount()));
+
 				if (cursor.moveToFirst()) {
 
 					do {
-						dataSource1=dataSource.cursorToPasswordsDataSource(cursor);
+						dataSource1 = dataSource
+								.cursorToPasswordsDataSource(cursor);
 						passwordList.add(dataSource1);
 					} while (cursor.moveToNext());
 
-			
-			
-				dataSource.SetPasswordList(passwordList);
+					dataSource.SetPasswordList(passwordList);
 
-			}
-			}
-			
-
-			else {
-				Log.e("Invalid db task", "invalid dsfsdfasdas");
+				}
 			}
 
 			return null;

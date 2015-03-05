@@ -25,27 +25,20 @@ public class AlarmService {
 	public void srartAlarm() {
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 23);   // Everyday 7 AM
-		calendar.set(Calendar.MINUTE, 45);
+		calendar.set(Calendar.HOUR_OF_DAY, 7); // Everyday 7 AM
+		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
 
 		PendingIntent pendingIntent = PendingIntent.getService(context, 0,
 				new Intent(context, MyService.class),
 				PendingIntent.FLAG_UPDATE_CURRENT);
-		
+
 		AlarmManager alarmManager = (AlarmManager) context
 				.getSystemService(Context.ALARM_SERVICE);
-		
+
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
 				calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
 				pendingIntent);
-
-		/*
-		 * alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-		 * System.currentTimeMillis(), (5000), pendingIntent);
-		 * 
-		 * Toast.makeText(context, "Starting alarm", Toast.LENGTH_LONG).show();
-		 */
 
 	}
 

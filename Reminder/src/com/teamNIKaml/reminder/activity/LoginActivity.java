@@ -1,17 +1,18 @@
 package com.teamNIKaml.reminder.activity;
 
-import com.teamNIKaml.reminder.property.Login;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.teamNIKaml.reminder.property.Constants;
+import com.teamNIKaml.reminder.property.Login;
 
 public class LoginActivity extends Activity {
 
@@ -20,10 +21,6 @@ public class LoginActivity extends Activity {
 	private SharedPreferences pref;
 	private Editor editor;
 	private Login logindetails = new Login();
-	
-	
-	
-	
 
 	@Override
 	protected void onRestart() {
@@ -42,10 +39,7 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		
-		
-		
-		
+
 		init();
 		login.setOnClickListener(new OnClickListener() {
 
@@ -65,24 +59,21 @@ public class LoginActivity extends Activity {
 					password.getText().toString())) {
 				Toast.makeText(this, "Invalid PAssword", Toast.LENGTH_LONG)
 						.show();
-			}
-			else
-			startActivity(new Intent(this, PostLoginActivity.class));
+			} else
+				startActivity(new Intent(this, PostLoginActivity.class));
 		} else {
 			writeSharedPreference();
 			startActivity(new Intent(this, PostLoginActivity.class));
 		}
 
-		
 	}
 
 	private void writeSharedPreference() {
 		// TODO Auto-generated method stub
 
 		pref = getApplicationContext().getSharedPreferences(
-				"localdiskchildlocator", 0);
+				Constants.SHARED_PREFERENCE_NAME, 0);
 		editor = pref.edit();
-		Log.e("writeToSharedPreferences", "localdiskchildlocator");
 		editor.putInt("loginstatus", 100);
 		editor.putString("password", password.getText().toString());
 		editor.commit();
@@ -91,7 +82,7 @@ public class LoginActivity extends Activity {
 
 	private void getLogininfo() {
 		pref = getApplicationContext().getSharedPreferences(
-				"localdiskchildlocator", 0);
+				Constants.SHARED_PREFERENCE_NAME, 0);
 		logindetails.setPassword(pref.getString("password", ""));
 		logindetails.setLoginStatus(pref.getInt("loginstatus", 0));
 	}

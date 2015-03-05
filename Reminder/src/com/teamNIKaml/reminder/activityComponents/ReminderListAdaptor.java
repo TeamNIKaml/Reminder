@@ -1,7 +1,5 @@
 package com.teamNIKaml.reminder.activityComponents;
 
-import com.teamNIKaml.reminder.activity.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +7,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class ReminderListAdaptor  extends BaseAdapter {
-	
+import com.teamNIKaml.reminder.activity.R;
+
+public class ReminderListAdaptor extends BaseAdapter {
+
 	private Context context;
-	private String reminderName[] ;
-	private String note[]; 
-	private String date[]; 
-	private TextView reminderNameTextView,reminderNoteTextView,reminderDateTextView;
-	
+	private String reminderName[];
+	private String note[];
+	private String date[];
+	private TextView reminderNameTextView, reminderNoteTextView,
+			reminderDateTextView;
+
 	public String[] getDate() {
 		return date;
 	}
@@ -27,9 +28,9 @@ public class ReminderListAdaptor  extends BaseAdapter {
 	}
 
 	public String[] getReminderName() {
-		
+
 		return reminderName;
-		
+
 	}
 
 	public void setReminderName(String[] reminderName) {
@@ -39,14 +40,13 @@ public class ReminderListAdaptor  extends BaseAdapter {
 
 	public String[] getNote() {
 		return note;
-		
+
 	}
 
 	public void setNote(String[] note) {
 		this.note = note;
 		notifyDataSetChanged();
 	}
-	
 
 	public ReminderListAdaptor(Context context) {
 		this.context = context;
@@ -74,11 +74,10 @@ public class ReminderListAdaptor  extends BaseAdapter {
 	public View getView(int postion, View convertview, ViewGroup group) {
 		// TODO Auto-generated method stub
 		View v = convertview;
-		if(v == null)
-		{
-			LayoutInflater li = (LayoutInflater) 
-					context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = li.inflate(R.layout.reminder_list_adaptor,group,false);
+		if (v == null) {
+			LayoutInflater li = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			v = li.inflate(R.layout.reminder_list_adaptor, group, false);
 		}
 		reminderNameTextView = (TextView) v.findViewById(R.id.reminderName);
 		reminderNoteTextView = (TextView) v.findViewById(R.id.reminder_note);
@@ -86,12 +85,8 @@ public class ReminderListAdaptor  extends BaseAdapter {
 		reminderNameTextView.setText(reminderName[postion]);
 		reminderNoteTextView.setText(note[postion]);
 		reminderDateTextView.setText(date[postion]);
-		
-		
-		
+
 		return v;
 	}
-
-	
 
 }

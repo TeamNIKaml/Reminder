@@ -13,7 +13,7 @@ public class ReminderDataSource {
 	private String note;
 	private String date;
 	private Context context;
-	
+
 	private ReminderDataSource dataSource;
 	private static ReminderDataSource reminderDataSource;
 	private List<ReminderDataSource> reminderList = new ArrayList<ReminderDataSource>();
@@ -61,8 +61,6 @@ public class ReminderDataSource {
 		this.date = date;
 	}
 
-
-
 	public ReminderDataSource getDataSource() {
 		return dataSource;
 	}
@@ -84,8 +82,8 @@ public class ReminderDataSource {
 		values.put("name", this.name);
 		values.put("note", this.note);
 		values.put("date", this.date);
-		
-		System.out.println("Content value size:"+values.size());
+
+		System.out.println("Content value size:" + values.size());
 		return values;
 	}
 

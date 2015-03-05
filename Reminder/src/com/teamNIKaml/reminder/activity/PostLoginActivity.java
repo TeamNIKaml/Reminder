@@ -3,16 +3,11 @@ package com.teamNIKaml.reminder.activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-
 
 import com.teamNIKaml.reminder.activityComponents.TabPagerAdapter;
 
@@ -69,27 +64,22 @@ public class PostLoginActivity extends FragmentActivity {
 				.setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Reminder")
 				.setTabListener(tabListener));
-	
 
 	}
-	
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.post_login, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
-		
-		startActivity(new Intent(getApplicationContext(), ChangePasswordActivity.class));
-		
-			
-			
-			
+
+		startActivity(new Intent(getApplicationContext(),
+				ChangePasswordActivity.class));
+
 		return super.onOptionsItemSelected(item);
 	}
 

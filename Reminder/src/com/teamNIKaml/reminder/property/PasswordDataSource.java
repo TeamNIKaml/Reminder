@@ -19,11 +19,8 @@ public class PasswordDataSource {
 	private String sortOrder;
 	private String[] projection;
 	private PasswordDataSource dataSource;
-	private static PasswordDataSource passwordDataSource;	
+	private static PasswordDataSource passwordDataSource;
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
-	
-	
-	
 
 	public String getCatagory() {
 		return catagory;
@@ -57,8 +54,6 @@ public class PasswordDataSource {
 		this.password = password;
 	}
 
-	
-
 	public String getWhereClause() {
 		return whereClause;
 	}
@@ -79,7 +74,9 @@ public class PasswordDataSource {
 	public String toString() {
 		// TODO Auto-generated method stub
 
-		return "Catagory : "+getCatagory() +"  Account Name:" +getAccountName() +"  Username:"+getUsername()+"  Password:"+getPassword();
+		return "Catagory : " + getCatagory() + "  Account Name:"
+				+ getAccountName() + "  Username:" + getUsername()
+				+ "  Password:" + getPassword();
 
 	}
 
@@ -117,17 +114,16 @@ public class PasswordDataSource {
 	}
 
 	public PasswordDataSource cursorToPasswordsDataSource(Cursor cursor) {
-		
-		
+
 		dataSource = new PasswordDataSource();
 
 		dataSource.setCatagory(cursor.getString(1));
 		dataSource.setAccountName(cursor.getString(2));
 		dataSource.setUsername(cursor.getString(3));
 		dataSource.setPassword(cursor.getString(4));
-		//setDataSource(this);
+		// setDataSource(this);
 		return dataSource;
-		//return ;
+		// return ;
 
 	}
 
