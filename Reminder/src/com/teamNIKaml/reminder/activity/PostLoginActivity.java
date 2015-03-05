@@ -2,6 +2,7 @@ package com.teamNIKaml.reminder.activity;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -84,9 +85,9 @@ public class PostLoginActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		
+		startActivity(new Intent(getApplicationContext(), ChangePasswordActivity.class));
 		
-		
-			Toast.makeText(this, "Change Password", Toast.LENGTH_LONG).show();
+			
 			
 			
 		return super.onOptionsItemSelected(item);

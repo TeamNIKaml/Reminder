@@ -66,11 +66,14 @@ public class LoginActivity extends Activity {
 				Toast.makeText(this, "Invalid PAssword", Toast.LENGTH_LONG)
 						.show();
 			}
+			else
+			startActivity(new Intent(this, PostLoginActivity.class));
 		} else {
 			writeSharedPreference();
+			startActivity(new Intent(this, PostLoginActivity.class));
 		}
 
-		startActivity(new Intent(this, PostLoginActivity.class));
+		
 	}
 
 	private void writeSharedPreference() {

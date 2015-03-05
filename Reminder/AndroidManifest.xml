@@ -31,6 +31,11 @@
             android:name=".PostLoginActivity"
             android:label="@string/title_activity_post_login" >
         </activity>
+        
+         <activity
+            android:name=".ChangePasswordActivity"
+            android:label="@string/changePassword" >
+        </activity>
 
         <service
             android:name="com.teamNIKaml.reminder.service.MyService"
