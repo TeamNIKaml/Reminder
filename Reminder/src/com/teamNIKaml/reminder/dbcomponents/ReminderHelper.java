@@ -6,6 +6,7 @@ import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Handler;
 
 import com.teamNIKaml.reminder.fragment.Reminder;
 import com.teamNIKaml.reminder.property.Constants;
@@ -19,7 +20,11 @@ public class ReminderHelper implements IDBHelper {
 	private DBHelper dbHelper;
 	private List<ReminderDataSource> reminList;
 	private Reminder reminder;
+	private static Handler myHandler;
 
+	public void setHandler(Handler h){
+		myHandler = h;
+	}
 	public Reminder getReminder() {
 		return reminder;
 	}
@@ -82,7 +87,7 @@ public class ReminderHelper implements IDBHelper {
 		task.sortOrder = sortOrder;
 
 		new DBTask().execute("select");
-
+		myHandler.sendEmptyMessage(1);
 	}
 
 	private class DBTask extends AsyncTask<String, Integer, String> {
@@ -161,6 +166,18 @@ public class ReminderHelper implements IDBHelper {
 
 			return operation[0];
 		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			if (!result.equals("select")) {
+				select(null, null, null, null);
+			}
+		}
+		
+		
 
 	}
 

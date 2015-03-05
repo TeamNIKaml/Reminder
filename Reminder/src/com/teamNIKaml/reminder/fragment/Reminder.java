@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +70,7 @@ public class Reminder extends Fragment {
 				dialog.show(getChildFragmentManager(), "Add Reminder");
 
 				resetListAdaptor();
-
+				reminderHelper.setHandler(myHandler);
 			}
 
 		});
@@ -122,7 +124,7 @@ public class Reminder extends Fragment {
 	private void init(View v) {
 		reminderDataSource.setContext(getActivity().getApplicationContext());
 		reminderHelper.setReminder(this);
-
+		reminderHelper.setHandler(myHandler);
 		reminderHelper.select(null, null, null, null);
 
 		listView = (ListView) v.findViewById(R.id.ReminderList);
@@ -157,5 +159,11 @@ public class Reminder extends Fragment {
 		}
 
 	}
+
+	private final Handler myHandler = new Handler() {
+	    public void handleMessage(Message msg) {
+			resetListAdaptor();
+	    }
+	};
 
 }
