@@ -25,9 +25,7 @@ public class ReminderDataSource {
 		return reminderDataSource;
 	}
 
-	private ReminderDataSource() {
-
-	}
+	
 
 	public Context getContext() {
 		return context;

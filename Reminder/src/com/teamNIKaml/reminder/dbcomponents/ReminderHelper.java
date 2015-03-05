@@ -135,6 +135,17 @@ public class ReminderHelper implements IDBHelper {
 						sortOrder);
 
 				reminList = new ArrayList<ReminderDataSource>();
+
+				if (cursor.getCount() == 0) {
+					dataSource1 = new ReminderDataSource();
+					dataSource1.setDate("");
+					dataSource1.setName("");
+					dataSource1.setNote("");
+					reminList.add(dataSource1);
+					dataSource.setReminderList(reminList);
+					return "";
+				}
+
 				if (cursor.moveToFirst()) {
 
 					do {

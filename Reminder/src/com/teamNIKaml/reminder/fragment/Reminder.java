@@ -28,7 +28,6 @@ public class Reminder extends Fragment {
 	private String[] nameList;
 	private String[] noteList;
 	private String[] dateList;
-	
 
 	private Button addReminderButton, refreshButton;
 	private LayoutInflater li;
@@ -143,29 +142,17 @@ public class Reminder extends Fragment {
 
 		int size = reminderList.size();
 
-		if (size == 0) {
+		int i = 0;
 
-			nameList = new String[1];
-			dateList = new String[1];
-			noteList = new String[1];
+		nameList = new String[size];
+		dateList = new String[size];
+		noteList = new String[size];
+		for (ReminderDataSource reminder : reminderList) {
 
-			nameList[0] = "";
-			noteList[0] = "";
-			dateList[0] = "";
-
-		} else {
-			int i = 0;
-
-			nameList = new String[size];
-			dateList = new String[size];
-			noteList = new String[size];
-			for (ReminderDataSource reminder : reminderList) {
-
-				nameList[i] = reminder.getName();
-				noteList[i] = reminder.getNote();
-				dateList[i] = reminder.getDate();
-				i++;
-			}
+			nameList[i] = reminder.getName();
+			noteList[i] = reminder.getNote();
+			dateList[i] = reminder.getDate();
+			i++;
 
 		}
 
