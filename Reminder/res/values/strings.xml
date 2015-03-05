@@ -24,5 +24,6 @@
     <string name="refresh">Refresh</string>
     <string name="myService">My Service</string>
     <string name="update">Update</string>
+    <string name="changePassword">Change Password</string>
 
 </resources>
