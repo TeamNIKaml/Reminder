@@ -72,7 +72,7 @@ public class EditReminderDialog extends DialogFragment {
 				setDialogData();
 
 				dbHelper.update(whereClause, whereArgs);
-				dbHelper.select(null, null, null, null);
+				//dbHelper.select(null, null, null, null);
 
 				dlg.dismiss();
 

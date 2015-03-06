@@ -56,7 +56,7 @@ public class AddReminderDialog extends DialogFragment {
 
 				dataSource.setContext(getActivity().getApplicationContext());
 				dbHelper.insert();
-				dbHelper.select(null, null, null, null);
+			//	dbHelper.select(null, null, null, null);
 
 				dlg.dismiss();
 

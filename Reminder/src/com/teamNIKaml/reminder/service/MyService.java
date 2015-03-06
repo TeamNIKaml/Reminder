@@ -8,8 +8,10 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.NotificationReceiverActivity;
@@ -28,6 +30,8 @@ public class MyService extends IntentService {
 	private List<String> nameList = new ArrayList<String>();
 	private List<String> noteList = new ArrayList<String>();
 	private List<String> dateList = new ArrayList<String>();
+	
+	private int numMessages =0;
 
 	@Override
 	protected void onHandleIntent(Intent arg0) {
@@ -73,7 +77,7 @@ public class MyService extends IntentService {
 		}
 
 		if (date.size() > 0)
-			setReminderNotification();
+			setNotification();
 
 	}
 
@@ -103,4 +107,43 @@ public class MyService extends IntentService {
 		// note.number=2;
 		mgr.notify(1, note);
 	}
+	
+	
+	
+	
+	
+	private void setNotification()
+	{
+		
+		final NotificationManager mNotificationManager = (NotificationManager) this
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		  NotificationCompat.Builder  mBuilder = 
+			      new NotificationCompat.Builder(this);	
+
+			      mBuilder.setContentTitle("New Message");
+			      mBuilder.setContentText("You've received new message.");
+			      mBuilder.setTicker("New Message Alert!");
+			      mBuilder.setSmallIcon(R.drawable.ic_launcher);
+
+			      /* Increase notification number every time a new notification arrives */
+			      mBuilder.setNumber(++numMessages);
+			      
+			      /* Creates an explicit intent for an Activity in your app */
+			    
+
+			    
+			  	PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,
+						NotificationReceiverActivity.class), 0);
+			        
+			      mBuilder.setContentIntent(resultPendingIntent);
+
+			     
+
+			      /* notificationID allows you to update the notification later on. */
+			      mNotificationManager.notify(100, mBuilder.build());
+	}
+	
+	
+	
 }
