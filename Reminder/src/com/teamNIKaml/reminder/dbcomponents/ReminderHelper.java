@@ -138,7 +138,7 @@ public class ReminderHelper implements IDBHelper {
 				Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME,
 						projection, whereClause, whereArgs, null, null,
 						sortOrder);
-
+				database.close();
 				reminList = new ArrayList<ReminderDataSource>();
 
 				if (cursor.getCount() == 0) {
