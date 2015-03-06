@@ -33,6 +33,11 @@
             android:name=".ChangePasswordActivity"
             android:label="@string/changePassword" >
         </activity>
+          <activity
+            android:name=".NotificationReceiverActivity"
+            android:label="@string/reminderDetails" >           
+        </activity>
+        
 
         <service
             android:name="com.teamNIKaml.reminder.service.MyService"
