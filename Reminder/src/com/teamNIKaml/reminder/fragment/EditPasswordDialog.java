@@ -60,7 +60,7 @@ public class EditPasswordDialog extends DialogFragment {
 		View v = li.inflate(R.layout.activity_editpassword, null);
 
 		initDialog(v);
-		setDialogData();
+	
 
 		final Dialog dlg = new AlertDialog.Builder(getActivity()).setView(v)
 
@@ -70,10 +70,10 @@ public class EditPasswordDialog extends DialogFragment {
 
 			@Override
 			public void onClick(View v) {
-
+				setDialogData() ;
 				dataSource.setContext(getActivity().getApplicationContext());
 				dbHelper.update(whereClause, whereArgs);
-				dbHelper.select(null, null, null, null);
+				
 
 				dlg.dismiss();
 
@@ -88,7 +88,7 @@ public class EditPasswordDialog extends DialogFragment {
 				setDialogData();
 				Log.e("onclick", "doInBackground");
 				dbHelper.delete(whereClause, whereArgs);
-				dbHelper.select(null, null, null, null);
+				
 
 				dlg.dismiss();
 

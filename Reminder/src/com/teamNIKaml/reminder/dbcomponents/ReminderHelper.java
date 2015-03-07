@@ -138,7 +138,7 @@ public class ReminderHelper implements IDBHelper {
 				Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME,
 						projection, whereClause, whereArgs, null, null,
 						sortOrder);
-				database.close();
+				
 				reminList = new ArrayList<ReminderDataSource>();
 
 				if (cursor.getCount() == 0) {
@@ -148,7 +148,8 @@ public class ReminderHelper implements IDBHelper {
 					dataSource1.setNote("");
 					reminList.add(dataSource1);
 					dataSource.setReminderList(reminList);
-					return "";
+					database.close();
+					return operation[0];
 				}
 
 				if (cursor.moveToFirst()) {
@@ -160,7 +161,7 @@ public class ReminderHelper implements IDBHelper {
 					} while (cursor.moveToNext());
 
 					dataSource.setReminderList(reminList);
-
+					database.close();
 				}
 			}
 

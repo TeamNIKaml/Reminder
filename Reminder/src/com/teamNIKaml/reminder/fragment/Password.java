@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +53,13 @@ public class Password extends Fragment {
 
 		return passwordView;
 	}
+	
+	private final Handler myHandler = new Handler() {
+	    public void handleMessage(Message msg) {
+	    	updateList();
+	    }
+	};
+	
 
 	private void setListner() {
 		// TODO Auto-generated method stub
@@ -69,11 +78,8 @@ public class Password extends Fragment {
 			@Override
 			public void onGroupExpand(int groupPosition) {
 
-				updateList();
-				Toast.makeText(getActivity().getApplicationContext(),
-						catagory.get(groupPosition) + " Expanded",
-						Toast.LENGTH_SHORT).show();
-			}
+			
+				}
 		});
 
 		// Listview Group collasped listener
@@ -148,6 +154,7 @@ public class Password extends Fragment {
 		addOppertunitiesButton = (Button) v.findViewById(R.id.addButton);
 		dataSource = PasswordDataSource.getPasswordDataSource();
 		dataSource.setContext(getActivity().getApplicationContext());
+		dbHelper.setHandler(myHandler);
 		dbHelper.select(null, null, null, null);
 
 		prepareListData();

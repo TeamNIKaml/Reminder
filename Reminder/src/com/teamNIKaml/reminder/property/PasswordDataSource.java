@@ -100,9 +100,7 @@ public class PasswordDataSource {
 		passwordDataSource = password;
 	}
 
-	private PasswordDataSource() {
 
-	}
 
 	public ContentValues passwordToContentValues() {
 		ContentValues values = new ContentValues();
