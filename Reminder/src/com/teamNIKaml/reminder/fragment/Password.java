@@ -247,6 +247,31 @@ public class Password extends Fragment {
 			}
 
 		}
+		
+		
+		if(dataSource.getRowcount() == 0)
+		{
+			accountListSocial = new ArrayList<String>();
+			accountListEmail = new ArrayList<String>();
+			accountListCommerse = new ArrayList<String>();
+			accountListBank = new ArrayList<String>();
+			accountListother = new ArrayList<String>();
+
+			userListSocial = new ArrayList<String>();
+			userListEmail = new ArrayList<String>();
+			userListCommerse = new ArrayList<String>();
+			userListBank = new ArrayList<String>();
+			userListOther = new ArrayList<String>();
+
+			passListSocial = new ArrayList<String>();
+			passListEmail = new ArrayList<String>();
+			passListCommerse = new ArrayList<String>();
+			passListBank = new ArrayList<String>();
+			passListOther = new ArrayList<String>();
+
+		}
+		
+		
 
 		accountName.put(catagory.get(0), accountListSocial);
 		accountName.put(catagory.get(1), accountListEmail);

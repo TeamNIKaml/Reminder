@@ -148,20 +148,10 @@ public class PasswordHelper implements IDBHelper {
 						whereClause, whereArgs,
 						null, null, sortOrder);
 				
+				dataSource.setRowcount(cursor.getCount());
 			passwordList	= new ArrayList<PasswordDataSource>();
 			
-			if(cursor.getCount() == 0)
-			{
-				dataSource1 = new PasswordDataSource();
-				dataSource1.setAccountName("");
-				dataSource1.setCatagory("");
-				dataSource1.setPassword("");
-				dataSource1.setUsername("");
-				passwordList.add(dataSource1);
-				dataSource.SetPasswordList(passwordList);
-				database.close();
-				return operation[0];
-			}
+			
 
 				if (cursor.moveToFirst()) {
 

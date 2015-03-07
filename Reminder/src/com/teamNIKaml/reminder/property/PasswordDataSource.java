@@ -21,6 +21,16 @@ public class PasswordDataSource {
 	private PasswordDataSource dataSource;
 	private static PasswordDataSource passwordDataSource;
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
+	
+	private int rowcount;
+
+	public int getRowcount() {
+		return rowcount;
+	}
+
+	public void setRowcount(int rowcount) {
+		this.rowcount = rowcount;
+	}
 
 	public String getCatagory() {
 		return catagory;
