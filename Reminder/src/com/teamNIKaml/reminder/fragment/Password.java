@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,11 +57,12 @@ public class Password extends Fragment {
 	
 	private final Handler myHandler = new Handler() {
 	    public void handleMessage(Message msg) {
+	    	System.out.println("bingooooo*********handler9999999999999");
 	    	updateList();
 	    }
 	};
 	
-
+	
 	private void setListner() {
 		// TODO Auto-generated method stub
 		expListView.setOnGroupClickListener(new OnGroupClickListener() {
@@ -177,6 +179,9 @@ public class Password extends Fragment {
 		listAdapter.setCatagory(catagory);
 		listAdapter.setUsername(username);
 
+		System.out.println(accountName);
+		Log.e("<<>><<>>>", accountName.toString());
+		
 		listAdapter.notifyDataSetChanged();
 
 	}
@@ -246,21 +251,23 @@ public class Password extends Fragment {
 		accountName.put(catagory.get(0), accountListSocial);
 		accountName.put(catagory.get(1), accountListEmail);
 		accountName.put(catagory.get(2), accountListCommerse);
-		accountName.put(catagory.get(3), accountListCommerse);
-		accountName.put(catagory.get(4), accountListCommerse);
+		accountName.put(catagory.get(3), accountListBank);
+		accountName.put(catagory.get(4), accountListother);
 
 		username.put(catagory.get(0), userListSocial);
 		username.put(catagory.get(1), userListEmail);
 		username.put(catagory.get(2), userListCommerse);
-		username.put(catagory.get(3), userListCommerse);
-		username.put(catagory.get(4), userListCommerse);
+		username.put(catagory.get(3), userListBank);
+		username.put(catagory.get(4), userListOther);
 
 		password.put(catagory.get(0), passListSocial);
 		password.put(catagory.get(1), passListEmail);
 		password.put(catagory.get(2), passListCommerse);
-		password.put(catagory.get(3), passListCommerse);
-		password.put(catagory.get(4), passListCommerse);
+		password.put(catagory.get(3), passListBank);
+		password.put(catagory.get(4), passListOther);
 
 	}
+
+	
 
 }

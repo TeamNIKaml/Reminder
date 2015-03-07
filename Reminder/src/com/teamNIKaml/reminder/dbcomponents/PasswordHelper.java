@@ -89,7 +89,10 @@ public class PasswordHelper implements IDBHelper {
 
 		new DBTask().execute("select");
 		
-		myHandler.sendEmptyMessage(1);
+
+/*		if (myHandler != null) {
+			myHandler.sendEmptyMessage(1);
+		}*/
 
 	}
 
@@ -99,7 +102,7 @@ public class PasswordHelper implements IDBHelper {
 		private String[] whereArgs;
 		private String[] projection;
 		private String sortOrder;
-
+		
 		@Override
 		protected String doInBackground(String... operation) {
 			// TODO Auto-generated method stub
@@ -172,6 +175,7 @@ public class PasswordHelper implements IDBHelper {
 					database.close();
 
 				}
+				callHandler();
 			}
 
 			return operation[0];
@@ -187,6 +191,12 @@ public class PasswordHelper implements IDBHelper {
 			}
 		}
 
+	}
+	
+	private void callHandler(){
+		if (myHandler != null) {
+			myHandler.sendEmptyMessage(1);
+		}
 	}
 
 }

@@ -87,9 +87,9 @@ public class ReminderHelper implements IDBHelper {
 		task.sortOrder = sortOrder;
 
 		new DBTask().execute("select");
-		if (myHandler != null) {
+/*		if (myHandler != null) {
 			myHandler.sendEmptyMessage(1);
-		}
+		}*/
 		
 	}
 
@@ -166,6 +166,7 @@ public class ReminderHelper implements IDBHelper {
 
 				}
 				database.close();
+				callHandler();
 			}
 
 			return operation[0];
@@ -183,6 +184,12 @@ public class ReminderHelper implements IDBHelper {
 		
 		
 
+	}
+	
+	private void callHandler(){
+		if (myHandler != null) {
+			myHandler.sendEmptyMessage(1);
+		}
 	}
 
 }

@@ -162,5 +162,5 @@ public class Reminder extends Fragment {
 			resetListAdaptor();
 	    }
 	};
-
+	
 }
