@@ -90,9 +90,9 @@ public class PasswordHelper implements IDBHelper {
 		new DBTask().execute("select");
 		
 
-/*		if (myHandler != null) {
+		if (myHandler != null) {
 			myHandler.sendEmptyMessage(1);
-		}*/
+		}
 
 	}
 
