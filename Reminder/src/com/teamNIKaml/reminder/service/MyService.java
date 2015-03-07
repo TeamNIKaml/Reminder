@@ -41,11 +41,15 @@ public class MyService extends IntentService {
 		 * do all the work here do not have to create a new thread this function
 		 * work in different thread like asyntask-doinginbackgroud
 		 */
+		Toast.makeText(getApplicationContext(), "Receiving.......alarm",
+				Toast.LENGTH_SHORT).show();
 		ReminderHelper reminderhelper = new ReminderHelper();
-		reminderhelper.select(null, null, null, null);
 
 		ReminderDataSource reminderdataSource = ReminderDataSource
 				.getReminderDataSource();
+		reminderdataSource.setContext(getApplicationContext());
+		reminderhelper.select(null, null, null, null);
+
 		List<ReminderDataSource> reminderList = reminderdataSource
 				.getReminderList();
 
@@ -69,7 +73,7 @@ public class MyService extends IntentService {
 		for (String string : dateList) {
 			if (formattedDate.equals(string)) {
 				Toast.makeText(getApplicationContext(), "Receiving alarm",
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_SHORT).show();
 				date.add(i);
 
 			}
@@ -81,32 +85,7 @@ public class MyService extends IntentService {
 
 	}
 
-	@SuppressWarnings("deprecation")
-	private void setReminderNotification() {
-		// TODO Auto-generated method stub
-		String message = "", heading = "";
-		for (int i = 0; i < date.size(); i++) {
-			heading += nameList.get(date.get(i)) + " ";
-			message += String.valueOf(i + 1) + ": " + nameList.get(date.get(i))
-					+ "\t" + dateList.get(date.get(i)) + "\n";
-		}
 
-		final NotificationManager mgr = (NotificationManager) this
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-
-		Notification note = new Notification(R.drawable.ic_launcher, heading,
-				System.currentTimeMillis());
-
-		// This pending intent will open after notification click
-		PendingIntent i = PendingIntent.getActivity(this, 0, new Intent(this,
-				NotificationReceiverActivity.class), 0);
-
-		note.setLatestEventInfo(this, heading, message, i);
-
-		// After uncomment this line you will see number of notification arrived
-		// note.number=2;
-		mgr.notify(1, note);
-	}
 	
 	
 	
@@ -114,12 +93,13 @@ public class MyService extends IntentService {
 	
 	private void setNotification()
 	{
-		
-		final NotificationManager mNotificationManager = (NotificationManager) this
+		Toast.makeText(this, "kumbidi", Toast.LENGTH_LONG).show();
+
+		final NotificationManager mNotificationManager = (NotificationManager) getApplicationContext()
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		
 		  NotificationCompat.Builder  mBuilder = 
-			      new NotificationCompat.Builder(this);	
+			      new NotificationCompat.Builder(getApplicationContext());	
 
 			      mBuilder.setContentTitle("New Message");
 			      mBuilder.setContentText("You've received new message.");
@@ -133,7 +113,7 @@ public class MyService extends IntentService {
 			    
 
 			    
-			  	PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,
+			  	PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(),
 						NotificationReceiverActivity.class), 0);
 			        
 			      mBuilder.setContentIntent(resultPendingIntent);

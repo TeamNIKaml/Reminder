@@ -87,7 +87,10 @@ public class ReminderHelper implements IDBHelper {
 		task.sortOrder = sortOrder;
 
 		new DBTask().execute("select");
-		myHandler.sendEmptyMessage(1);
+		if (myHandler != null) {
+			myHandler.sendEmptyMessage(1);
+		}
+		
 	}
 
 	private class DBTask extends AsyncTask<String, Integer, String> {
@@ -148,8 +151,7 @@ public class ReminderHelper implements IDBHelper {
 					dataSource1.setNote("");
 					reminList.add(dataSource1);
 					dataSource.setReminderList(reminList);
-					database.close();
-					return operation[0];
+					return "";
 				}
 
 				if (cursor.moveToFirst()) {
@@ -161,8 +163,9 @@ public class ReminderHelper implements IDBHelper {
 					} while (cursor.moveToNext());
 
 					dataSource.setReminderList(reminList);
-					database.close();
+
 				}
+				database.close();
 			}
 
 			return operation[0];

@@ -11,8 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.Login;
+import com.teamNIKaml.reminder.property.ReminderDataSource;
+import com.teamNIKaml.reminder.service.AlarmService;
 
 public class LoginActivity extends Activity {
 
@@ -94,7 +97,13 @@ public class LoginActivity extends Activity {
 		getLogininfo();
 		if (logindetails.getLoginStatus() != 100) {
 			login.setText("Register");
+			ReminderHelper x = new ReminderHelper();
+			x.select(null, null, null, null);
+			ReminderDataSource rd = ReminderDataSource.getReminderDataSource();
+			rd.setContext(getApplicationContext());
 			password.setHint("Set Application Password");
+			AlarmService alarmService = AlarmService.getAlarmService(getApplicationContext());
+			alarmService.srartAlarm();
 		}
 
 	}
