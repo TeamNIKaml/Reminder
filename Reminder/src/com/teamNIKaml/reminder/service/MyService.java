@@ -93,7 +93,7 @@ public class MyService extends IntentService {
 	
 	private void setNotification()
 	{
-		Toast.makeText(this, "kumbidi", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, "kumbid###i", Toast.LENGTH_LONG).show();
 
 		final NotificationManager mNotificationManager = (NotificationManager) getApplicationContext()
 				.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -104,7 +104,7 @@ public class MyService extends IntentService {
 			      mBuilder.setContentTitle("New Message");
 			      mBuilder.setContentText("You've received new message.");
 			      mBuilder.setTicker("New Message Alert!");
-			      mBuilder.setSmallIcon(R.drawable.ic_launcher);
+			      mBuilder.setSmallIcon(R.drawable.ic_app_launcher);
 
 			      /* Increase notification number every time a new notification arrives */
 			      mBuilder.setNumber(++numMessages);

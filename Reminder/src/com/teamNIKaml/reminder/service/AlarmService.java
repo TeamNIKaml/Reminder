@@ -28,8 +28,8 @@ public class AlarmService {
 		Toast.makeText(context, "sasi", Toast.LENGTH_LONG).show();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(System.currentTimeMillis());
-		calendar.set(Calendar.HOUR_OF_DAY, 1); // Everyday 7 AM
-		calendar.set(Calendar.MINUTE, 55);
+		calendar.set(Calendar.HOUR_OF_DAY, 18); // Everyday 7 AM
+		calendar.set(Calendar.MINUTE, 05);
 		calendar.set(Calendar.SECOND, 0);
 		//calendar.add(Calendar. DATE, 1);
 		

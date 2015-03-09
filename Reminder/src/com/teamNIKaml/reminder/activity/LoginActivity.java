@@ -97,10 +97,10 @@ public class LoginActivity extends Activity {
 		getLogininfo();
 		if (logindetails.getLoginStatus() != 100) {
 			login.setText("Register");
-			ReminderHelper x = new ReminderHelper();
-			x.select(null, null, null, null);
+			ReminderHelper x = new ReminderHelper();			
 			ReminderDataSource rd = ReminderDataSource.getReminderDataSource();
 			rd.setContext(getApplicationContext());
+			x.select(null, null, null, null);
 			password.setHint("Set Application Password");
 			AlarmService alarmService = AlarmService.getAlarmService(getApplicationContext());
 			alarmService.srartAlarm();
