@@ -5,18 +5,20 @@ import java.util.Calendar;
 import java.util.List;
 
 import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.NotificationReceiverActivity;
 import com.teamNIKaml.reminder.activity.R;
+import com.teamNIKaml.reminder.dbcomponents.DBHelper;
 import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
+import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class MyService extends IntentService {
@@ -41,25 +43,45 @@ public class MyService extends IntentService {
 		 * do all the work here do not have to create a new thread this function
 		 * work in different thread like asyntask-doinginbackgroud
 		 */
-		Toast.makeText(getApplicationContext(), "Receiving.......alarm",
-				Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "Receiving..alarm",
+				Toast.LENGTH_LONG).show();
+		
+		System.out.println("<<<<<service is getting called>>>>>>>>");
 		ReminderHelper reminderhelper = new ReminderHelper();
 
 		ReminderDataSource reminderdataSource = ReminderDataSource
 				.getReminderDataSource();
 		reminderdataSource.setContext(getApplicationContext());
-		reminderhelper.select(null, null, null, null);
-
+/*		reminderhelper.select(null, null, null, null);
 		List<ReminderDataSource> reminderList = reminderdataSource
 				.getReminderList();
-
 		for (ReminderDataSource reminder : reminderList) {
 
 			nameList.add(reminder.getName());
 			noteList.add(reminder.getNote());
 			dateList.add(reminder.getDate());
 
+		}*/
+		
+		DBHelper dbHelper= new DBHelper(getApplicationContext(), 1,
+				Constants.DB_NAME_REMINDER, Constants.REMINDER_DB_QUERY);
+		SQLiteDatabase database = dbHelper.getReadableDatabase();
+		Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME,
+				null, null, null, null, null,
+				null);
+		nameList.clear(); noteList.clear(); dateList.clear();
+		
+		if (cursor.moveToFirst()) {
+
+			do {
+				nameList.add(cursor.getString(1));
+				noteList.add(cursor.getString(3));
+				dateList.add(cursor.getString(2));
+				
+			} while (cursor.moveToNext());
+			
 		}
+		System.out.println(nameList+"***"+noteList+"******"+dateList);
 
 		Calendar c = Calendar.getInstance();
 		int day = c.get(Calendar.DAY_OF_MONTH);
