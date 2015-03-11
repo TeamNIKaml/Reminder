@@ -29,7 +29,7 @@ public class AlarmService {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		calendar.set(Calendar.HOUR_OF_DAY, 6); // Everyday 7 AM
-		calendar.set(Calendar.MINUTE, 00);
+		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
 		//calendar.add(Calendar. DATE, 1);
 		

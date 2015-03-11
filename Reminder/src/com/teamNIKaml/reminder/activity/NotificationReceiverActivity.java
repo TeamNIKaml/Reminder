@@ -5,10 +5,14 @@ import java.util.Calendar;
 import java.util.List;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.teamNIKaml.reminder.dbcomponents.DBHelper;
 import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
+import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class NotificationReceiverActivity extends Activity {
@@ -44,7 +48,7 @@ public class NotificationReceiverActivity extends Activity {
 	private void processNotification() {
 		// TODO Auto-generated method stub
 
-		ReminderHelper reminderhelper = new ReminderHelper();
+/*		ReminderHelper reminderhelper = new ReminderHelper();
 		reminderhelper.select(null, null, null, null);
 
 		ReminderDataSource reminderdataSource = ReminderDataSource
@@ -58,6 +62,25 @@ public class NotificationReceiverActivity extends Activity {
 			noteList.add(reminder.getNote());
 			dateList.add(reminder.getDate());
 
+		}*/
+		
+		DBHelper dbHelper= new DBHelper(getApplicationContext(), 1,
+				Constants.DB_NAME_REMINDER, Constants.REMINDER_DB_QUERY);
+		SQLiteDatabase database = dbHelper.getReadableDatabase();
+		Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME,
+				null, null, null, null, null,
+				null);
+		nameList.clear(); noteList.clear(); dateList.clear();
+		
+		if (cursor.moveToFirst()) {
+
+			do {
+				nameList.add(cursor.getString(1));
+				noteList.add(cursor.getString(3));
+				dateList.add(cursor.getString(2));
+				
+			} while (cursor.moveToNext());
+			
 		}
 
 		Calendar c = Calendar.getInstance();
