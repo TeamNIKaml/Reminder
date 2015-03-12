@@ -21,6 +21,8 @@ public class PasswordDataSource {
 	private PasswordDataSource dataSource;
 	private static PasswordDataSource passwordDataSource;
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
+	
+	
 
 	private int rowcount;
 
@@ -114,7 +116,7 @@ public class PasswordDataSource {
 
 		String name, pass;
 
-		String key = XOREncryption.encryptKey(this.accountName + this.catagory);
+		String key = XOREncryption.encryptKey(this.accountName + this.catagory+Constants.KEY_OPTIMIZER);
 
 		name = XOREncryption.encrypt(username, key);
 		pass = XOREncryption.encrypt(password, key);
@@ -132,7 +134,7 @@ public class PasswordDataSource {
 		dataSource = new PasswordDataSource();
 
 		String key = XOREncryption.encryptKey(cursor.getString(2)
-				+ cursor.getString(1));
+				+ cursor.getString(1) + Constants.KEY_OPTIMIZER);
 
 		String name, pass;
 
