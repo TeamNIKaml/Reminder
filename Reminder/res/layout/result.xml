@@ -4,6 +4,11 @@
     android:layout_height="match_parent" >
 
     <TextView
+        android:textSize="@dimen/textSize_button"
+        android:layout_marginLeft="@dimen/login_margin_left"
+        android:layout_marginTop="@dimen/login_margin_top_small"
+        android:layout_marginRight="@dimen/login_margin_right"
+        android:layout_marginBottom="@dimen/login_margin_top_small"
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

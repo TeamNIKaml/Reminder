@@ -18,6 +18,7 @@ import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
 import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.PasswordDataSource;
+import com.teamNIKaml.reminder.property.XOREncryption;
 
 @SuppressLint("InflateParams")
 public class EditPasswordDialog extends DialogFragment {
@@ -108,10 +109,19 @@ public class EditPasswordDialog extends DialogFragment {
 		deleteButton = (Button) v.findViewById(R.id.deleteButton);
 		dataSource.setContext(getActivity().getApplicationContext());
 		String args[] = new String[4];
+		
+		String name, pass;
+
+		String key = XOREncryption.encryptKey(dataSource.getAccountName() + dataSource.getCatagory()+Constants.KEY_OPTIMIZER);
+
+		name = XOREncryption.encrypt( dataSource.getUsername(), key);
+		pass = XOREncryption.encrypt(dataSource.getPassword(), key);
+		
+		
 		args[0] = dataSource.getCatagory();
 		args[1] = dataSource.getAccountName();
-		args[2] = dataSource.getUsername();
-		args[3] = dataSource.getPassword();
+		args[2] =name;
+		args[3] =pass ;
 
 		setWhereClause("catagory=? AND  accountName=? "
 				+ "AND  username=? AND  password=? ");
