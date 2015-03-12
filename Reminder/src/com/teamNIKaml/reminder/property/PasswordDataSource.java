@@ -21,7 +21,7 @@ public class PasswordDataSource {
 	private PasswordDataSource dataSource;
 	private static PasswordDataSource passwordDataSource;
 	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
-	
+
 	private int rowcount;
 
 	public int getRowcount() {
@@ -110,14 +110,20 @@ public class PasswordDataSource {
 		passwordDataSource = password;
 	}
 
-
-
 	public ContentValues passwordToContentValues() {
+
+		String name, pass;
+
+		String key = XOREncryption.encryptKey(this.accountName + this.catagory);
+
+		name = XOREncryption.encrypt(username, key);
+		pass = XOREncryption.encrypt(password, key);
+
 		ContentValues values = new ContentValues();
 		values.put("catagory", this.catagory);
 		values.put("accountName", this.accountName);
-		values.put("username", this.username);
-		values.put("password", this.password);
+		values.put("username", name);
+		values.put("password", pass);
 		return values;
 	}
 
@@ -125,13 +131,20 @@ public class PasswordDataSource {
 
 		dataSource = new PasswordDataSource();
 
+		String key = XOREncryption.encryptKey(cursor.getString(2)
+				+ cursor.getString(1));
+
+		String name, pass;
+
+		name = XOREncryption.encrypt(cursor.getString(3), key);
+		pass = XOREncryption.encrypt(cursor.getString(4), key);
+
 		dataSource.setCatagory(cursor.getString(1));
 		dataSource.setAccountName(cursor.getString(2));
-		dataSource.setUsername(cursor.getString(3));
-		dataSource.setPassword(cursor.getString(4));
-		// setDataSource(this);
+		dataSource.setUsername(name);
+		dataSource.setPassword(pass);
+
 		return dataSource;
-		// return ;
 
 	}
 
