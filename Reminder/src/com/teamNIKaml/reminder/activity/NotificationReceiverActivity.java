@@ -8,21 +8,20 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.ListView;
 
+import com.teamNIKaml.reminder.activityComponents.ReminderListAdaptor;
 import com.teamNIKaml.reminder.dbcomponents.DBHelper;
-import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class NotificationReceiverActivity extends Activity {
 
-	private TextView textView;
-	private String message = "";
+	private ListView listView;
+	private ReminderListAdaptor listAdapter;
 
-	private List<String> nameList = new ArrayList<String>();
-	private List<String> noteList = new ArrayList<String>();
-	private List<String> dateList = new ArrayList<String>();
+	private String[] nameList ;
+	private  String[]  noteList ;
+	private  String[]  dateList ;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +30,17 @@ public class NotificationReceiverActivity extends Activity {
 		init();
 		processNotification();
 
-		setData();
+	
 
 	}
 
-	private void setData() {
-		// TODO Auto-generated method stub
-		textView.setText(message);
-	}
+	
 
 	private void init() {
 		// TODO Auto-generated method stub
-		textView = (TextView) findViewById(R.id.textView1);
+		listView =  (ListView) findViewById(R.id.listView1);
+		
+		listAdapter = new ReminderListAdaptor(getApplicationContext());
 	}
 
 	private void processNotification() {
@@ -70,36 +68,31 @@ public class NotificationReceiverActivity extends Activity {
 		Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME,
 				null, null, null, null, null,
 				null);
-		nameList.clear(); noteList.clear(); dateList.clear();
-		
+	int size = cursor.getCount();
+	
+	nameList = new String[size];
+	noteList = new String[size];
+	dateList = new String[size];
+		int i =0;
 		if (cursor.moveToFirst()) {
 
 			do {
-				nameList.add(cursor.getString(1));
-				noteList.add(cursor.getString(3));
-				dateList.add(cursor.getString(2));
+				nameList[i]= (cursor.getString(1));
+				noteList[i]= (cursor.getString(3));
+				dateList[i++]= (cursor.getString(2));
 				
 			} while (cursor.moveToNext());
 			
 		}
 
-		Calendar c = Calendar.getInstance();
-		int day = c.get(Calendar.DAY_OF_MONTH);
-		int month = c.get(Calendar.MONTH);
-		int year = c.get(Calendar.YEAR);
-		month++;
-		String formattedDate = day + "-" + month + "-" + year;
-
-		int i = 0;
-		for (String string : dateList) {
-			if (formattedDate.equals(string)) {
-
-				message = String.valueOf(i + 1) + ". " + nameList.get(i) + "\t"
-						+ noteList.get(i) + "\t" + dateList.get(i) + "\n";
-
-			}
-			i++;
-		}
+	
+		listAdapter.setDate(dateList);
+		listAdapter.setNote(noteList);
+		listAdapter.setReminderName(nameList);
+		
+		listView.setAdapter(listAdapter);
+		
+		
 
 	}
 

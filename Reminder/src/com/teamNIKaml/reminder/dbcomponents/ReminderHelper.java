@@ -151,6 +151,7 @@ public class ReminderHelper implements IDBHelper {
 					dataSource1.setNote("");
 					reminList.add(dataSource1);
 					dataSource.setReminderList(reminList);
+					callHandler();
 					database.close();
 					return operation[0];
 				}

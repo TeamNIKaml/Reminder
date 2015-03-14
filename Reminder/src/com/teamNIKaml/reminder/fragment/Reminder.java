@@ -89,8 +89,7 @@ public class Reminder extends Fragment {
 			public void onItemClick(AdapterView<?> listview, View v, int pos,
 					long id) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getActivity(), nameList[pos], Toast.LENGTH_LONG)
-						.show();
+				
 
 				reminderDataSource.setName(nameList[pos]);
 				reminderDataSource.setDate(dateList[pos]);

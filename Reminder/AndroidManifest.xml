@@ -36,7 +36,7 @@
           <activity
             android:name=".NotificationReceiverActivity"
             android:label="@string/reminderDetails" 
-            android:theme="@android:style/Theme.Dialog">           
+            android:theme="@android:style/Theme.DeviceDefault.Light.DialogWhenLarge">
         </activity>
         
 
