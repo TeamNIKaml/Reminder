@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.property;
+package com.teamNIKaml.reminder.reminder.model;
 
 import java.util.ArrayList;
 import java.util.List;

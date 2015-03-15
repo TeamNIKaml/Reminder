@@ -1,7 +1,6 @@
-package com.teamNIKaml.reminder.dbcomponents;
+package com.teamNIKaml.reminder.reminder.database;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import android.database.Cursor;
@@ -9,38 +8,38 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Handler;
 
-import com.teamNIKaml.reminder.fragment.Password;
+import com.teamNIKaml.reminder.dbcomponents.DBHelper;
+import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
 import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
+import com.teamNIKaml.reminder.reminder.fragment.Reminder;
+import com.teamNIKaml.reminder.reminder.model.ReminderDataSource;
 
-public class PasswordHelper implements IDBHelper {
+public class ReminderHelper implements IDBHelper {
 
-	private PasswordDataSource dataSource = PasswordDataSource
-			.getPasswordDataSource();
+	private ReminderDataSource dataSource = ReminderDataSource
+			.getReminderDataSource();
+
 	private DBHelper dbHelper;
-	private List<PasswordDataSource> passwordList ;
-	private Password password;
-	
+	private List<ReminderDataSource> reminList;
+	private Reminder reminder;
 	private static Handler myHandler;
-	
-	
+
 	public void setHandler(Handler h){
 		myHandler = h;
 	}
-
-	public Password getPassword() {
-		return password;
+	public Reminder getReminder() {
+		return reminder;
 	}
 
-	public void setPassword(Password password) {
-		this.password = password;
+	public void setReminder(Reminder reminder) {
+		this.reminder = reminder;
 	}
 
 	@Override
 	public boolean onCreate() {
 
 		dbHelper = new DBHelper(dataSource.getContext(), 1,
-				Constants.DB_NAME_PASSWORD, Constants.PASSWORD_DB_QUERY);
+				Constants.DB_NAME_REMINDER, Constants.REMINDER_DB_QUERY);
 		return true;
 
 	}
@@ -56,6 +55,7 @@ public class PasswordHelper implements IDBHelper {
 	@Override
 	public void update(String whereClause, String[] whereArgs) {
 		// TODO Auto-generated method stub
+
 		DBTask task = new DBTask();
 
 		task.whereArgs = whereArgs;
@@ -80,6 +80,7 @@ public class PasswordHelper implements IDBHelper {
 	public void select(String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		// TODO Auto-generated method stub
+
 		DBTask task = new DBTask();
 
 		task.whereArgs = selectionArgs;
@@ -88,34 +89,29 @@ public class PasswordHelper implements IDBHelper {
 		task.sortOrder = sortOrder;
 
 		new DBTask().execute("select");
-		
-
 		if (myHandler != null) {
 			myHandler.sendEmptyMessage(1);
 		}
-
+		
 	}
 
 	private class DBTask extends AsyncTask<String, Integer, String> {
-		
+
 		private String whereClause;
 		private String[] whereArgs;
 		private String[] projection;
 		private String sortOrder;
-		
+
 		@Override
 		protected String doInBackground(String... operation) {
 			// TODO Auto-generated method stub
-			
-		
-			
-			
+
 			if (operation[0].equalsIgnoreCase("insert")) {
 
 				onCreate();
 				SQLiteDatabase database = dbHelper.getWritableDatabase();
-				database.insert(Constants.PASSWORD_TABLE_NAME, null,
-						dataSource.passwordToContentValues());
+				database.insert(Constants.REMINDER_TABLE_NAME, null,
+						dataSource.reminderToContentValues());
 				database.close();
 
 			} else if (operation[0].equalsIgnoreCase("update")) {
@@ -123,54 +119,64 @@ public class PasswordHelper implements IDBHelper {
 				onCreate();
 
 				SQLiteDatabase database = dbHelper.getWritableDatabase();
-				database.update(Constants.PASSWORD_TABLE_NAME,
-						dataSource.passwordToContentValues(),
-						whereClause, whereArgs);
-				System.out.println("where clause :"+whereClause+"\n where args :"+Arrays.toString(whereArgs));
+				database.update(Constants.REMINDER_TABLE_NAME,
+						dataSource.reminderToContentValues(), whereClause,
+						whereArgs);
+
 				database.close();
 
 			} else if (operation[0].equalsIgnoreCase("delete")) {
 				onCreate();
 
 				SQLiteDatabase dataBase = dbHelper.getWritableDatabase();
-				dataBase.delete(Constants.PASSWORD_TABLE_NAME,
-						whereClause, whereArgs);
-				System.out.println("where clause :"+whereClause+"\n where args :"+Arrays.toString(whereArgs));
+				dataBase.delete(Constants.REMINDER_TABLE_NAME, whereClause,
+						whereArgs);
+
 				dataBase.close();
 
 			} else if (operation[0].equalsIgnoreCase("select")) {
-				PasswordDataSource dataSource1;
+				ReminderDataSource dataSource1;
+
 				onCreate();
 
 				SQLiteDatabase database = dbHelper.getReadableDatabase();
-				Cursor cursor = database.query(Constants.PASSWORD_TABLE_NAME,
-						projection,
-						whereClause, whereArgs,
-						null, null, sortOrder);
+				Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME,
+						projection, whereClause, whereArgs, null, null,
+						sortOrder);
 				
-				dataSource.setRowcount(cursor.getCount());
-			passwordList	= new ArrayList<PasswordDataSource>();
-			
-			
+				reminList = new ArrayList<ReminderDataSource>();
+
+				if (cursor.getCount() == 0) {
+					dataSource1 = new ReminderDataSource();
+					dataSource1.setDate("");
+					dataSource1.setName("");
+					dataSource1.setNote("");
+					reminList.add(dataSource1);
+					dataSource.setReminderList(reminList);
+					callHandler();
+					database.close();
+					return operation[0];
+				}
 
 				if (cursor.moveToFirst()) {
 
 					do {
 						dataSource1 = dataSource
-								.cursorToPasswordsDataSource(cursor);
-						passwordList.add(dataSource1);
+								.cursorToReminderDataSource(cursor);
+						reminList.add(dataSource1);
 					} while (cursor.moveToNext());
 
-					dataSource.SetPasswordList(passwordList);
-					database.close();
+					dataSource.setReminderList(reminList);
 
 				}
+			
 				callHandler();
+				database.close();
 			}
 
 			return operation[0];
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
@@ -180,6 +186,8 @@ public class PasswordHelper implements IDBHelper {
 				select(null, null, null, null);
 			}
 		}
+		
+		
 
 	}
 	

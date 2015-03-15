@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.fragment;
+package com.teamNIKaml.reminder.password.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -14,9 +14,9 @@ import android.widget.Spinner;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
-import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.password.database.PasswordHelper;
+import com.teamNIKaml.reminder.password.model.PasswordDataSource;
 import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
 
 @SuppressLint("InflateParams")
 public class AddPasswordDialog extends DialogFragment {

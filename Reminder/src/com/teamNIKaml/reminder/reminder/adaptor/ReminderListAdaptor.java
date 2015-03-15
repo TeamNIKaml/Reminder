@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.activityComponents;
+package com.teamNIKaml.reminder.reminder.adaptor;
 
 import android.content.Context;
 import android.view.LayoutInflater;

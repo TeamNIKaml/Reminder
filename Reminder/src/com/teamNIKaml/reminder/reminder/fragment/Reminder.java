@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.fragment;
+package com.teamNIKaml.reminder.reminder.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
-import com.teamNIKaml.reminder.activityComponents.ReminderListAdaptor;
-import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
-import com.teamNIKaml.reminder.property.ReminderDataSource;
-import com.teamNIKaml.reminder.service.AlarmService;
+import com.teamNIKaml.reminder.reminder.adaptor.ReminderListAdaptor;
+import com.teamNIKaml.reminder.reminder.database.ReminderHelper;
+import com.teamNIKaml.reminder.reminder.model.ReminderDataSource;
 
 public class Reminder extends Fragment {
 

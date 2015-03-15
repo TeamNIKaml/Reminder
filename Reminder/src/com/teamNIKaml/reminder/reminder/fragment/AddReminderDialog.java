@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.fragment;
+package com.teamNIKaml.reminder.reminder.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.dbcomponents.IDBHelper;
-import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
-import com.teamNIKaml.reminder.property.ReminderDataSource;
+import com.teamNIKaml.reminder.reminder.database.ReminderHelper;
+import com.teamNIKaml.reminder.reminder.model.ReminderDataSource;
 
 @SuppressLint("InflateParams")
 public class AddReminderDialog extends DialogFragment {

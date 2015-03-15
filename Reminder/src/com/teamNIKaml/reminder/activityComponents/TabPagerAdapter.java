@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.teamNIKaml.reminder.fragment.Password;
-import com.teamNIKaml.reminder.fragment.Reminder;
+import com.teamNIKaml.reminder.password.fragment.Password;
+import com.teamNIKaml.reminder.reminder.fragment.Reminder;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 	public TabPagerAdapter(FragmentManager fm) {

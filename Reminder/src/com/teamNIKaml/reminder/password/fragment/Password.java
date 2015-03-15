@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.fragment;
+package com.teamNIKaml.reminder.password.fragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +21,10 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.Toast;
 
 import com.teamNIKaml.reminder.activity.R;
-import com.teamNIKaml.reminder.activityComponents.PasswordAdaptorEList;
-import com.teamNIKaml.reminder.dbcomponents.PasswordHelper;
+import com.teamNIKaml.reminder.password.adaptor.PasswordAdaptorEList;
+import com.teamNIKaml.reminder.password.database.PasswordHelper;
+import com.teamNIKaml.reminder.password.model.PasswordDataSource;
 import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
 
 public class Password extends Fragment {
 

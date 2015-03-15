@@ -17,9 +17,7 @@ import android.widget.Toast;
 import com.teamNIKaml.reminder.activity.NotificationReceiverActivity;
 import com.teamNIKaml.reminder.activity.R;
 import com.teamNIKaml.reminder.dbcomponents.DBHelper;
-import com.teamNIKaml.reminder.dbcomponents.ReminderHelper;
 import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.ReminderDataSource;
 
 public class MyService extends IntentService {
 
@@ -32,8 +30,8 @@ public class MyService extends IntentService {
 	private List<String> nameList = new ArrayList<String>();
 	private List<String> noteList = new ArrayList<String>();
 	private List<String> dateList = new ArrayList<String>();
-	
-	private int numMessages =0;
+
+	private int numMessages = 0;
 
 	@Override
 	protected void onHandleIntent(Intent arg0) {
@@ -45,43 +43,29 @@ public class MyService extends IntentService {
 		 */
 		Toast.makeText(getApplicationContext(), "Receiving..alarm",
 				Toast.LENGTH_LONG).show();
-		
+
 		System.out.println("<<<<<service is getting called>>>>>>>>");
-		ReminderHelper reminderhelper = new ReminderHelper();
 
-		ReminderDataSource reminderdataSource = ReminderDataSource
-				.getReminderDataSource();
-		reminderdataSource.setContext(getApplicationContext());
-/*		reminderhelper.select(null, null, null, null);
-		List<ReminderDataSource> reminderList = reminderdataSource
-				.getReminderList();
-		for (ReminderDataSource reminder : reminderList) {
-
-			nameList.add(reminder.getName());
-			noteList.add(reminder.getNote());
-			dateList.add(reminder.getDate());
-
-		}*/
-		
-		DBHelper dbHelper= new DBHelper(getApplicationContext(), 1,
+		DBHelper dbHelper = new DBHelper(getApplicationContext(), 1,
 				Constants.DB_NAME_REMINDER, Constants.REMINDER_DB_QUERY);
 		SQLiteDatabase database = dbHelper.getReadableDatabase();
-		Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME,
-				null, null, null, null, null,
-				null);
-		nameList.clear(); noteList.clear(); dateList.clear();
-		
+		Cursor cursor = database.query(Constants.REMINDER_TABLE_NAME, null,
+				null, null, null, null, null);
+		nameList.clear();
+		noteList.clear();
+		dateList.clear();
+
 		if (cursor.moveToFirst()) {
 
 			do {
 				nameList.add(cursor.getString(1));
 				noteList.add(cursor.getString(3));
 				dateList.add(cursor.getString(2));
-				
+
 			} while (cursor.moveToNext());
-			
+
 		}
-		System.out.println(nameList+"***"+noteList+"******"+dateList);
+		System.out.println(nameList + "***" + noteList + "******" + dateList);
 
 		Calendar c = Calendar.getInstance();
 		int day = c.get(Calendar.DAY_OF_MONTH);
@@ -107,45 +91,33 @@ public class MyService extends IntentService {
 
 	}
 
-
-	
-	
-	
-	
-	
-	private void setNotification()
-	{
+	private void setNotification() {
 		Toast.makeText(this, "kumbid###i", Toast.LENGTH_LONG).show();
 
 		final NotificationManager mNotificationManager = (NotificationManager) getApplicationContext()
 				.getSystemService(Context.NOTIFICATION_SERVICE);
-		
-		  NotificationCompat.Builder  mBuilder = 
-			      new NotificationCompat.Builder(getApplicationContext());	
 
-			      mBuilder.setContentTitle("New Message");
-			      mBuilder.setContentText("You've received new message.");
-			      mBuilder.setTicker("New Message Alert!");
-			      mBuilder.setSmallIcon(R.drawable.ic_app_launcher);
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+				getApplicationContext());
 
-			      /* Increase notification number every time a new notification arrives */
-			      mBuilder.setNumber(++numMessages);
-			      
-			      /* Creates an explicit intent for an Activity in your app */
-			    
+		mBuilder.setContentTitle("New Message");
+		mBuilder.setContentText("You've received new message.");
+		mBuilder.setTicker("New Message Alert!");
+		mBuilder.setSmallIcon(R.drawable.ic_app_launcher);
 
-			    
-			  	PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(),
+		/* Increase notification number every time a new notification arrives */
+		mBuilder.setNumber(++numMessages);
+
+		/* Creates an explicit intent for an Activity in your app */
+
+		PendingIntent resultPendingIntent = PendingIntent.getActivity(
+				getApplicationContext(), 0, new Intent(getApplicationContext(),
 						NotificationReceiverActivity.class), 0);
-			        
-			      mBuilder.setContentIntent(resultPendingIntent);
 
-			     
+		mBuilder.setContentIntent(resultPendingIntent);
 
-			      /* notificationID allows you to update the notification later on. */
-			      mNotificationManager.notify(100, mBuilder.build());
+		/* notificationID allows you to update the notification later on. */
+		mNotificationManager.notify(100, mBuilder.build());
 	}
-	
-	
-	
+
 }

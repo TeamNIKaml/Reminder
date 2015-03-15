@@ -1,7 +1,10 @@
-package com.teamNIKaml.reminder.property;
+package com.teamNIKaml.reminder.password.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.teamNIKaml.reminder.property.Constants;
+import com.teamNIKaml.reminder.property.XOREncryption;
 
 import android.content.ContentValues;
 import android.content.Context;

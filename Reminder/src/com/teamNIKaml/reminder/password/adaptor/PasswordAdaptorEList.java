@@ -1,4 +1,4 @@
-package com.teamNIKaml.reminder.activityComponents;
+package com.teamNIKaml.reminder.password.adaptor;
 
 import java.util.HashMap;
 import java.util.List;
