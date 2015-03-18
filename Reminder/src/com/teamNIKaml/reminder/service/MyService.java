@@ -41,10 +41,7 @@ public class MyService extends IntentService {
 		 * do all the work here do not have to create a new thread this function
 		 * work in different thread like asyntask-doinginbackgroud
 		 */
-		Toast.makeText(getApplicationContext(), "Receiving..alarm",
-				Toast.LENGTH_LONG).show();
 
-		System.out.println("<<<<<service is getting called>>>>>>>>");
 
 		DBHelper dbHelper = new DBHelper(getApplicationContext(), 1,
 				Constants.DB_NAME_REMINDER, Constants.REMINDER_DB_QUERY);
@@ -65,7 +62,6 @@ public class MyService extends IntentService {
 			} while (cursor.moveToNext());
 
 		}
-		System.out.println(nameList + "***" + noteList + "******" + dateList);
 
 		Calendar c = Calendar.getInstance();
 		int day = c.get(Calendar.DAY_OF_MONTH);
@@ -92,7 +88,6 @@ public class MyService extends IntentService {
 	}
 
 	private void setNotification() {
-		Toast.makeText(this, "kumbid###i", Toast.LENGTH_LONG).show();
 
 		final NotificationManager mNotificationManager = (NotificationManager) getApplicationContext()
 				.getSystemService(Context.NOTIFICATION_SERVICE);
