@@ -10,6 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/add_reminder_margin_top"
+        android:layout_weight="7"
         android:gravity="left" >
 
         <EditText
@@ -30,6 +31,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/add_reminder_margin_top"
+         android:layout_weight="7"
         android:gravity="left" >
 
         <EditText
@@ -49,6 +51,7 @@
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+         android:layout_weight="50"
         android:layout_marginTop="@dimen/add_reminder_margin_top"
         android:gravity="left" >
 
@@ -61,6 +64,7 @@
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+         android:layout_weight="7"
         android:layout_marginTop="@dimen/add_reminder_margin_top"
         android:gravity="right" >
 
