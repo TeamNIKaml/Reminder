@@ -21,7 +21,7 @@
             android:hint="@string/reminderName"
             android:inputType="text"
             android:gravity="center"
-           
+            android:padding="@dimen/padding"
             android:textColor="@color/editTextColor"
             android:textSize="@dimen/textSize_edit_text" />
     </TableRow>
@@ -30,7 +30,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
       
-       
+        android:layout_marginTop="@dimen/add_reminder_margin_top"
         android:gravity="left" >
 
         <EditText
@@ -43,6 +43,7 @@
             android:hint="@string/reminderNote"
             android:inputType="text"
            android:gravity="center"
+            android:padding="@dimen/padding"
             android:textColor="@color/editTextColor"
             android:textSize="@dimen/textSize_edit_text" />
     </TableRow>
@@ -63,7 +64,8 @@
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-             android:gravity="right" >
+             android:gravity="right"
+              android:layout_marginTop="@dimen/add_reminder_margin_top" >
 
         <Button
             android:id="@+id/saveButton"
@@ -74,7 +76,7 @@
             android:layout_marginLeft="@dimen/add_reminder_margin_left_button"
             android:layout_marginRight="@dimen/add_reminder_margin_right"
             android:background="@drawable/gradient_button"
-          
+          android:padding="@dimen/padding"
             android:text="@string/save"
             android:textColor="@color/buttonText"
             android:textSize="@dimen/textSize_button" />

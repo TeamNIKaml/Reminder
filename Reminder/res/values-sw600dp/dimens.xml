@@ -49,6 +49,7 @@
     <dimen name="add_reminder_margin_left_button">220dp</dimen>
   
   
+  
    <!--Edit Reminder Layout dimension -->    
     
     <dimen name="edit_reminder_margin_top">22dp</dimen>
