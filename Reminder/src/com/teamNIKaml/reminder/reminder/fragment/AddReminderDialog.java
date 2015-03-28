@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -65,6 +67,18 @@ public class AddReminderDialog extends DialogFragment {
 
 			}
 		});
+		
+		dlg.getWindow().getAttributes().windowAnimations = R.style.DialogAnimationrotateScale;
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+		Window window = dlg.getWindow();
+		lp.copyFrom(window.getAttributes());
+		//This makes the dialog take up the full width
+		lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+		lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+		window.setAttributes(lp);
+		
+		
+		
 
 		return dlg;
 	}

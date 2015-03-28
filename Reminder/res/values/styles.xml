@@ -18,4 +18,11 @@
         <item name="android:background">@drawable/tab_selector</item>
     </style>
     
+      
+      
+      <style name="DialogAnimationrotateScale">
+        <item name="android:windowEnterAnimation">@anim/rotate_scale_start</item>
+        <item name="android:windowExitAnimation">@anim/rotate_scale_end</item>
+    </style>
+    
 </resources>
