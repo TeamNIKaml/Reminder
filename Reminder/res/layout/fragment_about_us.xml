@@ -1,0 +1,107 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_login_background"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
+   
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/add_password_margin_top"
+        android:gravity="center" >
+
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:gravity="center"
+        android:text="@string/develop"
+         android:textSize="@dimen/textSize_edit_text"  />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/add_password_margin_top"
+        android:gravity="center" >
+			<LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:orientation="vertical"
+			    android:gravity="center"
+			   >
+			    
+			     <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nikhil" 
+       />
+			     
+			      <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nikhil"
+         android:textSize="@dimen/textSize_edit_text" 
+          />
+			    
+			    
+			</LinearLayout>
+       
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/add_password_margin_top"
+        android:gravity="center" >
+			<LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:orientation="vertical"
+			    android:gravity="center"
+			   >
+			    
+			     <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/amaldev" 
+       />
+			     
+			      <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amal"
+         android:textSize="@dimen/textSize_edit_text" 
+         />
+			    
+			    
+			</LinearLayout>
+       
+    </TableRow>
+    
+    
+     <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/add_password_margin_top"
+        android:gravity="left" >
+
+        <TextView
+        android:id="@+id/textView13"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         android:gravity="left"
+        android:text="@string/blog"
+         android:textSize="@dimen/textSize_edit_text"  />
+    </TableRow>
+
+   
+
+</TableLayout>

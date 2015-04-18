@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.teamNIKaml.reminder.property.AppRater;
 import com.teamNIKaml.reminder.property.Constants;
 import com.teamNIKaml.reminder.property.Login;
 import com.teamNIKaml.reminder.reminder.database.ReminderHelper;
@@ -105,7 +106,11 @@ public class LoginActivity extends Activity {
 			AlarmService alarmService = AlarmService.getAlarmService(getApplicationContext());
 			alarmService.srartAlarm();
 		}
+		//launchMarket();
+		AppRater.app_launched(this);
 
 	}
+	
+	
 
 }
