@@ -80,6 +80,10 @@
     <dimen name="reminder_margin_top">10dp</dimen>
     <dimen name="reminder_margin_right">12dp</dimen>
     <dimen name="reminder_margin_left">12dp</dimen>
+    
+    
+    <dimen name="about_margin_left">40dp</dimen>
+    <dimen name="about_margin_right">40dp</dimen>
   
 
 </resources>
