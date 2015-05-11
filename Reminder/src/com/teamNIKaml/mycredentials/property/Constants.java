@@ -27,8 +27,8 @@ public class Constants {
 			+ "name TEXT,"
 			+ "date TEXT," + "note TEXT)";
 
-	public static final String[] CATAGORY_SPINNER_ARRAY = { "Social", "E-mail",
-			"E-Commerse", "Bank", "Others" };
+	public static final String[] CATAGORY_SPINNER_ARRAY = { "Social NetWork", "E-mail",
+			"E-Commerse", "Bank","Websites","Pin Code","Computer","Network", "Others" };
 
 	private Constants() {
 	}

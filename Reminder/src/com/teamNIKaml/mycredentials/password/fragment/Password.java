@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -55,10 +56,10 @@ public class Password extends Fragment {
 		return passwordView;
 	}
 	
+	@SuppressLint("HandlerLeak")
 	private final Handler myHandler = new Handler() {
 	    public void handleMessage(Message msg) {
-	    	System.out.println("bingooooo*********handler9999999999999");
-	    	updateList();
+	    	 	updateList();
 	    }
 	};
 	
@@ -151,6 +152,10 @@ public class Password extends Fragment {
 		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[2]);
 		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[3]);
 		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[4]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[5]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[6]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[7]);
+		catagory.add(Constants.CATAGORY_SPINNER_ARRAY[8]);
 
 		expListView = (ExpandableListView) v.findViewById(R.id.passwordList);
 		addOppertunitiesButton = (Button) v.findViewById(R.id.addButton);
@@ -187,23 +192,38 @@ public class Password extends Fragment {
 	}
 
 	private void prepareListData() {
+		
+		
+	
 
 		List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
 		List<String> accountListCommerse = new ArrayList<String>();
 		List<String> accountListBank = new ArrayList<String>();
+		List<String> accountListWebSite = new ArrayList<String>();
+		List<String> accountListPin = new ArrayList<String>();
+		List<String> accountListComputer = new ArrayList<String>();
+		List<String> accountListNetWork = new ArrayList<String>();
 		List<String> accountListother = new ArrayList<String>();
 
 		List<String> userListSocial = new ArrayList<String>();
 		List<String> userListEmail = new ArrayList<String>();
 		List<String> userListCommerse = new ArrayList<String>();
 		List<String> userListBank = new ArrayList<String>();
+		List<String> userListWebsite = new ArrayList<String>();
+		List<String> userListPin = new ArrayList<String>();
+		List<String> userListComputer = new ArrayList<String>();
+		List<String> userListNetwork = new ArrayList<String>();
 		List<String> userListOther = new ArrayList<String>();
 
 		List<String> passListSocial = new ArrayList<String>();
 		List<String> passListEmail = new ArrayList<String>();
 		List<String> passListCommerse = new ArrayList<String>();
 		List<String> passListBank = new ArrayList<String>();
+		List<String> passListWebsite = new ArrayList<String>();
+		List<String> passListPin = new ArrayList<String>();
+		List<String> passListComputer = new ArrayList<String>();
+		List<String> passListNetwork = new ArrayList<String>();
 		List<String> passListOther = new ArrayList<String>();
 
 		passwordList = dataSource.getPasswordList();
@@ -237,6 +257,37 @@ public class Password extends Fragment {
 				userListBank.add(pass.getUsername());
 				passListBank.add(pass.getPassword());
 			}
+			
+			//"Social NetWork", "E-mail","E-Commerse", "Bank","Websites","Pin Code","Computer","Network", "Others"
+			
+			 else if (pass.getCatagory().equalsIgnoreCase(
+						Constants.CATAGORY_SPINNER_ARRAY[4])) {
+
+					accountListWebSite.add(pass.getAccountName());
+					userListWebsite.add(pass.getUsername());
+					passListWebsite.add(pass.getPassword());
+				}
+			 else if (pass.getCatagory().equalsIgnoreCase(
+						Constants.CATAGORY_SPINNER_ARRAY[5])) {
+
+					accountListPin.add(pass.getAccountName());
+					userListPin.add(pass.getUsername());
+					passListPin.add(pass.getPassword());
+				}
+			 else if (pass.getCatagory().equalsIgnoreCase(
+						Constants.CATAGORY_SPINNER_ARRAY[6])) {
+
+					accountListComputer.add(pass.getAccountName());
+					userListComputer.add(pass.getUsername());
+					passListComputer.add(pass.getPassword());
+				}
+			 else if (pass.getCatagory().equalsIgnoreCase(
+						Constants.CATAGORY_SPINNER_ARRAY[7])) {
+
+					accountListNetWork.add(pass.getAccountName());
+					userListNetwork.add(pass.getUsername());
+					passListNetwork.add(pass.getPassword());
+				}
 
 			else {
 
@@ -255,41 +306,70 @@ public class Password extends Fragment {
 			accountListEmail = new ArrayList<String>();
 			accountListCommerse = new ArrayList<String>();
 			accountListBank = new ArrayList<String>();
+			 accountListWebSite = new ArrayList<String>();
+			 accountListPin = new ArrayList<String>();
+			 accountListComputer = new ArrayList<String>();
+			accountListNetWork = new ArrayList<String>();
 			accountListother = new ArrayList<String>();
 
 			userListSocial = new ArrayList<String>();
 			userListEmail = new ArrayList<String>();
 			userListCommerse = new ArrayList<String>();
 			userListBank = new ArrayList<String>();
+			userListWebsite = new ArrayList<String>();
+			userListPin = new ArrayList<String>();
+			userListComputer = new ArrayList<String>();
+			userListNetwork = new ArrayList<String>();
 			userListOther = new ArrayList<String>();
 
 			passListSocial = new ArrayList<String>();
 			passListEmail = new ArrayList<String>();
 			passListCommerse = new ArrayList<String>();
 			passListBank = new ArrayList<String>();
+			passListWebsite = new ArrayList<String>();
+			passListPin = new ArrayList<String>();
+			passListComputer = new ArrayList<String>();
+			passListNetwork = new ArrayList<String>();
 			passListOther = new ArrayList<String>();
 
 		}
 		
-		
+	
 
 		accountName.put(catagory.get(0), accountListSocial);
 		accountName.put(catagory.get(1), accountListEmail);
 		accountName.put(catagory.get(2), accountListCommerse);
 		accountName.put(catagory.get(3), accountListBank);
-		accountName.put(catagory.get(4), accountListother);
+		accountName.put(catagory.get(4), accountListWebSite);
+		accountName.put(catagory.get(5), accountListPin);
+		accountName.put(catagory.get(6), accountListComputer);
+		accountName.put(catagory.get(7), accountListNetWork);
+		accountName.put(catagory.get(8), accountListother);
+		
+		
+		
 
 		username.put(catagory.get(0), userListSocial);
 		username.put(catagory.get(1), userListEmail);
 		username.put(catagory.get(2), userListCommerse);
 		username.put(catagory.get(3), userListBank);
-		username.put(catagory.get(4), userListOther);
+		username.put(catagory.get(4), userListWebsite);
+		username.put(catagory.get(5), userListPin);
+		username.put(catagory.get(6), userListComputer);
+		username.put(catagory.get(7), userListNetwork);
+		username.put(catagory.get(8), userListOther);		
 
 		password.put(catagory.get(0), passListSocial);
 		password.put(catagory.get(1), passListEmail);
 		password.put(catagory.get(2), passListCommerse);
 		password.put(catagory.get(3), passListBank);
-		password.put(catagory.get(4), passListOther);
+		password.put(catagory.get(4), passListWebsite);
+		password.put(catagory.get(5), passListPin);
+		password.put(catagory.get(6), passListComputer);
+		password.put(catagory.get(7), passListNetwork);
+		password.put(catagory.get(8), passListOther);
+		
+		
 
 	}
 
