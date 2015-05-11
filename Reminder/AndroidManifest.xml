@@ -38,6 +38,11 @@
             android:label="@string/reminderDetails" 
             android:theme="@android:style/Theme.DeviceDefault.Light.DialogWhenLarge">
         </activity>
+         <activity
+            android:name=".AboutUs"
+            android:label="@string/changePassword" >
+        </activity>
+          
         
 
         <service

@@ -8,9 +8,9 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.teamNIKaml.reminder.dbcomponents.DBHelper;
-import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.PasswordDataSource;
+import com.teamNIKaml.mycredentials.dbcomponents.DBHelper;
+import com.teamNIKaml.mycredentials.password.model.PasswordDataSource;
+import com.teamNIKaml.mycredentials.property.Constants;
 
 public class PasswordUnitTest extends AndroidTestCase {
 

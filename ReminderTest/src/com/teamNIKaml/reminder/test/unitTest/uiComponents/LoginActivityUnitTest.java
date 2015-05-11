@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.teamNIKaml.reminder.activity.LoginActivity;
-import com.teamNIKaml.reminder.activity.R;
+import com.teamNIKaml.mycredentials.activity.LoginActivity;
+import com.teamNIKaml.mycredentials.activity.R;
 
 public class LoginActivityUnitTest extends
 	ActivityInstrumentationTestCase2<LoginActivity> {

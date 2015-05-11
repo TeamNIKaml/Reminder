@@ -3,6 +3,7 @@ package com.teamNIKaml.mycredentials.activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -77,9 +78,20 @@ public class PostLoginActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		startActivity(new Intent(getApplicationContext(),
-				ChangePasswordActivity.class));
+		switch (item.getItemId()) {
+		case R.id.menu_change_password:
+			startActivity(new Intent(getApplicationContext(),
+					ChangePasswordActivity.class));
+			break;
+		case R.id.menu_about_us:
+			startActivity(new Intent(getApplicationContext(), AboutUs.class));
+			break;
+		case R.id.menu_other_apps:
+			startActivity(new Intent(
+					Intent.ACTION_VIEW,
+					Uri.parse("http://play.google.com/store/search?q=pub:Nikhil Vijayakumar")));
 
+		}
 		return super.onOptionsItemSelected(item);
 	}
 

@@ -8,9 +8,9 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.teamNIKaml.reminder.dbcomponents.DBHelper;
-import com.teamNIKaml.reminder.property.Constants;
-import com.teamNIKaml.reminder.property.ReminderDataSource;
+import com.teamNIKaml.mycredentials.dbcomponents.DBHelper;
+import com.teamNIKaml.mycredentials.property.Constants;
+import com.teamNIKaml.mycredentials.reminder.model.ReminderDataSource;
 
 public class ReminderUnitTest extends AndroidTestCase {
 

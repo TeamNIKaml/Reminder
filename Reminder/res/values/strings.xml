@@ -26,6 +26,7 @@
     <string name="update">Update</string>
     <string name="changePassword">Change Password</string>
       <string name="aboutus">About Us</string>
+         <string name="otherapps">Other Apps</string>
     <string name="newPassword">New Password</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="oldPassword">Old Password</string>    

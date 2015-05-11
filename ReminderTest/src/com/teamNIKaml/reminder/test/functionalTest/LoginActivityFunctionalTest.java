@@ -7,9 +7,9 @@ import android.test.suitebuilder.annotation.MediumTest;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.teamNIKaml.reminder.activity.LoginActivity;
-import com.teamNIKaml.reminder.activity.PostLoginActivity;
-import com.teamNIKaml.reminder.activity.R;
+import com.teamNIKaml.mycredentials.activity.LoginActivity;
+import com.teamNIKaml.mycredentials.activity.PostLoginActivity;
+import com.teamNIKaml.mycredentials.activity.R;
 
 public class LoginActivityFunctionalTest extends
 	ActivityInstrumentationTestCase2<LoginActivity> {
