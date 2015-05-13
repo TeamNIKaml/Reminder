@@ -46,11 +46,11 @@
         
 
         <service
-            android:name="com.teamNIKaml.reminder.service.MyService"
+            android:name="com.teamNIKaml.mycredentials.service.MyService"
             android:enabled="true" >
         </service>
 
-        <receiver android:name="com.teamNIKaml.reminder.service.BootCompletedReceiver" >
+        <receiver android:name="com.teamNIKaml.mycredentials.service.BootCompletedReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
