@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.teamNIKaml.mycredentials.activity"
+    package="com.teamnikaml.mycredentials"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/CustomActionBarTheme" >
         <activity
-            android:name=".LoginActivity"
+            android:name="com.teamnikaml.mycredentials.activity.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,31 +26,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PostLoginActivity"
+            android:name="com.teamnikaml.mycredentials.activity.PostLoginActivity"
             android:label="@string/title_activity_post_login" >
         </activity>
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name="com.teamnikaml.mycredentials.activity.ChangePasswordActivity"
             android:label="@string/changePassword" >
         </activity>
           <activity
-            android:name=".NotificationReceiverActivity"
+            android:name="com.teamnikaml.mycredentials.activity.NotificationReceiverActivity"
             android:label="@string/reminderDetails" 
             android:theme="@android:style/Theme.DeviceDefault.Light.DialogWhenLarge">
         </activity>
          <activity
-            android:name=".AboutUs"
+            android:name="com.teamnikaml.mycredentials.activity.AboutUs"
             android:label="@string/changePassword" >
         </activity>
           
         
 
         <service
-            android:name="com.teamNIKaml.mycredentials.service.MyService"
+            android:name="com.teamnikaml.mycredentials.service.MyService"
             android:enabled="true" >
         </service>
 
-        <receiver android:name="com.teamNIKaml.mycredentials.service.BootCompletedReceiver" >
+        <receiver android:name="com.teamnikaml.mycredentials.service.BootCompletedReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
