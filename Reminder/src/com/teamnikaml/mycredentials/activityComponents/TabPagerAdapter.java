@@ -1,4 +1,4 @@
-package com.teamnikaml.mycredentials.activityComponents;
+/*package com.teamnikaml.mycredentials.activityComponents;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,10 +17,10 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 	public Fragment getItem(int i) {
 		switch (i) {
 		case 0:
-			return new Password();
+		//	return new Password();
 
 		case 1:
-			return new Reminder();
+			//return new Reminder();
 		}
 		return null;
 
@@ -32,4 +32,4 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 		return 2; // No of Tabs
 	}
 
-}
+}*/

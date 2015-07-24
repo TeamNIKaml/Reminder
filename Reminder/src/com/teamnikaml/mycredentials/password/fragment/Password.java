@@ -8,7 +8,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -122,7 +122,7 @@ public class Password extends Fragment {
 						.get(catagory.get(groupPosition)).get(childPosition));
 
 				EditPasswordDialog dialog = new EditPasswordDialog(li);
-				dialog.show(getChildFragmentManager(), "AddPassword");
+				dialog.show(getActivity().getFragmentManager(), "AddPassword");
 
 				return false;
 			}

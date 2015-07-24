@@ -1,4 +1,4 @@
-package com.teamnikaml.mycredentials.activity;
+/*package com.teamnikaml.mycredentials.activity;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -96,4 +96,4 @@ public class PostLoginActivity extends FragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-}
+}*/
