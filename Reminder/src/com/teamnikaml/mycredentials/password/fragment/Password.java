@@ -12,9 +12,11 @@ import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
@@ -26,10 +28,12 @@ import com.teamnikaml.mycredentials.appmodel.AppConstants;
 import com.teamnikaml.mycredentials.password.adaptor.PasswordAdaptorEList;
 import com.teamnikaml.mycredentials.password.database.PasswordHelper;
 import com.teamnikaml.mycredentials.password.model.PasswordDataSource;
+import com.teamnikaml.scrollviewlib.model.MyHorizontalScrollView;
+import com.teamnikaml.scrollviewlib.model.MyScrollView;
 
 public class Password extends Fragment {
 
-	private PasswordAdaptorEList listAdapter;
+	/*private PasswordAdaptorEList listAdapter;
 	private ExpandableListView expListView;
 	private List<String> catagory;
 	private HashMap<String, List<String>> accountName;
@@ -40,20 +44,28 @@ public class Password extends Fragment {
 	private PasswordDataSource dataSource = PasswordDataSource
 			.getPasswordDataSource();
 	private PasswordHelper dbHelper = new PasswordHelper();
-	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
+	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();*/
+	
+	private int id = 1;
+	
+	
+	private MyScrollView myScrollView;
+	
+	 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		li = inflater;
+		/*li = inflater;
 
 		View passwordView = inflater.inflate(R.layout.password_frag, container,
-				false);
-		init(passwordView);
-		setListner();
+				false);*/
+		//init(passwordView);
+		//setListner();
+		init();
 
-		return passwordView;
+		return myScrollView.getScrollView();
 	}
 	
 	@SuppressLint("HandlerLeak")
@@ -66,7 +78,7 @@ public class Password extends Fragment {
 	
 	private void setListner() {
 		// TODO Auto-generated method stub
-		expListView.setOnGroupClickListener(new OnGroupClickListener() {
+		/*expListView.setOnGroupClickListener(new OnGroupClickListener() {
 
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
@@ -137,12 +149,17 @@ public class Password extends Fragment {
 				dialog.show(getChildFragmentManager(), "AddPassword");
 
 			}
-		});
+		});*/
 	}
 
-	private void init(View v) {
+	private void init() {
 		
-		catagory = new ArrayList<String>();
+		myScrollView = new MyScrollView(getActivity());
+		
+		setHorizontalScrollView();
+		
+		
+	/*	catagory = new ArrayList<String>();
 		accountName = new HashMap<String, List<String>>();
 		username = new HashMap<String, List<String>>();
 		password = new HashMap<String, List<String>>();
@@ -157,8 +174,8 @@ public class Password extends Fragment {
 		catagory.add(AppConstants.CATAGORY_SPINNER_ARRAY[7]);
 		catagory.add(AppConstants.CATAGORY_SPINNER_ARRAY[8]);
 
-		expListView = (ExpandableListView) v.findViewById(R.id.passwordList);
-		addOppertunitiesButton = (Button) v.findViewById(R.id.addButton);
+		//expListView = (ExpandableListView) v.findViewById(R.id.passwordList);
+		//addOppertunitiesButton = (Button) v.findViewById(R.id.addButton);
 		dataSource = PasswordDataSource.getPasswordDataSource();
 		dataSource.setContext(getActivity().getApplicationContext());
 		dbHelper.setHandler(myHandler);
@@ -171,13 +188,39 @@ public class Password extends Fragment {
 				password);
 		expListView.setAdapter(listAdapter);
 
-		dbHelper.setPassword(this);
+		dbHelper.setPassword(this);*/
 
+	}
+
+	private void setHorizontalScrollView() {
+		// TODO Auto-generated method stub
+		int[] horizondalImage ={R.drawable.nikhil,
+				R.drawable.amaldev,
+				R.drawable.nikhil,
+				R.drawable.amaldev,
+				R.drawable.nikhil,
+				R.drawable.nikhil,
+				R.drawable.amaldev,
+				R.drawable.amaldev,
+				R.drawable.nikhil};
+		int hId = 1;
+		ImageView imageView;
+		ImageClickListner clickListner = new ImageClickListner();
+		MyHorizontalScrollView myHorizontalScrollView = new MyHorizontalScrollView(getActivity());
+		for(int i=0;i<horizondalImage.length;i++)
+		{
+		myHorizontalScrollView.addImageView(horizondalImage[i], hId);
+		imageView = (ImageView) myHorizontalScrollView.getHorizontalScrollView().findViewById(hId++);
+		imageView.setOnClickListener(clickListner);
+		}
+		
+		myScrollView.addView(myHorizontalScrollView.getHorizontalScrollView(), id++);
+		
 	}
 
 	public void updateList() {
 
-		prepareListData();
+		/*prepareListData();
 
 		listAdapter.setAccountName(accountName);
 		listAdapter.setPassword(password);
@@ -188,7 +231,7 @@ public class Password extends Fragment {
 		Log.e("<<>><<>>>", accountName.toString());
 		
 		listAdapter.notifyDataSetChanged();
-
+*/
 	}
 
 	private void prepareListData() {
@@ -196,7 +239,7 @@ public class Password extends Fragment {
 		
 	
 
-		List<String> accountListSocial = new ArrayList<String>();
+	/*	List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
 		List<String> accountListCommerse = new ArrayList<String>();
 		List<String> accountListBank = new ArrayList<String>();
@@ -369,8 +412,51 @@ public class Password extends Fragment {
 		password.put(catagory.get(7), passListNetwork);
 		password.put(catagory.get(8), passListOther);
 		
-		
+		*/
 
+	}
+	
+	private class ImageClickListner implements View.OnClickListener
+	{
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+			
+			switch(v.getId())
+			{
+			case 1:
+				Toast.makeText(getActivity(), "case1", Toast.LENGTH_LONG).show();
+				break;
+			case 2:
+				Toast.makeText(getActivity(), "case2", Toast.LENGTH_LONG).show();
+				break;
+			case 3:
+				Toast.makeText(getActivity(), "case3", Toast.LENGTH_LONG).show();
+				break;
+			case 4:
+				Toast.makeText(getActivity(), "case4", Toast.LENGTH_LONG).show();
+				break;
+			case 5:
+				Toast.makeText(getActivity(), "case5", Toast.LENGTH_LONG).show();
+				break;
+			case 6:
+				Toast.makeText(getActivity(), "case6", Toast.LENGTH_LONG).show();
+				break;
+			case 7:
+				Toast.makeText(getActivity(), "case7", Toast.LENGTH_LONG).show();
+				break;
+			case 8:
+				Toast.makeText(getActivity(), "case8", Toast.LENGTH_LONG).show();
+				break;
+			case 9:
+				Toast.makeText(getActivity(), "case9", Toast.LENGTH_LONG).show();
+				break;
+			}
+			
+		}
+		
 	}
 
 	
