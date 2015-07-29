@@ -23,6 +23,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,11 +56,26 @@ public class Password extends Fragment {
 			.getPasswordDataSource();
 	private PasswordHelper dbHelper = new PasswordHelper();
 	
-	
-	private int id = 1;
+	List<Integer> horizondalId = new ArrayList<Integer>();
+	private int id = 0;
 	
 	
 	private MyScrollView view;
+	
+	private CatagoryFragment fragment;
+	
+	@SuppressLint("HandlerLeak")
+	private final Handler myHandler = new Handler() {
+	    public void handleMessage(Message msg) {
+	    	 	prepareData();
+	    	 	if(fragment !=null)
+	    	 	{
+	    	 		int index = fragment.getCatagoaryIndex();
+	    	 		fragment = new CatagoryFragment(index);
+	    	 	
+	    	 	}
+	    }
+	};
 	
 	 
 
@@ -78,14 +94,14 @@ public class Password extends Fragment {
 		return view.getScrollView();
 	}
 	
-	@SuppressLint("HandlerLeak")
-	private final Handler myHandler = new Handler() {
-	    public void handleMessage(Message msg) {
-	    	 	updateList();
-	    }
-	};
 	
 	
+	
+	
+
+
+
+
 	private void setListner() {
 		// TODO Auto-generated method stub
 		/*expListView.setOnGroupClickListener(new OnGroupClickListener() {
@@ -165,7 +181,10 @@ public class Password extends Fragment {
 	private void init() {
 		
 		
-		prepareData();
+		dataSource = PasswordDataSource.getPasswordDataSource();
+		dataSource.setContext(getActivity().getApplicationContext());
+		dbHelper.setHandler(myHandler);
+		dbHelper.select(null, null, null, null);
 		
 		view = new MyScrollView(getActivity());
 		
@@ -221,11 +240,11 @@ private void addFrameLayout() {
 	
 		
 	
-CatagoryFragment fragment = new CatagoryFragment();
+		fragment= new CatagoryFragment(0);
 		
 		
 		
-		fragment.setCatagoaryIndex(0);
+		
 		
 			tempview = view.getScrollView().findViewById( R.id.container);
 		
@@ -242,6 +261,9 @@ CatagoryFragment fragment = new CatagoryFragment();
 
 	private void setHorizontalScrollView() {
 		// TODO Auto-generated method stub
+		
+		id = 0;
+		
 		int[] horizondalImage ={R.drawable.ic_drawer,
 				R.drawable.ic_app_launcher,
 				R.drawable.ic_launcher,
@@ -251,15 +273,16 @@ CatagoryFragment fragment = new CatagoryFragment();
 				R.drawable.ic_drawer,
 				R.drawable.ic_app_launcher,
 				R.drawable.ic_launcher};
-		int hId = 1;
+		
 		ImageView imageView;
 		ImageClickListner clickListner = new ImageClickListner();
 		MyHorizontalScrollView myHorizontalScrollView = new MyHorizontalScrollView(getActivity());
-		for(int i=0;i<horizondalImage.length;i++,hId++)
+		for(int i=0;i<horizondalImage.length;i++,id++)
 		{
-		myHorizontalScrollView.addImageView(horizondalImage[i], hId);
-		imageView = (ImageView) myHorizontalScrollView.getHorizontalScrollView().findViewById(hId);
+		myHorizontalScrollView.addImageView(horizondalImage[i], id);
+		imageView = (ImageView) myHorizontalScrollView.getHorizontalScrollView().findViewById(id);
 		imageView.setOnClickListener(clickListner);
+		horizondalId.add(id);
 		}
 		
 		view.addView(myHorizontalScrollView.getHorizontalScrollView(), id++);
@@ -272,6 +295,8 @@ CatagoryFragment fragment = new CatagoryFragment();
 	}
 
 	public void updateList() {
+		
+		prepareData();
 
 		/*prepareListData();
 
@@ -290,6 +315,8 @@ CatagoryFragment fragment = new CatagoryFragment();
 	private void prepareData() {
 		
 		// TODO Auto-generated method stub prepareData
+		
+		passwordList = dataSource.getPasswordList();
 	
 
 		/*List<String> accountListSocial = new ArrayList<String>();
@@ -322,7 +349,7 @@ CatagoryFragment fragment = new CatagoryFragment();
 		List<String> passListNetwork = new ArrayList<String>();
 		List<String> passListOther = new ArrayList<String>();*/
 
-		passwordList = dataSource.getPasswordList();
+	
 
 		/*for (PasswordDataSource pass : passwordList) {
 
@@ -479,8 +506,14 @@ CatagoryFragment fragment = new CatagoryFragment();
 			return catagoaryIndex;
 		}
 
+		public CatagoryFragment(int catagoaryIndex) {
+			super();
+			this.catagoaryIndex = catagoaryIndex;
+		}
+
 		public void setCatagoaryIndex(int catagoaryIndex) {
 			this.catagoaryIndex = catagoaryIndex;
+			//setFragmentData();
 		}
 
 		@Override
@@ -500,6 +533,12 @@ CatagoryFragment fragment = new CatagoryFragment();
 		private void init() {
 			// TODO Auto-generated method stub
 			linearLayout = new LinearLayout(getActivity());
+			linearLayout.setOrientation(LinearLayout.VERTICAL);
+			linearLayout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
+			linearLayout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
+			
+			
+			
 			setFragmentData();
 		}
 
@@ -509,42 +548,63 @@ CatagoryFragment fragment = new CatagoryFragment();
 		 */
 		private void setFragmentData() {
 			// TODO Auto-generated method stub
-		View cell = null;
+			//linearLayout.removeAllViews();
+			
+		
 		TextView accountName,userName,password;
-		for (PasswordDataSource pass : passwordList) {
+		
+		Toast.makeText(getActivity(), String.valueOf(passwordList.size()), Toast.LENGTH_LONG).show();
+		
+		for (final PasswordDataSource pass : passwordList) {
 
 			if (pass.getCatagory().equalsIgnoreCase(
 					AppConstants.CATAGORY_SPINNER_ARRAY[catagoaryIndex]))
 			{
-				cell = newCell(); 
-				accountName = (TextView) cell.findViewById(R.id.accountName);
-				userName = (TextView) cell.findViewById(R.id.username);
-				password = (TextView) cell.findViewById(R.id.password);
+				View convertView = LayoutInflater.from(getActivity()).inflate(R.layout.list_item_password, null);	
+				accountName = (TextView) convertView.findViewById(R.id.accountName);
+				userName = (TextView) convertView.findViewById(R.id.username);
+				password = (TextView) convertView.findViewById(R.id.password);
 				
 		
 				accountName.setText(pass.getAccountName());
 				userName.setText(pass.getUsername());
 				password.setText(pass.getPassword());
 				
-				linearLayout.addView(cell);	
+				
+				
+				convertView.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						
+						dataSource.setAccountName(pass.getAccountName());
+						dataSource.setUsername(pass.getUsername());
+						dataSource.setCatagory(pass.getCatagory());
+						dataSource.setPassword(pass.getPassword());
+
+						EditPasswordDialog dialog = new EditPasswordDialog(getActivity());
+						dialog.show(getActivity().getFragmentManager(), "AddPassword");
+						
+					}
+				});
+				
+				
+				
+				linearLayout.addView(convertView);
+				
+				Log.e("dsfsdf@@@", pass.getAccountName());
+				
+				
 			}
 		}
 		
-		cell = newCell();
-		linearLayout.addView(cell);
+	
 			
 		
 		}
 
-		/**
-		@author Nikhil V
-		Jul 29, 2015
-		 * @return
-		 */
-		private View newCell() {
-			// TODO Auto-generated method stub
-			return LayoutInflater.from(getActivity()).inflate(R.layout.list_item_password, null);	
-		}
+	
 
 		
 
@@ -559,15 +619,23 @@ CatagoryFragment fragment = new CatagoryFragment();
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			CatagoryFragment fragment = new CatagoryFragment();
+		
 			
 			
-			
-			fragment.setCatagoaryIndex((v.getId())-1);
-			
-			View	tempview = view.getScrollView().findViewById( R.id.container);
-			
+			if(v.getId()>0)
+			{
+				fragment = new CatagoryFragment(v.getId()-1);
+		
+			View	tempview = view.getScrollView().findViewById( R.id.container);			
 			getFragmentManager().beginTransaction().replace(tempview.getId(), fragment).commit();
+			}
+			else
+			{
+				AddPasswordDialog dialog = new AddPasswordDialog(getActivity());
+				dialog.show(getFragmentManager(), "AddPassword");
+			}
+			
+			
 			
 			
 		}

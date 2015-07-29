@@ -1,6 +1,7 @@
 package com.teamnikaml.mycredentials.password.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -30,17 +31,19 @@ public class AddPasswordDialog extends DialogFragment {
 	private IDBHelper dbHelper = new PasswordHelper();
 	private Button saveButton;
 
-	private LayoutInflater li;
+	private Activity context;
 
-	public AddPasswordDialog(LayoutInflater li) {
+	public AddPasswordDialog(Activity activity) {
 		super();
-		this.li = li;
+		
+		context = activity;
+	
 	}
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-		View v = li.inflate(R.layout.activity_add_password, null);
+		View v = LayoutInflater.from(context).inflate(R.layout.activity_add_password, null);
 
 		initDialog(v);
 		setDialogData();
