@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Fragment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.teamnikaml.mycredentials.R;
@@ -35,21 +39,27 @@ public class Password extends Fragment {
 
 	/*private PasswordAdaptorEList listAdapter;
 	private ExpandableListView expListView;
-	private List<String> catagory;
+	
 	private HashMap<String, List<String>> accountName;
 	private HashMap<String, List<String>> username;
 	private HashMap<String, List<String>> password;
 	private Button addOppertunitiesButton;
 	private LayoutInflater li;
+	
+	*/
+	
+	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();
+	
+	private List<String> catagory;
 	private PasswordDataSource dataSource = PasswordDataSource
 			.getPasswordDataSource();
 	private PasswordHelper dbHelper = new PasswordHelper();
-	private List<PasswordDataSource> passwordList = new ArrayList<PasswordDataSource>();*/
+	
 	
 	private int id = 1;
 	
 	
-	private MyScrollView myScrollView;
+	private MyScrollView view;
 	
 	 
 
@@ -65,7 +75,7 @@ public class Password extends Fragment {
 		//setListner();
 		init();
 
-		return myScrollView.getScrollView();
+		return view.getScrollView();
 	}
 	
 	@SuppressLint("HandlerLeak")
@@ -154,9 +164,14 @@ public class Password extends Fragment {
 
 	private void init() {
 		
-		myScrollView = new MyScrollView(getActivity());
+		
+		prepareData();
+		
+		view = new MyScrollView(getActivity());
 		
 		setHorizontalScrollView();
+		
+		addFrameLayout();
 		
 		
 	/*	catagory = new ArrayList<String>();
@@ -191,6 +206,39 @@ public class Password extends Fragment {
 		dbHelper.setPassword(this);*/
 
 	}
+	
+private void addFrameLayout() {
+		
+		
+		
+		View tempview = LayoutInflater.from(getActivity()).inflate(
+				R.layout.fragment_container, null);
+
+		
+
+		view.addView(tempview, R.id.container);
+		
+	
+		
+	
+CatagoryFragment fragment = new CatagoryFragment();
+		
+		
+		
+		fragment.setCatagoaryIndex(0);
+		
+			tempview = view.getScrollView().findViewById( R.id.container);
+		
+		getFragmentManager().beginTransaction().replace(tempview.getId(), fragment).commit();
+	
+		
+	
+		
+		
+		
+		
+
+	}
 
 	private void setHorizontalScrollView() {
 		// TODO Auto-generated method stub
@@ -214,7 +262,12 @@ public class Password extends Fragment {
 		imageView.setOnClickListener(clickListner);
 		}
 		
-		myScrollView.addView(myHorizontalScrollView.getHorizontalScrollView(), id++);
+		view.addView(myHorizontalScrollView.getHorizontalScrollView(), id++);
+		
+		
+		
+		
+		
 		
 	}
 
@@ -234,12 +287,12 @@ public class Password extends Fragment {
 */
 	}
 
-	private void prepareListData() {
+	private void prepareData() {
 		
-		
+		// TODO Auto-generated method stub prepareData
 	
 
-	/*	List<String> accountListSocial = new ArrayList<String>();
+		/*List<String> accountListSocial = new ArrayList<String>();
 		List<String> accountListEmail = new ArrayList<String>();
 		List<String> accountListCommerse = new ArrayList<String>();
 		List<String> accountListBank = new ArrayList<String>();
@@ -267,11 +320,11 @@ public class Password extends Fragment {
 		List<String> passListPin = new ArrayList<String>();
 		List<String> passListComputer = new ArrayList<String>();
 		List<String> passListNetwork = new ArrayList<String>();
-		List<String> passListOther = new ArrayList<String>();
+		List<String> passListOther = new ArrayList<String>();*/
 
 		passwordList = dataSource.getPasswordList();
 
-		for (PasswordDataSource pass : passwordList) {
+		/*for (PasswordDataSource pass : passwordList) {
 
 			if (pass.getCatagory().equalsIgnoreCase(
 					AppConstants.CATAGORY_SPINNER_ARRAY[0])) {
@@ -375,11 +428,11 @@ public class Password extends Fragment {
 			passListNetwork = new ArrayList<String>();
 			passListOther = new ArrayList<String>();
 
-		}
+		}*/
 		
 	
 
-		accountName.put(catagory.get(0), accountListSocial);
+		/*accountName.put(catagory.get(0), accountListSocial);
 		accountName.put(catagory.get(1), accountListEmail);
 		accountName.put(catagory.get(2), accountListCommerse);
 		accountName.put(catagory.get(3), accountListBank);
@@ -410,11 +463,95 @@ public class Password extends Fragment {
 		password.put(catagory.get(5), passListPin);
 		password.put(catagory.get(6), passListComputer);
 		password.put(catagory.get(7), passListNetwork);
-		password.put(catagory.get(8), passListOther);
+		password.put(catagory.get(8), passListOther);*/
 		
-		*/
+		
 
 	}
+	
+	
+	private class CatagoryFragment extends Fragment {
+		
+		private LinearLayout linearLayout;
+		private int catagoaryIndex;
+
+		public int getCatagoaryIndex() {
+			return catagoaryIndex;
+		}
+
+		public void setCatagoaryIndex(int catagoaryIndex) {
+			this.catagoaryIndex = catagoaryIndex;
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			// TODO Auto-generated method stub
+			init();
+		//	bmwView = inflater.inflate(R.layout.fragment_view, null);
+			
+			return linearLayout;
+		}
+
+		/**
+		 * @author Nikhil V Jul 27, 2015
+		 * @param view2
+		 */
+		private void init() {
+			// TODO Auto-generated method stub
+			linearLayout = new LinearLayout(getActivity());
+			setFragmentData();
+		}
+
+		/**
+		@author Nikhil V
+		Jul 29, 2015
+		 */
+		private void setFragmentData() {
+			// TODO Auto-generated method stub
+		View cell = null;
+		TextView accountName,userName,password;
+		for (PasswordDataSource pass : passwordList) {
+
+			if (pass.getCatagory().equalsIgnoreCase(
+					AppConstants.CATAGORY_SPINNER_ARRAY[catagoaryIndex]))
+			{
+				cell = newCell(); 
+				accountName = (TextView) cell.findViewById(R.id.accountName);
+				userName = (TextView) cell.findViewById(R.id.username);
+				password = (TextView) cell.findViewById(R.id.password);
+				
+		
+				accountName.setText(pass.getAccountName());
+				userName.setText(pass.getUsername());
+				password.setText(pass.getPassword());
+				
+				linearLayout.addView(cell);	
+			}
+		}
+		
+		cell = newCell();
+		linearLayout.addView(cell);
+			
+		
+		}
+
+		/**
+		@author Nikhil V
+		Jul 29, 2015
+		 * @return
+		 */
+		private View newCell() {
+			// TODO Auto-generated method stub
+			return LayoutInflater.from(getActivity()).inflate(R.layout.list_item_password, null);	
+		}
+
+		
+
+	}
+	
+	
+	
 	
 	private class ImageClickListner implements View.OnClickListener
 	{
@@ -422,38 +559,16 @@ public class Password extends Fragment {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			CatagoryFragment fragment = new CatagoryFragment();
 			
 			
-			switch(v.getId())
-			{
-			case 1:
-				Toast.makeText(getActivity(), "case1", Toast.LENGTH_LONG).show();
-				break;
-			case 2:
-				Toast.makeText(getActivity(), "case2", Toast.LENGTH_LONG).show();
-				break;
-			case 3:
-				Toast.makeText(getActivity(), "case3", Toast.LENGTH_LONG).show();
-				break;
-			case 4:
-				Toast.makeText(getActivity(), "case4", Toast.LENGTH_LONG).show();
-				break;
-			case 5:
-				Toast.makeText(getActivity(), "case5", Toast.LENGTH_LONG).show();
-				break;
-			case 6:
-				Toast.makeText(getActivity(), "case6", Toast.LENGTH_LONG).show();
-				break;
-			case 7:
-				Toast.makeText(getActivity(), "case7", Toast.LENGTH_LONG).show();
-				break;
-			case 8:
-				Toast.makeText(getActivity(), "case8", Toast.LENGTH_LONG).show();
-				break;
-			case 9:
-				Toast.makeText(getActivity(), "case9", Toast.LENGTH_LONG).show();
-				break;
-			}
+			
+			fragment.setCatagoaryIndex((v.getId())-1);
+			
+			View	tempview = view.getScrollView().findViewById( R.id.container);
+			
+			getFragmentManager().beginTransaction().replace(tempview.getId(), fragment).commit();
+			
 			
 		}
 		
