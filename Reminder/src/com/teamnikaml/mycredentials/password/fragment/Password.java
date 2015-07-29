@@ -194,23 +194,23 @@ public class Password extends Fragment {
 
 	private void setHorizontalScrollView() {
 		// TODO Auto-generated method stub
-		int[] horizondalImage ={R.drawable.nikhil,
-				R.drawable.amaldev,
-				R.drawable.nikhil,
-				R.drawable.amaldev,
-				R.drawable.nikhil,
-				R.drawable.nikhil,
-				R.drawable.amaldev,
-				R.drawable.amaldev,
-				R.drawable.nikhil};
+		int[] horizondalImage ={R.drawable.ic_drawer,
+				R.drawable.ic_app_launcher,
+				R.drawable.ic_launcher,
+				R.drawable.ic_action_search,
+				R.drawable.ic_action_search,
+				R.drawable.ic_app_launcher,
+				R.drawable.ic_drawer,
+				R.drawable.ic_app_launcher,
+				R.drawable.ic_launcher};
 		int hId = 1;
 		ImageView imageView;
 		ImageClickListner clickListner = new ImageClickListner();
 		MyHorizontalScrollView myHorizontalScrollView = new MyHorizontalScrollView(getActivity());
-		for(int i=0;i<horizondalImage.length;i++)
+		for(int i=0;i<horizondalImage.length;i++,hId++)
 		{
 		myHorizontalScrollView.addImageView(horizondalImage[i], hId);
-		imageView = (ImageView) myHorizontalScrollView.getHorizontalScrollView().findViewById(hId++);
+		imageView = (ImageView) myHorizontalScrollView.getHorizontalScrollView().findViewById(hId);
 		imageView.setOnClickListener(clickListner);
 		}
 		
