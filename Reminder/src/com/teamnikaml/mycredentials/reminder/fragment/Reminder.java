@@ -62,7 +62,7 @@ public class Reminder extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				AddReminderDialog dialog = new AddReminderDialog(li);
-				dialog.show(getChildFragmentManager(), "Add Reminder");
+				dialog.show(getFragmentManager(), "Add Reminder");
 
 				resetListAdaptor();
 				reminderHelper.setHandler(myHandler);

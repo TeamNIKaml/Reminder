@@ -1,4 +1,4 @@
-package com.teamnikaml.mycredentials.activity;
+package com.teamnikaml.mycredentials.settings.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
