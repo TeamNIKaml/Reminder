@@ -3,6 +3,16 @@ package com.teamnikaml.mycredentials.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.teamnikaml.mycredentials.R;
+import com.teamnikaml.mycredentials.appmodel.AppConstants;
+import com.teamnikaml.mycredentials.appmodel.AppRater;
+import com.teamnikaml.mycredentials.appmodel.Login;
+import com.teamnikaml.mycredentials.password.fragment.Password;
+import com.teamnikaml.mycredentials.reminder.database.ReminderHelper;
+import com.teamnikaml.mycredentials.reminder.fragment.Reminder;
+import com.teamnikaml.mycredentials.reminder.model.ReminderDataSource;
+import com.teamnikaml.mycredentials.service.AlarmService;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -14,19 +24,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.teamnikaml.mycredentials.R;
-import com.teamnikaml.mycredentials.appmodel.AppConstants;
-import com.teamnikaml.mycredentials.appmodel.AppRater;
-import com.teamnikaml.mycredentials.appmodel.Login;
-import com.teamnikaml.mycredentials.password.fragment.Password;
-import com.teamnikaml.mycredentials.reminder.database.ReminderHelper;
-import com.teamnikaml.mycredentials.reminder.fragment.Reminder;
-import com.teamnikaml.mycredentials.reminder.model.ReminderDataSource;
-import com.teamnikaml.mycredentials.service.AlarmService;
-import com.teamnikaml.navigationdrawerlib.activity.NavigationDrawerActivity;
-import com.teamnikaml.navigationdrawerlib.model.Mapper;
-import com.teamnikaml.navigationdrawerlib.model.NavDrawerItem;
 
 public class LoginActivity extends Activity {
 
@@ -75,56 +72,17 @@ public class LoginActivity extends Activity {
 						.show();
 			} else {
 				//startActivity(new Intent(this, PostLoginActivity.class));
-				startNavigationDrawer();
+				//startNavigationDrawer();
 			}
 		} else {
 			writeSharedPreference();
 			//startActivity(new Intent(this, PostLoginActivity.class));
-			startNavigationDrawer();
+			//startNavigationDrawer();
 		}
 
 	}
 
-	private void startNavigationDrawer() {
-		// TODO Auto-generated method stub
-		
-		
-		String[] title ={"Password","Reminder"};
-		int[] icon={R.drawable.ic_app_launcher,R.drawable.ic_app_launcher};
-		
-		Mapper mapper = Mapper.getMapper();
-		
-		//NavDrawerItem drawerItem = new NavDrawerItem();
-		
-		List<Fragment> fragmentList = new ArrayList<Fragment>();
-		
-		List<NavDrawerItem> slidemenuList = new ArrayList<NavDrawerItem>();
-		
-		
-		for(int i=0;i<title.length;i++)
-		{
-			slidemenuList.add(new NavDrawerItem(title[i], icon[i]));
-		}
-		
-		
-		
-		fragmentList.add(new Password());
-		fragmentList.add(new Reminder());
-		
-				
-		mapper.setFragmentList(fragmentList);
-		mapper.setNavigationDrawerItemList(slidemenuList);
-		
-		
-		Intent intent = new Intent(getApplicationContext(),NavigationDrawerActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);		
-		startActivity(intent);
-		
-		
-		
-		
-		
-	}
+	
 
 	private void writeSharedPreference() {
 		// TODO Auto-generated method stub
